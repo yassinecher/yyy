@@ -1,0 +1,244 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Store {
+  id         String      @id @default(uuid())
+  name       String
+  userId     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  categories Category[]  @relation("StoreToCategory")
+  products   Product[]   @relation("StoreToProduct")
+
+  orders     Order[]     @relation("StoreToOrder")
+}
+
+
+model Category {
+  id          String    @id @default(uuid())
+  storeId     String
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  store       Store     @relation("StoreToCategory", fields: [storeId], references: [id])
+  products    Product[] @relation("CategoryToProduct")
+  @@index([storeId])
+
+}
+model Product {
+  id            String    @id @default(uuid())
+  storeId       String
+  categoryId    String
+  name          String
+  price         Decimal
+  isFeatured    Boolean     @default(false)
+  isArchived    Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  Template      String
+  TemplateId    String
+  store         Store       @relation("StoreToProduct", fields: [storeId], references: [id])
+  category      Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  images        Image[]
+  orderItems    OrderItem[]
+  motherboard   Motherboard[]       @relation("ProductToMotherboard")
+  cpus          CPU[]       @relation("ProductToCPU")
+  gpus          GPU[]       @relation("ProductToGPU")
+  memories      Memory[]    @relation("ProductToMemory")
+  storages      Storage[]   @relation("ProductToStorage")
+  cases         PCCase[]    @relation("ProductToPCCase")
+  coolings      Cooling[]   @relation("ProductToCooling")
+  oss           OperatingSystem[] @relation("ProductToOperatingSystem")
+  screens       Screen[]    @relation("ProductToScreen")
+
+  @@index([storeId])
+  @@index([categoryId])
+}
+model Order {
+  id         String      @id @default(uuid())
+  storeId    String
+  isPaid     Boolean     @default(false)
+  phone      String      @default("")
+  address    String      @default("")
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
+  orderItems OrderItem[]
+
+  @@index([storeId])
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+model Image {
+  id        String   @id @default(uuid())
+  productId String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+
+
+
+model PC {
+  id            String    @id @default(uuid())
+  platform      String
+  motherboard   Motherboard? @relation("PC_Motherboard", fields: [motherboardId], references: [id])
+  motherboardId String?
+  cpu           CPU? @relation("PC_CPU", fields: [cpuId], references: [id])
+  cpuId         String?
+  gpu           GPU? @relation("PC_GPU", fields: [gpuId], references: [id])
+  gpuId         String?
+  memory        Memory[] @relation("PC_Memory")
+  storage       Storage[] @relation("PC_Storage")
+  case          PCCase? @relation("PC_PCCase", fields: [caseId], references: [id])
+  caseId        String?
+  cooling       Cooling? @relation("PC_Cooling", fields: [coolingId], references: [id])
+  coolingId     String?
+  os            OperatingSystem? @relation("PC_OperatingSystem", fields: [osId], references: [id])
+  osId          String?
+  screen        Screen? @relation("PC_Screen", fields: [screenId], references: [id])
+  screenId      String?
+
+  @@index([motherboardId])
+  @@index([cpuId])
+  @@index([gpuId])
+  @@index([caseId])
+  @@index([coolingId])
+  @@index([osId])
+  @@index([screenId])
+}
+
+model Motherboard {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  socketType         String
+  chipset            String
+  maxMemory          Int
+  formFactor         String
+  // ... other motherboard-specific fields
+  cpuCompatibility   CPU[]        @relation("Motherboard_CPU_Compatibility")
+  gpuCompatibility   GPU[]        @relation("Motherboard_GPU_Compatibility")
+  memoryCompatibility Memory[]    @relation("Motherboard_Memory_Compatibility")
+  storageCompatibility Storage[]  @relation("Motherboard_Storage_Compatibility")
+  pc                 PC[]         @relation("PC_Motherboard")
+  products           Product[] @relation("ProductToMotherboard")
+  
+}
+
+model CPU {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  cores              Int
+  threads            Int
+  clockSpeed         Float
+  socketType         String
+  // ... other CPU-specific fields
+  motherboardCompatibility Motherboard[] @relation("Motherboard_CPU_Compatibility")
+  pc                 PC[]     @relation("PC_CPU")
+  products           Product[] @relation("ProductToCPU")
+}
+
+model GPU {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  vram               Int
+  coreClock          Float
+  memoryClock        Float
+  // ... other GPU-specific fields
+  motherboardCompatibility Motherboard[] @relation("Motherboard_GPU_Compatibility")
+  pc                 PC[]     @relation("PC_GPU")
+  products           Product[] @relation("ProductToGPU")
+}
+
+model Memory {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  capacity           Int
+  speed              Int
+  type               String
+  // ... other memory-specific fields
+  motherboardCompatibility Motherboard[] @relation("Motherboard_Memory_Compatibility")
+  pc                 PC[]     @relation("PC_Memory")
+  products           Product[] @relation("ProductToMemory")
+}
+
+model Storage {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  capacity           Int
+  type               String
+  interface          String
+  // ... other storage-specific fields
+  motherboardCompatibility Motherboard[] @relation("Motherboard_Storage_Compatibility")
+  pc                 PC[]     @relation("PC_Storage")
+  products           Product[] @relation("ProductToStorage")
+}
+
+model PCCase {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  formFactor         String
+  maxGPULength       Float
+  maxCoolerHeight    Float
+  // ... other PC case-specific fields
+  pc                 PC[]     @relation("PC_PCCase")
+  products           Product[] @relation("ProductToPCCase")
+}
+
+model Cooling {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  type               String
+  fanSize            Int
+  // ... other cooling-specific fields
+  pc                 PC[]     @relation("PC_Cooling")
+  products           Product[] @relation("ProductToCooling")
+}
+
+model OperatingSystem {
+  id                 String   @id @default(uuid())
+  name               String
+  version            String
+  // ... other OS-specific fields
+  pc                 PC[]     @relation("PC_OperatingSystem")
+  products           Product[] @relation("ProductToOperatingSystem")
+}
+
+model Screen {
+  id                 String   @id @default(uuid())
+  brand              String
+  model              String
+  size               Float
+  resolution         String
+  refreshRate        Int
+  // ... other screen-specific fields
+  pc                 PC[]     @relation("PC_Screen")
+  products           Product[] @relation("ProductToScreen")
+}
