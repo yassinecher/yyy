@@ -1,0 +1,15 @@
+.card {
+    height: 500px;
+
+    padding:50px 50px ;
+  }
+  .Zoomcard{
+width: 100%;
+  }
+  .indicator {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: 1px #666 solid;
+    padding: 10px;
+  }
