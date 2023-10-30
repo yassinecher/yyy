@@ -5,16 +5,16 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET(
   req: Request,
-  { params }: { params: { billboardId: string } }
+  { params }: { params: { SlideId: string } }
 ) {
   try {
-    if (!params.billboardId) {
+    if (!params.SlideId) {
       return new NextResponse("Billboard id is required", { status: 400 });
     }
 
-    const billboard = await prismadb.billboard.findUnique({
+    const billboard = await prismadb.slide.findUnique({
       where: {
-        id: params.billboardId
+        id: params.SlideId
       }
     });
   
@@ -27,19 +27,19 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { billboardId: string, storeId: string } }
+  { params }: { params: { SlideId: string } }
 ) {
   try {
   
 
-    if (!params.billboardId) {
-      return new NextResponse("Billboard id is required", { status: 400 });
+    if (!params.SlideId) {
+      return new NextResponse("slideId id is required", { status: 400 });
     }
 
   
-    const billboard = await prismadb.billboard.delete({
+    const billboard = await prismadb.slide.delete({
       where: {
-        id: params.billboardId,
+        id: params.SlideId,
       }
     });
   
@@ -78,7 +78,7 @@ export async function PATCH(
   
 
 
-    const billboard = await prismadb.billboard.update({
+    const billboard = await prismadb.slide.update({
       where: {
         id: params.billboardId,
       },

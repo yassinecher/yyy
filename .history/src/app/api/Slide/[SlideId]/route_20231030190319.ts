@@ -59,11 +59,13 @@ export async function PATCH(
 
     const body = await req.json();
     
-    const { title,description, imageUrl } = body;
+    const { label, imageUrl } = body;
     
   
 
-   
+    if (!label) {
+      return new NextResponse("Label is required", { status: 400 });
+    }
 
     if (!imageUrl) {
       return new NextResponse("Image URL is required", { status: 400 });
@@ -81,9 +83,8 @@ export async function PATCH(
         id: params.billboardId,
       },
       data: {
-        title,
-        imageUrl,
-        description,
+        label,
+        imageUrl
       }
     });
   

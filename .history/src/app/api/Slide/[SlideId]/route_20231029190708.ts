@@ -12,7 +12,7 @@ export async function GET(
       return new NextResponse("Billboard id is required", { status: 400 });
     }
 
-    const billboard = await prismadb.slide.findUnique({
+    const billboard = await prismadb.billboard.findUnique({
       where: {
         id: params.SlideId
       }
@@ -59,11 +59,13 @@ export async function PATCH(
 
     const body = await req.json();
     
-    const { title,description, imageUrl } = body;
+    const { label, imageUrl } = body;
     
   
 
-   
+    if (!label) {
+      return new NextResponse("Label is required", { status: 400 });
+    }
 
     if (!imageUrl) {
       return new NextResponse("Image URL is required", { status: 400 });
@@ -76,14 +78,13 @@ export async function PATCH(
   
 
 
-    const billboard = await prismadb.slide.update({
+    const billboard = await prismadb.billboard.update({
       where: {
         id: params.billboardId,
       },
       data: {
-        title,
-        imageUrl,
-        description,
+        label,
+        imageUrl
       }
     });
   
