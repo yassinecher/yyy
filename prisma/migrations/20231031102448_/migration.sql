@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "NavLab" AS ENUM ('PCS', 'COMPONENTS', 'PEREPHRALS', 'FULLSETUP');
+
+-- AlterTable
+ALTER TABLE "Category" ADD COLUMN     "navLab" "NavLab" NOT NULL DEFAULT 'COMPONENTS';
