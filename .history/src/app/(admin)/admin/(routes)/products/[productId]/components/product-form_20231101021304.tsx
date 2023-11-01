@@ -332,7 +332,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             name="additionalDetails"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Infos</FormLabel>
+                <FormLabel>Images</FormLabel>
                 <FormControl>
                 
                 <InputArray onInputArrayChange={handleInputArrayChange} />

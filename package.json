@@ -78,6 +78,7 @@
     "react-hot-toast": "^2.4.1",
     "react-slideshow-image": "^4.3.0",
     "react-spinners": "^0.13.8",
+    "react-tag-input-component": "^2.0.2",
     "react-wrap-balancer": "^1.1.0",
     "recast": "^0.23.2",
     "recharts": "^2.8.0",
