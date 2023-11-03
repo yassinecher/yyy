@@ -3,10 +3,7 @@
 import { useEffect, useState } from "react";
 
 
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'TND',
-});
+
 interface CurrencyProps {
   value?: string | number;
 }
@@ -23,10 +20,10 @@ const Currency: React.FC<CurrencyProps> = ({
   if (!isMounted) {
     return null;
   }
-  
+
   return ( 
     <div className="font-semibold flex">
-     {formatter.format(Number(value))}<div className="pl-2"> </div> 
+     {(parseInt(value)).toString()}<div className="pl-2">TND </div> 
     </div>
   );
 }

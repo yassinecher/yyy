@@ -23,10 +23,16 @@ const Currency: React.FC<CurrencyProps> = ({
   if (!isMounted) {
     return null;
   }
+  const number =Number(value) ;
+
+  // Convert the number to a string
+  const numberString = number.toFixed(2);
   
+  // Remove trailing zeros using a regular expression
+  const formattedNumberString = numberString.replace(/\.?0+$/, '');
   return ( 
     <div className="font-semibold flex">
-     {formatter.format(Number(value))}<div className="pl-2"> </div> 
+     {formatter.format((Number(formattedNumberString)))}<div className="pl-2"> </div> 
     </div>
   );
 }

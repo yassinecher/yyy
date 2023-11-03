@@ -26,7 +26,7 @@ const Currency: React.FC<CurrencyProps> = ({
   
   return ( 
     <div className="font-semibold flex">
-     {formatter.format(Number(value))}<div className="pl-2"> </div> 
+     {Number(value)}<div className="pl-2"> </div> 
     </div>
   );
 }
