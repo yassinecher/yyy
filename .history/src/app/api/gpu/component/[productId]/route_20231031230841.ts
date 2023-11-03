@@ -72,13 +72,15 @@ export async function PATCH(
       images,
       isFeatured,
       isArchived,
-      GpuBrandId,
-      graphiccardNameId,
-      gpuArchBrandId,
+      chipsetId,
+      cpusupportId,
+      formatId,
+      manufacturerId,
+      ramslotsId,
       description,
       stock,
       dicountPrice,
-      additionalDetails
+
     } = body;
 
  
@@ -98,26 +100,29 @@ export async function PATCH(
     if (!categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
-    if (!GpuBrandId) {
-      return new NextResponse("GpuBrandId is required", { status: 400 });
+    if (!chipsetId) {
+      return new NextResponse("chipsetId is required", { status: 400 });
     }
 
-    if (!graphiccardNameId ) {
-      return new NextResponse("graphiccardNameId are required", { status: 400 });
+    if (!cpusupportId ) {
+      return new NextResponse("cpusupportId are required", { status: 400 });
     }
 
-    if (!gpuArchBrandId) {
-      return new NextResponse("gpuArchBrandId is required", { status: 400 });
+    if (!formatId) {
+      return new NextResponse("formatId is required", { status: 400 });
     }
 
+    if (!ramslotsId) {
+      return new NextResponse("ramslotsId id is required", { status: 400 });
+    }
     if (!stock) {
       return new NextResponse("stock id is required", { status: 400 });
     }
- if (!additionalDetails) {
-      return new NextResponse("additionalDetails id is required", { status: 400 });
+ if (!manufacturerId) {
+      return new NextResponse("manufacturerId id is required", { status: 400 });
     }
 
-    const associatedMotherboards = await prismadb.gpu.findFirst({
+    const associatedMotherboards = await prismadb.motherboard.findFirst({
       where: {
         products: {
           some: {
@@ -127,7 +132,7 @@ export async function PATCH(
       }
     });
     
-   await prismadb.gpu.update({
+   await prismadb.motherboard.update({
       where: {
      
             id: associatedMotherboards?.id
@@ -135,10 +140,11 @@ export async function PATCH(
         },
 
       data: {
-        GpuBrandId,
-        graphiccardNameId,
-        gpuArchBrandId,
-        
+        chipsetId: chipsetId,
+        cpusupportId: cpusupportId,
+        formatId: formatId,
+        manufacturerId: manufacturerId,
+        ramslotsId: ramslotsId,
       }
     });
 
@@ -156,9 +162,7 @@ export async function PATCH(
         categoryId: categoryId,
         stock:stock,
         dicountPrice:dicountPrice,
-        additionalDetails: {
-          deleteMany: {},
-        },
+      
         images: {
           deleteMany: {},
         },
@@ -177,13 +181,6 @@ export async function PATCH(
               ...images.map((image: { url: string }) => image),
             ],
           },
-          
-        },
-        additionalDetails:{
-          createMany:{
-           data: [...additionalDetails]
-          }
-
         },
       },
     })

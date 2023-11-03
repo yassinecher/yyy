@@ -156,9 +156,7 @@ export async function PATCH(
         categoryId: categoryId,
         stock:stock,
         dicountPrice:dicountPrice,
-        additionalDetails: {
-          deleteMany: {},
-        },
+        additionalDetails,
         images: {
           deleteMany: {},
         },

@@ -64,10 +64,8 @@ export async function DELETE(
       const body = await req.json();
 
   
-      const { name, price, categoryId,  images, isFeatured, isArchived ,          brandId,
-        caseformatiD,
-        numberofFansPreinstalledId,
-        rGBTypeId,
+      const { name, price, categoryId,  images, isFeatured, isArchived ,marqueId,numberId
+  ,typeId,frequencyId,rgb
   } = body;
   
 
@@ -98,19 +96,20 @@ export async function DELETE(
       where:{
         id:params.productId
       },include:{
-        cases:true
+        memories:true
       }
-    }) 
+    })
 
-      await prismadb.pCcase.update({
+      await prismadb.memory.update({
         where:{
-          id: prod!.cases[0].id
+          id: prod!.memories[0].id
         },
         data:{
-          brandId,
-            caseformatiD,
-            numberofFansPreinstalledId,
-            rGBTypeId,
+          marqueId,
+          frequencyId,
+          numberId,
+          typeId,
+          rgb
 
         }
 

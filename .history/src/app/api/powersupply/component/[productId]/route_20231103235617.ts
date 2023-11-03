@@ -60,14 +60,15 @@ export async function DELETE(
     { params }: { params: { productId: string} }
   ) {
     try {
-
+ 
       const body = await req.json();
 
   
-      const { name, price, categoryId,  images, isFeatured, isArchived ,          brandId,
-        caseformatiD,
-        numberofFansPreinstalledId,
-        rGBTypeId,
+      const { name, price, categoryId,  images, isFeatured, isArchived ,     
+        certification80ID,
+        powersupplyMarqueID,
+        modularity,
+        Power,
   } = body;
   
 
@@ -102,16 +103,15 @@ export async function DELETE(
       }
     }) 
 
-      await prismadb.pCcase.update({
+      await prismadb.powersupply.update({
         where:{
           id: prod!.cases[0].id
         },
         data:{
-          brandId,
-            caseformatiD,
-            numberofFansPreinstalledId,
-            rGBTypeId,
-
+          powersupplyMarqueId:powersupplyMarqueID,
+          modularity,
+          Power,
+          certificationId:certification80ID
         }
 
       });

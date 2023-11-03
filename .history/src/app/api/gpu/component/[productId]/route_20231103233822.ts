@@ -156,9 +156,7 @@ export async function PATCH(
         categoryId: categoryId,
         stock:stock,
         dicountPrice:dicountPrice,
-        additionalDetails: {
-          deleteMany: {},
-        },
+        additionalDetails,
         images: {
           deleteMany: {},
         },
@@ -177,13 +175,6 @@ export async function PATCH(
               ...images.map((image: { url: string }) => image),
             ],
           },
-          
-        },
-        additionalDetails:{
-          createMany:{
-           data: [...additionalDetails]
-          }
-
         },
       },
     })
