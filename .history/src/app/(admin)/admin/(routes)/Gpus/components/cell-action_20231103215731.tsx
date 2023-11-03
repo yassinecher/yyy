@@ -32,9 +32,9 @@ export const CellAction: React.FC<CellActionProps> = ({
   const router = useRouter();
   const params = useParams();
   const setOpen = (par: boolean) => {
-    setOpenm(par);
-    setOpenmd(false)
-    if (par === false) {
+  
+   
+    if (par == false) {
       try {
       
         if (par == false) {
@@ -52,14 +52,17 @@ export const CellAction: React.FC<CellActionProps> = ({
         }
       } catch (error) {
         
-      } }
+      }
+    }else{
+      setOpenm(true)
+      setOpenmd(false)
+    }
   };
-  
  
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/products/${data.id}`);
+      await axios.delete(`/api/memory/component/${data.id}`);
       toast.success('Product deleted.');
       router.refresh();
     } catch (error) {
@@ -81,7 +84,7 @@ export const CellAction: React.FC<CellActionProps> = ({
      
       <DropdownMenu >
         <DropdownMenuTrigger asChild >
-          <Button variant="ghost"  className="h-8 w-8 p-0">
+          <Button variant="ghost"   className="h-8 w-8 p-0">
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
@@ -94,7 +97,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             <Copy className="mr-2 h-4 w-4" /> Copy Id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/admin/PowerSuppliy/${data.id}`)}
+            onClick={() => router.push(`/admin/Gpus/${data.id}`)}
           >
             <Edit className="mr-2 h-4 w-4" /> Update
           </DropdownMenuItem>
