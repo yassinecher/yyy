@@ -113,16 +113,13 @@ model Screen {
   RefreshRate         RefreshRate  @relation(fields: [RefreshRateId], references: [id])
   PouceId       String
   Pouce         Pouce  @relation(fields: [PouceId], references: [id])
-  MarkId       String 
-  Mark         Mark  @relation(fields: [MarkId], references: [id])
+  manufacturerId String
+  manufacturer   Manufacturer       @relation("ManufacturerToScreen", fields: [manufacturerId], references: [id])
+
 
 
 }
-model Mark {
-  id             String             @id @default(uuid())
-  name           String
-  screens        Screen[]
-}
+
 model Pouce {
   id             String             @id @default(uuid())
   name           String
@@ -190,7 +187,7 @@ model Manufacturer {
   name         String
   imageUrl     String
   motherboards Motherboard[] @relation("ManufacturerToMotherboard")
-
+  screens Screen[] @relation("ManufacturerToScreen")
 
 }
 

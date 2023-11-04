@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, Gpu, PowersupplyMarque, Powersupply, PsCertification, Field, Resolution, Screen, RefreshRate, Pouce, Mark } from "@prisma/client"
+import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, Gpu, PowersupplyMarque, Powersupply, PsCertification, Field, Resolution, Screen, RefreshRate, Pouce } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -51,7 +51,6 @@ const formSchema = z.object({
   dicountPrice: z.coerce.number().optional(),
   description:z.string().min(1),
   curved: z.boolean().default(false),
-  markId:z.string().min(1),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -66,7 +65,6 @@ interface ProductFormProps {
   resolution:Resolution[],
   refreshRate:RefreshRate[]
   pouce:Pouce[]
-  mark:Mark[]
 
 };
 
@@ -75,8 +73,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   categories,     
   resolution,
   refreshRate,
-  pouce,
-  mark
+  pouce
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -441,17 +438,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               formCControlName="resolutionId"
               IsNumber={false}
               />
-<PopFormModal label={"Mark"} 
-              form1={form} 
-              loading={loading} 
-              setLoading={setLoading} 
-              data={...mark}
-              fieldaAfficher="name"
-              url="/api/Screen/Mark"
-              formLab="markId"
-              formCControlName="mark"
-              IsNumber={false}
-              />
+
        
 
 

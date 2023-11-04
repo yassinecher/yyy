@@ -113,16 +113,13 @@ model Screen {
   RefreshRate         RefreshRate  @relation(fields: [RefreshRateId], references: [id])
   PouceId       String
   Pouce         Pouce  @relation(fields: [PouceId], references: [id])
-  MarkId       String 
-  Mark         Mark  @relation(fields: [MarkId], references: [id])
+  markId String
+  mark   Manufacturer       @relation("ManufacturerToScreen", fields: [markId], references: [id])
+
 
 
 }
-model Mark {
-  id             String             @id @default(uuid())
-  name           String
-  screens        Screen[]
-}
+
 model Pouce {
   id             String             @id @default(uuid())
   name           String
@@ -143,8 +140,8 @@ model RefreshRate {
 model Motherboard {
   id             String             @id @default(uuid())
   products           Product[] @relation("ProductToMotherboard")
-  manufacturerId String
-  manufacturer   Manufacturer       @relation("ManufacturerToMotherboard", fields: [manufacturerId], references: [id])
+  markId String
+  mark   Manufacturer       @relation("ManufacturerToMotherboard", fields: [markId], references: [id])
   ramslotsId     String
   ramslots       RamSlots           @relation(fields: [ramslotsId], references: [id])
   chipsetId      String
@@ -190,7 +187,7 @@ model Manufacturer {
   name         String
   imageUrl     String
   motherboards Motherboard[] @relation("ManufacturerToMotherboard")
-
+  screens Screen[] @relation("ManufacturerToScreen")
 
 }
 

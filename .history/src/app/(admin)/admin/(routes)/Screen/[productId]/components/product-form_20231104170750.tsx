@@ -447,9 +447,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               setLoading={setLoading} 
               data={...mark}
               fieldaAfficher="name"
-              url="/api/Screen/Mark"
+              url="/api/Screen/RefreshRate"
               formLab="markId"
-              formCControlName="mark"
+              formCControlName="markId"
               IsNumber={false}
               />
        

@@ -23,12 +23,11 @@ const ProductPage = async ({
   const resolution = await prismadb.resolution.findMany()
   const refreshRate= await prismadb.refreshRate.findMany()
   const pouce= await prismadb.pouce.findMany()
-  const mark= await prismadb.mark.findMany()
+
   return ( 
     <div className="flex-col"> 
       <div className="flex-1 space-y-4 p-8 pt-6">
         <ProductForm 
-        mark={mark}
           categories={categories}
           resolution={resolution}
           refreshRate={refreshRate}

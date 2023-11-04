@@ -191,7 +191,6 @@ model Manufacturer {
   imageUrl     String
   motherboards Motherboard[] @relation("ManufacturerToMotherboard")
 
-
 }
 
 model Processor {

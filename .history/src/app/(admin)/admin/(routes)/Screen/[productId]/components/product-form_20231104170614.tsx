@@ -51,7 +51,6 @@ const formSchema = z.object({
   dicountPrice: z.coerce.number().optional(),
   description:z.string().min(1),
   curved: z.boolean().default(false),
-  markId:z.string().min(1),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -441,17 +440,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               formCControlName="resolutionId"
               IsNumber={false}
               />
-<PopFormModal label={"Mark"} 
-              form1={form} 
-              loading={loading} 
-              setLoading={setLoading} 
-              data={...mark}
-              fieldaAfficher="name"
-              url="/api/Screen/Mark"
-              formLab="markId"
-              formCControlName="mark"
-              IsNumber={false}
-              />
+
        
 
 

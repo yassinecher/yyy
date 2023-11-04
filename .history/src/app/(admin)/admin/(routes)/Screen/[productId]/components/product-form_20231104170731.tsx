@@ -445,11 +445,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               form1={form} 
               loading={loading} 
               setLoading={setLoading} 
-              data={...mark}
+              data={...refreshRate}
               fieldaAfficher="name"
-              url="/api/Screen/Mark"
+              url="/api/Screen/RefreshRate"
               formLab="markId"
-              formCControlName="mark"
+              formCControlName="resolutionId"
               IsNumber={false}
               />
        

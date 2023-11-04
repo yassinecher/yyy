@@ -441,17 +441,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               formCControlName="resolutionId"
               IsNumber={false}
               />
-<PopFormModal label={"Mark"} 
-              form1={form} 
-              loading={loading} 
-              setLoading={setLoading} 
-              data={...mark}
-              fieldaAfficher="name"
-              url="/api/Screen/Mark"
-              formLab="markId"
-              formCControlName="mark"
-              IsNumber={false}
-              />
+
        
 
 

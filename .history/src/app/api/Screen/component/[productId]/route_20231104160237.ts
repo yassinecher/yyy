@@ -68,7 +68,7 @@ export async function DELETE(
         resolutionId,
         curved,
         RefreshRateId,
-        PouceId,MarkId
+        PouceId
   } = body;
   
 
@@ -111,8 +111,7 @@ export async function DELETE(
           resolutionId,
         curved,
         RefreshRateId,
-        PouceId,
-        MarkId
+        PouceId
           
         }
 
