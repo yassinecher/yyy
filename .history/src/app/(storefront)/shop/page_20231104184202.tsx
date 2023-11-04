@@ -30,34 +30,30 @@ import Sidebar from './_componenets/sideBar'
   }else{
      pageIndex=1
   }
-  let prods
-  if(categoryy.length==0){
-    prods=await prismadb.product.findMany({
-    
-         include:{
-           images:true,
-           category:true, 
-           additionalDetails:true
-         },
-         skip:(perpage*(pageIndex-1)),
-         take:perpage,
-    }) 
-  }else{
-     prods=await prismadb.product.findMany({
-      where :{
-    
-          category:{name:categoryy.toString()}
-         },
-         include:{
-           images:true,
-           category:true, 
-           additionalDetails:true
-         },
-         skip:(perpage*(pageIndex-1)),
-         take:perpage,
-    }) 
-  }
- 
+
+  const prods=await prismadb.product.findMany({
+    where :{
+  
+        category:{name:categoryy.toString()}
+       },
+       include:{
+         images:true,
+         category:true,
+         cases:true,
+         cpus:true,
+         gpus:true,
+         memories:true,
+         motherboard:true,
+         orderItems:true,
+         powersupplies:true,
+         storages:true,
+         additionalDetails:true
+       },
+       skip:(perpage*(pageIndex-1)),
+       take:perpage,
+      
+     
+  }) 
 
   const formattedproducts: Product[] = prods.map((item) => ({
     id: item.id,

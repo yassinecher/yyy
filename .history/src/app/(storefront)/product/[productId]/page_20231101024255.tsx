@@ -99,9 +99,9 @@ const columns: ColumnDef<Field>[] = [
     <div className="bg-[#ffffffe6]  dark:bg-[#000000e6] rounded-lg container my-10">
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
+          <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
             <Gallery images={product.images} />
-            <div className="mt-10 mx-20 col-span-2 sm:mt-16 sm:px-0 lg:mt-0">
+            <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
               <Info data={formattedproduct} />
             </div>
           </div>

@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -8,10 +8,6 @@ import { Product } from "@/types";
 import NoResults from "@/components/ui/no-results";
 import { Category } from '@prisma/client'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { useRouter } from 'next/navigation'
-import { Loader } from 'lucide-react'
-import { LoadingOverlay } from '@mantine/core'
-import Skeleton from '@/components/ui/skeleton'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -37,32 +33,24 @@ interface ProductListProps {
   title: String,
   items: Product[],
   categories:Category[]
-  isloadingg:boolean
 }
  const Sidebar :React.FC<ProductListProps> = ({
     title,
     items,
-    categories,
-    isloadingg
+    categories
   }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [categorie,setCategorie]=useState({
     id: 'category',
     name: 'Category',
     options:categories.map((item)=>({
-      value:item.name,
+      value:item.id,
       label:item.name,
       checked:false
     }))
   })
-  const [isLoading,setIsloading]=useState(isloadingg)
   const [filters, setfilters]=useState([categorie])
-  const router = useRouter()
   
-  useEffect(()=>{
-
-  setIsloading(false)
-  },[items])
   return (
     <div className="w-full">
       <div>
@@ -248,15 +236,12 @@ interface ProductListProps {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                          <RadioGroup   defaultValue="option-one" >
+                          <RadioGroup defaultValue="option-one" >
                             {section.options.map((option, optionIdx) => (
                               <div key={option.value} className="flex items-center">
 
-                                <RadioGroupItem onClick={(e)=>{
-                              setIsloading(true)
-                             router.push(`/shop?categorie=${option.label}`)
-                             router.refresh()
-                          }} value={option.value}       id={`filter-${section.id}-${optionIdx}`} />
+                                <RadioGroupItem value={option.value}     id={`filter-${section.id}-${optionIdx}`} />
+                               
                                 <label
                                   htmlFor={`filter-${section.id}-${optionIdx}`}
                                   className="ml-3 text-sm text-gray-600"
@@ -276,31 +261,12 @@ interface ProductListProps {
               {/* Product grid */}
               <div className="lg:col-span-3"> <div className="space-y-4">
               <h3 className="font-bold text-3xl">{title}</h3>
-              {isLoading?<>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-                <Skeleton className="w-full h-72 rounded-xl" />
-
-                </div>
-                
-              
-              </>:<>
-              {items.length === 0 && <NoResults />}
+      {items.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map((item) => (
           <ProductCard key={item.id} data={item} />
         ))}
       </div>
-              </>
-
-              }
-     
     </div></div>
             </div>
           </section>

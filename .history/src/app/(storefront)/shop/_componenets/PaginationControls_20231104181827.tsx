@@ -34,11 +34,13 @@ const PaginationControls: FC<PaginationControlsProps> = (
 
 <div className="flex flex-col gap-5">
     
-    {pagetotal>0?  <Pagination
+
+
+      <Pagination
       isCompact showControls
         total={pagetotal}
         color="secondary"
-        page={pageindex}
+        page={pageindex-1}
         onChange={(e)=>{
           if(cat.length>0){
               if(search.length>0){
@@ -53,9 +55,7 @@ const PaginationControls: FC<PaginationControlsProps> = (
           
             router.refresh()
         }}
-      />:<></>}
-
-    
+      />
     
     </div>
     

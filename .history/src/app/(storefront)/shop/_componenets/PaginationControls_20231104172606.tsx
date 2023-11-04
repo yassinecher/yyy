@@ -34,7 +34,9 @@ const PaginationControls: FC<PaginationControlsProps> = (
 
 <div className="flex flex-col gap-5">
     
-    {pagetotal>0?  <Pagination
+
+
+      <Pagination
       isCompact showControls
         total={pagetotal}
         color="secondary"
@@ -44,7 +46,7 @@ const PaginationControls: FC<PaginationControlsProps> = (
               if(search.length>0){
                 router.push(`/shop?search-key=${search}&categorie=${cat}&page=${Number(e) }`)
               }else{
-                router.push(`/shop?categorie=${cat}&page=${Number(e) }`)
+                router.push(`/shop?categorie=${cat}page=${Number(e) }`)
               }
           }else{
               router.push(`/shop?page=${Number(e) }`)
@@ -53,9 +55,7 @@ const PaginationControls: FC<PaginationControlsProps> = (
           
             router.refresh()
         }}
-      />:<></>}
-
-    
+      />
     
     </div>
     

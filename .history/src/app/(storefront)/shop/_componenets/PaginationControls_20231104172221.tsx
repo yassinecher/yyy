@@ -25,7 +25,6 @@ const PaginationControls: FC<PaginationControlsProps> = (
   const router = useRouter()
   const searchParams = useSearchParams()
   const cat= searchParams.get('categorie') ?? ''
-  const search= searchParams.get('search') ?? ''
   const page = searchParams.get('page') ?? '1'
   const per_page =perpage
 
@@ -34,28 +33,18 @@ const PaginationControls: FC<PaginationControlsProps> = (
 
 <div className="flex flex-col gap-5">
     
-    {pagetotal>0?  <Pagination
+
+
+      <Pagination
       isCompact showControls
         total={pagetotal}
         color="secondary"
         page={pageindex}
         onChange={(e)=>{
-          if(cat.length>0){
-              if(search.length>0){
-                router.push(`/shop?search-key=${search}&categorie=${cat}&page=${Number(e) }`)
-              }else{
-                router.push(`/shop?categorie=${cat}&page=${Number(e) }`)
-              }
-          }else{
-              router.push(`/shop?page=${Number(e) }`)
-          }
-           
-          
+            router.push(`/shop?page=${Number(e) }`)
             router.refresh()
         }}
-      />:<></>}
-
-    
+      />
     
     </div>
     

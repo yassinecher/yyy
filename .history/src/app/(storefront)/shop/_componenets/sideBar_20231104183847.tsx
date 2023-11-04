@@ -62,7 +62,7 @@ interface ProductListProps {
   useEffect(()=>{
 
   setIsloading(false)
-  },[items])
+  },[router])
   return (
     <div className="w-full">
       <div>

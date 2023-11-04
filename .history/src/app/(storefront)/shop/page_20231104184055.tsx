@@ -30,35 +30,31 @@ import Sidebar from './_componenets/sideBar'
   }else{
      pageIndex=1
   }
-  let prods
-  if(categoryy.length==0){
-    prods=await prismadb.product.findMany({
-    
-         include:{
-           images:true,
-           category:true, 
-           additionalDetails:true
-         },
-         skip:(perpage*(pageIndex-1)),
-         take:perpage,
-    }) 
-  }else{
-     prods=await prismadb.product.findMany({
-      where :{
-    
-          category:{name:categoryy.toString()}
-         },
-         include:{
-           images:true,
-           category:true, 
-           additionalDetails:true
-         },
-         skip:(perpage*(pageIndex-1)),
-         take:perpage,
-    }) 
-  }
- 
 
+  const prods=await prismadb.product.findMany({
+    where :{
+  
+        category:{name:categoryy.toString()}
+       },
+       include:{
+         images:true,
+         category:true,
+         cases:true,
+         cpus:true,
+         gpus:true,
+         memories:true,
+         motherboard:true,
+         orderItems:true,
+         powersupplies:true,
+         storages:true,
+         additionalDetails:true
+       },
+       skip:(perpage*(pageIndex-1)),
+       take:perpage,
+      
+     
+  }) 
+  console.log(prods)
   const formattedproducts: Product[] = prods.map((item) => ({
     id: item.id,
     name: item.name,
@@ -76,7 +72,6 @@ import Sidebar from './_componenets/sideBar'
       category:{name:categoryy.toString()}
      },   
   })/perpage)
-  console.log(total)
   let ski=total*(pageIndex-1)
   if(ski<0){
     ski=0

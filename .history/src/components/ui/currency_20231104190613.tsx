@@ -7,7 +7,7 @@ const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'TND',
   maximumFractionDigits:0,
-  
+  currencyDisplay:'right'
 });
 interface CurrencyProps {
   value?: string | number;

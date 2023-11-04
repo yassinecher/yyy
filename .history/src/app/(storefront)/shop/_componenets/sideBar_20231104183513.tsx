@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -58,11 +58,6 @@ interface ProductListProps {
   const [isLoading,setIsloading]=useState(isloadingg)
   const [filters, setfilters]=useState([categorie])
   const router = useRouter()
-  
-  useEffect(()=>{
-
-  setIsloading(false)
-  },[items])
   return (
     <div className="w-full">
       <div>

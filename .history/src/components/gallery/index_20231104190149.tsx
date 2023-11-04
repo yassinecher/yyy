@@ -26,7 +26,7 @@ const Gallery: React.FC<GalleryProps> = ({
       </div>
 
     
-      <Tab.Panels className="aspect-square w-full p-6">
+      <Tab.Panels className="aspect-square w-full ">
         
         {images.map((image) => (
           <Tab.Panel key={image.id}>

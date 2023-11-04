@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -37,13 +37,11 @@ interface ProductListProps {
   title: String,
   items: Product[],
   categories:Category[]
-  isloadingg:boolean
 }
  const Sidebar :React.FC<ProductListProps> = ({
     title,
     items,
-    categories,
-    isloadingg
+    categories
   }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [categorie,setCategorie]=useState({
@@ -55,14 +53,9 @@ interface ProductListProps {
       checked:false
     }))
   })
-  const [isLoading,setIsloading]=useState(isloadingg)
+  const [isLoading,setIsloading]=useState(false)
   const [filters, setfilters]=useState([categorie])
   const router = useRouter()
-  
-  useEffect(()=>{
-
-  setIsloading(false)
-  },[items])
   return (
     <div className="w-full">
       <div>
@@ -286,7 +279,10 @@ interface ProductListProps {
                 <Skeleton className="w-full h-72 rounded-xl" />
                 <Skeleton className="w-full h-72 rounded-xl" />
                 <Skeleton className="w-full h-72 rounded-xl" />
-
+                <Skeleton className="w-full h-72 rounded-xl" />
+                <Skeleton className="w-full h-72 rounded-xl" />
+                <Skeleton className="w-full h-72 rounded-xl" />
+                <Skeleton className="w-full h-72 rounded-xl" />
                 </div>
                 
               
