@@ -68,7 +68,7 @@ export async function DELETE(
         resolutionId,
         curved,
         RefreshRateId,
-        PouceId,markId,additionalDetails
+        PouceId,MarkId
   } = body;
   
 
@@ -112,7 +112,7 @@ export async function DELETE(
         curved,
         RefreshRateId,
         PouceId,
-        MarkId:markId,
+        MarkId
           
         }
 
@@ -127,9 +127,6 @@ export async function DELETE(
           name,
           price,
           categoryId,
-          additionalDetails:{
-            deleteMany: {},
-          },
           images: {
             deleteMany: {},
           },
@@ -143,12 +140,6 @@ export async function DELETE(
           id: params.productId
         },
         data: {
-          additionalDetails: {
-            createMany:{
-              data: [...additionalDetails]
-             }
-   
-          },
           images: {
             createMany: {
               data: [

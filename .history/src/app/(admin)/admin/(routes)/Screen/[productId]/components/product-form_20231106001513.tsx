@@ -97,7 +97,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     PouceId:  initialData.screens[0].PouceId,
     curved:  initialData.screens[0].curved,
   
-    markId:  initialData.screens[0].MarkId,
+
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),
     stock: parseFloat(String(initialData?.stock)),
     additionalDetails:   (initialData?.additionalDetails || []).map((item) => ({
