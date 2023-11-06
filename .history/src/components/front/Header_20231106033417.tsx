@@ -214,11 +214,8 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
 
 
 
-      <div className={` ${isMenuOpen ? 'flex' : 'hidden'} text-md fixed left-0 w-full h-full bottom-0  flex-col dark:bg-[#121212f5] bg-[#fffffff5] opacity-100 z-50`}>
-        <div className=' overflow-y-auto overscroll-x-none overflow-x-clip pr-3 w-full'>
-
-
-        <div className='flex justify-end w-full '>
+      <div className={` ${isMenuOpen ? 'flex' : 'hidden'} text-md fixed top-0 left-0 w-full h-full flex-col dark:bg-black bg-[#fffffff5] opacity-100 z-50`}>
+        <div className='flex justify-end w-full'>
           <Button onClick={() => setIsMenuOpen(!isMenuOpen)} className='m-3 ' variant={'ghost'}>
 
             <svg fill="currentColor" height="20" width="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -236,27 +233,21 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
           </Button>
 
         </div>
-        <Button className='m-5 dark:bg-amber-500 dark:text-black bg-amber-400' variant={'default'}>
+        <Button className='m-5 dark:bg-amber-500 dark:text-white bg-amber-400' variant={'default'}>
                   Build your pc
                 </Button>
-        <Accordion className='w-full' type="single" collapsible>
+        <Accordion type="single" collapsible>
           {links.map((linkk) => (<>
             {linkk.link.length > 0 ? <>
-              <NavigationMenuItem className='w-full list-none' >
-              <Link onClick={() => setIsMenuOpen(!isMenuOpen)}  href={'' + linkk.link}>  
-                  <Button  
-                  className="mx-3 list-none bg-orange-50  dark:border-0 dark:bg-[#262626ab] dark:text-white text-black w-full bg-opacity-50 rounded-sm text-center border-1 border-orange-100 m-2 py-2 " >
-                 
-                  {linkk.label} 
-                  </Button>
-                  </Link>
-
-             
+              <NavigationMenuItem className="px-3 list-none bg-orange-50 bg-opacity-50 rounded-sm text-center border-1 border-orange-100 m-2 py-2 dark:text-black ">
+                <Link href={'' + linkk.link}>
+                  {linkk.label}
+                </Link>
               </NavigationMenuItem>
 
 
             </> : <>
-              <AccordionItem className='px-3' value={linkk.id}>
+              <AccordionItem value={linkk.id}>
                 <AccordionTrigger>{linkk.label}</AccordionTrigger>
                 <AccordionContent>
                   <Accordion type="single" collapsible>
@@ -264,20 +255,11 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
                   noscategy.map((item,key)=>(<>
                   {item.navitemId=== linkk.id?<>
                     <AccordionItem value={item.id}>
-                      <AccordionTrigger   className='active:text-orange-500 focus:text-orange-500 text-  px-10 '>{item.Label}</AccordionTrigger>
+                      <AccordionTrigger>{item.Label}</AccordionTrigger>
                       <AccordionContent>
                         {
                           noscategy[key].CathegoryCollectiondata.map((i)=>(<>
-                           <NavigationMenuItem className="px-5  list-none">
-                           <Link onClick={() => setIsMenuOpen(!isMenuOpen)}  href={`/shop?categorie=${i.Label}`} >  
-                <Button
-                  className="m-2 mx-2 list-none  dark:border-0 dark:bg-[#262626ab] dark:text-white bg-orange-50 text-black w-full bg-opacity-50 rounded-sm text-center border-1 border-orange-100  py-2 " >
-            
-                  {i.Label} 
-                  </Button></Link>
-              </NavigationMenuItem>
-
-                  
+                          {i.Label}
                           </>))
                         }
                       </AccordionContent>
@@ -297,7 +279,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
             </>}</>))}
 
         </Accordion>
-      </div>        </div>
+      </div>
     </>
   );
 }

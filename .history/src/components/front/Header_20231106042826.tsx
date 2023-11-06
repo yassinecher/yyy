@@ -214,7 +214,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
 
 
 
-      <div className={` ${isMenuOpen ? 'flex' : 'hidden'} text-md fixed left-0 w-full h-full bottom-0  flex-col dark:bg-[#121212f5] bg-[#fffffff5] opacity-100 z-50`}>
+      <div className={` ${isMenuOpen ? 'flex' : 'hidden'} text-md fixed left-0 w-full h-screen top-0  flex-col dark:bg-[#121212f5] bg-[#fffffff5] opacity-100 z-50`}>
         <div className=' overflow-y-auto overscroll-x-none overflow-x-clip pr-3 w-full'>
 
 
@@ -271,7 +271,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
                            <NavigationMenuItem className="px-5  list-none">
                            <Link onClick={() => setIsMenuOpen(!isMenuOpen)}  href={`/shop?categorie=${i.Label}`} >  
                 <Button
-                  className="m-2 mx-2 list-none  dark:border-0 dark:bg-[#262626ab] dark:text-white bg-orange-50 text-black w-full bg-opacity-50 rounded-sm text-center border-1 border-orange-100  py-2 " >
+                  className="m-2 mx-2 list-none bg-orange-50 text-black w-full bg-opacity-50 rounded-sm text-center border-1 border-orange-100  py-2 dark:text-black " >
             
                   {i.Label} 
                   </Button></Link>
