@@ -82,8 +82,8 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
       zIndex: 50,
     }
     : {
-      opacity: '1',
-      position: 'sticky' as 'sticky', // Type assertion
+      opacity: '0.9',
+      position: 'static' as 'static', // Type assertion
       top: 'auto' as 'auto', // Type assertion
       zIndex: 1,
     };
@@ -112,14 +112,14 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
                 <div className="m-5  text-xl font-bold relative logo-container flex  content-center items-center align-middle">
                   <div className="image-container">
                     <div className="block1 rounded-full">
-                      <Image width={70} height={70}
+                      <Image width={300} height={300}
                         src="/images/logo (3).png"
                         className="h-10 w-10  rounded-full max-w-full"
                         alt=""
                       />
                     </div>
                   </div>
-                  <div className='max-md:mx-auto px-3 title ml-2 font-semibold '>Gaming Gear TN</div>
+                  <div className='max-md:mx-auto px-3 title ml-3 font-semibold '>Gaming Gear TN</div>
 
                 </div>
 

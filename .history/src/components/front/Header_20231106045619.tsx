@@ -82,8 +82,8 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
       zIndex: 50,
     }
     : {
-      opacity: '1',
-      position: 'sticky' as 'sticky', // Type assertion
+      opacity: '0.9',
+      position: 'static' as 'static', // Type assertion
       top: 'auto' as 'auto', // Type assertion
       zIndex: 1,
     };
@@ -119,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
                       />
                     </div>
                   </div>
-                  <div className='max-md:mx-auto px-3 title ml-2 font-semibold '>Gaming Gear TN</div>
+                  <div className='max-md:mx-2 px-3 title ml-3 font-semibold '>Gaming Gear TN</div>
 
                 </div>
 

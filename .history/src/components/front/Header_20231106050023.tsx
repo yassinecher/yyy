@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories, noscategy, links 
     }
     : {
       opacity: '1',
-      position: 'sticky' as 'sticky', // Type assertion
+      position: 'static' as 'static', // Type assertion
       top: 'auto' as 'auto', // Type assertion
       zIndex: 1,
     };

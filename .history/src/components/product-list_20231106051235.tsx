@@ -12,7 +12,7 @@ const ProductList: React.FC<ProductListProps> = ({
   items
 }) => {
   return (
-    <div className=" b container dark:bg-[#000000e6] bg-[#ffffffe6] my-28  py-0 sm:mx-0  lg:py-5 ">
+    <div className=" b container dark:bg-[#000000e6] bg-[#ffffffe6] my-28  py-0 lg:py-5 ">
       <h3 className="font-bold text-3xl">{title}</h3>
       {items.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

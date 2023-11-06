@@ -101,7 +101,7 @@ const columns: ColumnDef<Field>[] = [
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
             <Gallery images={product.images} />
-            <div className="mt-10 md:mx-0 sm:mx-0 lg:mx-20 col-span-2 sm:mt-16 sm:px-0 lg:mt-0">
+            <div className="mt-10 md:mx-0 mx-20 col-span-2 sm:mt-16 sm:px-0 lg:mt-0">
               <Info data={formattedproduct} />
             </div>
           </div>
