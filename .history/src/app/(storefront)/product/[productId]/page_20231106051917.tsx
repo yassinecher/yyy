@@ -96,7 +96,7 @@ const columns: ColumnDef<Field>[] = [
   // Add more columns as needed
 ];
   return (
-    <div className="bg-[#ffffffe6]  dark:bg-[#000000e6] lg:rounded-lg  container sm:rounded-none my-10">
+    <div className="bg-[#ffffffe6]  dark:bg-[#000000e6] rounded-lg sm:rounded-none container my-10">
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
