@@ -72,7 +72,6 @@ export const Navbar: React.FC<NavbarCollection> = ({
 }) => {
   const router = useRouter(); // Changed "useParams" to "useRouter"
   const [NavCollectons, setNavCollectons] = useState<LocalCathegoryCollection[]>(data);
-  
   const [NavigatorValue, setNavigatorValue] = useState("0");
   const addNavbarCollection = () => {
     if (NavCollectons.length < 6) {
@@ -157,19 +156,17 @@ export const Navbar: React.FC<NavbarCollection> = ({
   const onSubmit = async () => {
     try {
       const data = NavCollectons.map((val, k) => {
-
         val.index = k; // Modify the val.index property to be equal to k
-        if(!val.CathegoryCollectiondata ){
+        if(!val.CathegoryCollectiondata){
           val.CathegoryCollectiondata=[]
         }
         return val; // Return the modified object
       });
-      const dataa=data.filter((i)=>  i.navitemId===item.id)
       const it=NavCollectons.find((i)=>i.navitemId==item.id)
       if(it&&it?.CathegoryCollectiondata.length>0){
         setLink("")
       }
-      await axios.patch(`/api/navitem/${item.id}`, {link:link, name:header, NavbarCollection: dataa });
+      await axios.patch(`/api/navitem/${item.id}`, {link:link, name:header, NavbarCollection: data });
       router.refresh(); // Changed router.refresh() to router.push("/") to navigate to the home page
       toast.success("updated successfully"); // Fixed toast message
     } catch (error) {

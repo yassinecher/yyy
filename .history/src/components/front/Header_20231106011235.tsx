@@ -43,15 +43,14 @@ import  HeaderNavigation  from './headerNavigation';
 import { MainNav } from './main-nav';
 import Image from 'next/image';
 import SearchBar from './SearchBar';
-import { LocalCathegoryCollection } from '@/app/(admin)/admin/(routes)/mainpage/components/NavbarList';
-
+import { LocalCathegoryCollection } from '@/app/(storefront)/layout';
 
 interface HeaderProps {
   session?: Session | null; // Define the session prop
   cathegories?: Category[] | null
   noscategy:LocalCathegoryCollection[]
   links:navitem[]
-} 
+}
 
 const Header: React.FC<HeaderProps> = ({ session, cathegories,noscategy,links }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

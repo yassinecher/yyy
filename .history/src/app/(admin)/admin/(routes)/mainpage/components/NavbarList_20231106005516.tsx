@@ -185,7 +185,7 @@ export const NavbarList: React.FC<NavbarCollection> = ({
         {
             navList.map((i)=>(
                 <>
-                <Navbar item={i} categories={categories} data={data.filter((ii)=>ii.navitemId==i.id)}/>
+                <Navbar item={i} categories={categories} data={data}/>
                 </>
             ))
         }

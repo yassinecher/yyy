@@ -72,8 +72,10 @@ export const Navbar: React.FC<NavbarCollection> = ({
 }) => {
   const router = useRouter(); // Changed "useParams" to "useRouter"
   const [NavCollectons, setNavCollectons] = useState<LocalCathegoryCollection[]>(data);
-  
-  const [NavigatorValue, setNavigatorValue] = useState("0");
+  const i=data.find((i)=>i.navitemId==item.id)
+  const ii=i?.CathegoryCollectiondata[0]??''
+  console.log(ii)
+  const [NavigatorValue, setNavigatorValue] = useState(ii.toString());
   const addNavbarCollection = () => {
     if (NavCollectons.length < 6) {
       const newn = {

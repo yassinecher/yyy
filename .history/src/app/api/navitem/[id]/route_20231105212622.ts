@@ -72,7 +72,7 @@ export async function PATCH(
 
     const body = await req.json();
     
-    const { link,name,NavbarCollection } = body;
+    const { name,NavbarCollection } = body;
 
 
     
@@ -91,8 +91,7 @@ export async function PATCH(
         id:params.id
       },
       data:{
-        label:name,
-        link
+        label:name
       }
     })
 
@@ -105,11 +104,7 @@ export async function PATCH(
       index:new Decimal(item.index.toString())
   
       }))
-      await prismadb.cathegoryCollection.deleteMany({
-        where:{
-          navitemId:params.id
-        }
-      })
+      await prismadb.cathegoryCollection.deleteMany()
       LocalCathegoryCollection.map(async(dat)=>{
    await prismadb.cathegoryCollection.create({ 
           data:
@@ -118,11 +113,11 @@ export async function PATCH(
   Label:dat.Label.toString(),
   navitemId:params.id,
   catgories:{
-    createMany:{data:[...dat.CathegoryCollectiondata.map((val) => ({
+    create:dat.CathegoryCollectiondata.map((val) => ({
       index: val.index,
       catId: val.catId.toString(),
       Label: val.Label.toString(),
-    }))],}}
+    })),}
   
   }
   }

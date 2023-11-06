@@ -72,8 +72,11 @@ export const Navbar: React.FC<NavbarCollection> = ({
 }) => {
   const router = useRouter(); // Changed "useParams" to "useRouter"
   const [NavCollectons, setNavCollectons] = useState<LocalCathegoryCollection[]>(data);
-  
-  const [NavigatorValue, setNavigatorValue] = useState("0");
+  const i=data.find((i)=>i.navitemId==item.id)??{CathegoryCollectiondata:[]}
+  const ida=i.CathegoryCollectiondata[0]??{id:""}
+  const ii=ida?.id??''
+  console.log(i)
+  const [NavigatorValue, setNavigatorValue] = useState(ii.toString());
   const addNavbarCollection = () => {
     if (NavCollectons.length < 6) {
       const newn = {
@@ -241,9 +244,9 @@ export const Navbar: React.FC<NavbarCollection> = ({
              <>
              {collection.navitemId.toString()==item.id.toString()?
                 <TabsTrigger
-                key={index}
-                  onClickCapture={() => setNavigatorValue(index.toString())}
-                  value={index.toString()}
+                key={collection.id.toString()}
+                  onClickCapture={() => setNavigatorValue(collection.id.toString())}
+                  value={collection.id.toString()}
                   className="flex justify-between align-middle p-0 h-8"
                 >
                   <Button
@@ -273,7 +276,7 @@ export const Navbar: React.FC<NavbarCollection> = ({
             ))}
           </TabsList>
           {NavCollectons.map((i, k) => (
-            <TabsContent value={k.toString()} key={k}>
+            <TabsContent value={i.id.toString()} key={i.id}>
               <Card>
                 <CardHeader>
                   <CardTitle className="flex align-middle">

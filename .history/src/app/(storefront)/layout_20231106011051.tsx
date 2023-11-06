@@ -13,8 +13,19 @@ const inter = Inter({ subsets: ['latin'] });
 import './globals.css'
 import prismadb from '@/lib/prismadb';
 import Footer from '@/components/front/Footer';
-import { LocalCathegoryCollection } from '../(admin)/admin/(routes)/mainpage/components/Navbar';
+export type LocalCathegorilab = {
+  id: string, // Changed "String" to "string"
+  index: number,
+  catId: string, // Changed "String" to "string"
+  Label: string, // Changed "String" to "string"
+};
 
+export type LocalCathegoryCollection = {
+  id: string, // Changed "String" to "string"
+  Label: string, // Changed "String" to "string"
+  index: number,
+  CathegoryCollectiondata: LocalCathegorilab[];
+};
 export default async function RootLayout({
   children,
 }: {
@@ -24,15 +35,13 @@ export default async function RootLayout({
   const cathegories = await prismadb.category.findMany() 
   const noscategydata = await prismadb.cathegoryCollection.findMany({
     include:{
-      catgories:true,
-      navitem:true
+      catgories:true
     },
     orderBy:{
       index:'asc'
     }
   })
 const noscategy:LocalCathegoryCollection[]=noscategydata.map((item)=>({
-   navitemId:item.navitemId,
 id:item.id,
 index:parseInt(item.index.toString()),
 Label:item.Label,
@@ -43,11 +52,9 @@ CathegoryCollectiondata:item.catgories.map((i)=>({
   Label: i.Label, // Changed "String" to "string"
 }))
 }))
-console.log(noscategy)
+  
 
-const links=await prismadb.navitem.findMany(   {
-  orderBy: { createdAt: "asc" },
-})
+const link=await prismadb.navitem.findMany()
   return (
     <>
   
@@ -62,7 +69,7 @@ const links=await prismadb.navitem.findMany(   {
 
           >
             
-            <div className='OverlayS'>  <Header links={links} noscategy={noscategy} session={session} cathegories={cathegories} />
+            <div className='OverlayS'>  <Header noscategy={noscategy} session={session} cathegories={cathegories} />
         
           
             {children}

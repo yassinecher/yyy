@@ -78,7 +78,7 @@ interface HeaderProps {
       <NavigationMenuList>
       {links.map((linkk)=>(<>
       {linkk.link.length>0?<>
-        <NavigationMenuItem onMouseMoveCapture={()=>{setCatstodisplay([]);setSelected(NaN)}}  className="px-3 dark:text-black ">
+        <NavigationMenuItem className="px-3 dark:text-black ">
         <Link href={''+linkk.link}>
         {linkk.label}
       </Link>
@@ -88,10 +88,10 @@ interface HeaderProps {
       </>:<>
        
       <NavigationMenuItem>
-          <NavigationMenuTrigger   className="focus:bg-transparent text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{setCatstodisplay([]);setSelected(NaN)}}  >{linkk.label}
+          <NavigationMenuTrigger   className="focus:bg-transparent text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{setCatstodisplay([])}}  >{linkk.label}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="  ">
-            <ul className={`"${catstodisplay.length>0?' grid lg:grid-cols-3 lg:w-[800px]':' grid lg:grid-cols-1 lg:w-[300px] h-full'} custom-nav  dark:border-black  gap-0 md:w-[400px] rounded-none   "`}>
+            <ul className={`"${catstodisplay.length>0?'grid-cols-3':'grid-cols-1'} custom-nav  dark:border-black  grid gap-0 md:w-[400px] rounded-none lg:w-[800px]  lg:grid-cols-3  "`}>
               <li className=" p-3  pt-0  pr-0 dark:text-white dark:bg-gray-950 row-span-1 h-full flex flex-col bg-white ">
                  {
                   noscategy.map((item,key)=>(<>
@@ -100,7 +100,7 @@ interface HeaderProps {
                    onMouseMoveCapture={()=>{setCatstodisplay(noscategy[key].CathegoryCollectiondata.map((item)=>item.Label));setSelected(key)}}
                     onClick={()=>{setCatstodisplay(noscategy[key].CathegoryCollectiondata.map((item)=>item.Label));setSelected(key)}}
                        className={` px-7 
-                      mt-2 py-9 justify-start hover:bg-amber-100  hover:rounded-l-md hover:rounded-r-none text-left  "${selected==key? ' mr-0 dark:bg-gray-800 dark:text-white text-black rounded-none rounded-l-md bg-amber-50  ':" border-1 dark:border-0 dark:text-white border-amber-100 bg-white dark:bg-gray-900 text-black mr-2 rounded-md"}`}>{item.Label}</Button>
+                      mt-2 py-9 justify-start hover:bg-amber-100  hover:rounded-l-md hover:rounded-r-none text-left  "${selected==key? ' mr-0 dark:bg-gray-800 dark:text-white text-black rounded-none rounded-l-md bg-amber-50  ':" border-1 dark:border-0 border-amber-100 bg-white dark:bg-gray-900 text-black mr-2 rounded-md"}`}>{item.Label}</Button>
                 
                   
                   </>:<></>
@@ -111,10 +111,7 @@ interface HeaderProps {
                   </>))
                  }
               </li>
-              {
-                catstodisplay.length>0?<>
-                
-                <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
+              <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
                 {
                   catstodisplay.map((item)=>(<>
                        <ListItem className="hover:dark:bg-amber-100 hover:dark:text-black mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
@@ -125,9 +122,6 @@ interface HeaderProps {
          
           
               </div>
-                </>:<></>
-              }
-             
               
             </ul>
           </NavigationMenuContent>

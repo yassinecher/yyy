@@ -447,8 +447,6 @@ model navitem{
   id              String          @id @default(uuid())
   label           String
   link            String
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
   CathegoryCollection CathegoryCollection [] 
 
 }

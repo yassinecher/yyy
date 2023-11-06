@@ -43,7 +43,7 @@ CathegoryCollectiondata:item.catgories.map((i)=>({
   Label: i.Label, // Changed "String" to "string"
 }))
 }))
-console.log(noscategy)
+  
 
 const links=await prismadb.navitem.findMany(   {
   orderBy: { createdAt: "asc" },

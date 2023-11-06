@@ -78,7 +78,7 @@ interface HeaderProps {
       <NavigationMenuList>
       {links.map((linkk)=>(<>
       {linkk.link.length>0?<>
-        <NavigationMenuItem onMouseMoveCapture={()=>{setCatstodisplay([]);setSelected(NaN)}}  className="px-3 dark:text-black ">
+        <NavigationMenuItem className="px-3 dark:text-black ">
         <Link href={''+linkk.link}>
         {linkk.label}
       </Link>
@@ -88,10 +88,10 @@ interface HeaderProps {
       </>:<>
        
       <NavigationMenuItem>
-          <NavigationMenuTrigger   className="focus:bg-transparent text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{setCatstodisplay([]);setSelected(NaN)}}  >{linkk.label}
+          <NavigationMenuTrigger   className="focus:bg-transparent text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{setCatstodisplay([])}}  >{linkk.label}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="  ">
-            <ul className={`"${catstodisplay.length>0?' grid lg:grid-cols-3 lg:w-[800px]':' grid lg:grid-cols-1 lg:w-[300px] h-full'} custom-nav  dark:border-black  gap-0 md:w-[400px] rounded-none   "`}>
+            <ul className={`"${catstodisplay.length>0?'lg:grid-cols-3':'lg:grid-cols-3'} custom-nav  dark:border-black  grid gap-0 md:w-[400px] rounded-none lg:w-[800px]    "`}>
               <li className=" p-3  pt-0  pr-0 dark:text-white dark:bg-gray-950 row-span-1 h-full flex flex-col bg-white ">
                  {
                   noscategy.map((item,key)=>(<>
@@ -111,10 +111,7 @@ interface HeaderProps {
                   </>))
                  }
               </li>
-              {
-                catstodisplay.length>0?<>
-                
-                <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
+              <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
                 {
                   catstodisplay.map((item)=>(<>
                        <ListItem className="hover:dark:bg-amber-100 hover:dark:text-black mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
@@ -125,9 +122,6 @@ interface HeaderProps {
          
           
               </div>
-                </>:<></>
-              }
-             
               
             </ul>
           </NavigationMenuContent>

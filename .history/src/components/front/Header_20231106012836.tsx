@@ -51,7 +51,7 @@ interface HeaderProps {
   cathegories?: Category[] | null
   noscategy:LocalCathegoryCollection[]
   links:navitem[]
-} 
+}
 
 const Header: React.FC<HeaderProps> = ({ session, cathegories,noscategy,links }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

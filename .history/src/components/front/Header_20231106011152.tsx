@@ -43,15 +43,14 @@ import  HeaderNavigation  from './headerNavigation';
 import { MainNav } from './main-nav';
 import Image from 'next/image';
 import SearchBar from './SearchBar';
-import { LocalCathegoryCollection } from '@/app/(admin)/admin/(routes)/mainpage/components/NavbarList';
-
+import { LocalCathegoryCollection } from '@/app/(storefront)/layout';
 
 interface HeaderProps {
   session?: Session | null; // Define the session prop
   cathegories?: Category[] | null
   noscategy:LocalCathegoryCollection[]
   links:navitem[]
-} 
+}
 
 const Header: React.FC<HeaderProps> = ({ session, cathegories,noscategy,links }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -193,7 +192,7 @@ const Header: React.FC<HeaderProps> = ({ session, cathegories,noscategy,links })
          </div >
           <div className="w-full bg-orange-50 flex justify-center h-14 ">
               <div className='m-auto flex justify-center'>
-            <HeaderNavigation links={links} noscategy={noscategy} cathegories={cathegories} />
+            <HeaderNavigation links={} noscategy={noscategy} cathegories={cathegories} />
               <Button className='ml-5 dark:bg-amber-500 dark:text-white bg-amber-500' variant={'default'}>
               Build your pc
               </Button>

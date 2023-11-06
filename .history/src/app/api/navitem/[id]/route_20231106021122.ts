@@ -118,11 +118,11 @@ export async function PATCH(
   Label:dat.Label.toString(),
   navitemId:params.id,
   catgories:{
-    createMany:{data:[...dat.CathegoryCollectiondata.map((val) => ({
+    create:dat.CathegoryCollectiondata.map((val) => ({
       index: val.index,
       catId: val.catId.toString(),
       Label: val.Label.toString(),
-    }))],}}
+    })),}
   
   }
   }
