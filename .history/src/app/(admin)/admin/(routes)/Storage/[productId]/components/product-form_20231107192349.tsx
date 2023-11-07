@@ -98,7 +98,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
     brandId:  initialData.storages[0].brandId,
     ComputerinterfaceId:  initialData.storages[0].ComputerinterfaceId,
-
+    DiscFormatId: initialData.storages[0].DiscFormatId,
     capacityId:  initialData.storages[0].capacityId,
     typeId: initialData.storages[0].typeId,
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),

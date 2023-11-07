@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, HarddiskType, HarddiskCapacity, HarddiskComputerinterface, HarddiskBrand, Harddisk, Field } from "@prisma/client"
+import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, HarddiskType, HarddiskCapacity, HarddiskComputerinterface, HarddiskDiscFormat, HarddiskBrand, Harddisk, Field } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -98,7 +98,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
     brandId:  initialData.storages[0].brandId,
     ComputerinterfaceId:  initialData.storages[0].ComputerinterfaceId,
-
+    DiscFormatId: initialData.storages[0].DiscFormatId,
     capacityId:  initialData.storages[0].capacityId,
     typeId: initialData.storages[0].typeId,
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),

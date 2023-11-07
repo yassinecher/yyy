@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, HarddiskType, HarddiskCapacity, HarddiskComputerinterface, HarddiskBrand, Harddisk, Field } from "@prisma/client"
+import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, MemoryMarque, MemoryNumber, MemoryType, MemoryFrequency, Memory, GraphiccardName, GpuArchBrand, GpuBrand, HarddiskType, HarddiskCapacity, HarddiskComputerinterface, HarddiskDiscFormat, HarddiskBrand, Harddisk, Field } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -48,6 +48,7 @@ const formSchema = z.object({
   typeId:  z.string().min(1),
   capacityId:  z.string().min(1),
   ComputerinterfaceId:  z.string().min(1),
+  DiscFormatId:  z.string().min(1),
 
   additionalDetails : z.object({ name: z.string(),value:z.string() }).array(),
   dicountPrice: z.coerce.number().optional(),
@@ -67,7 +68,7 @@ interface ProductFormProps {
   HarddiskType: HarddiskType[];
   HarddiskCapacity: HarddiskCapacity[];
   HarddiskComputerinterface: HarddiskComputerinterface[];
- 
+  HarddiskDiscFormat: HarddiskDiscFormat[]
   HarddiskBrand: HarddiskBrand[]
 
 };
@@ -79,7 +80,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   HarddiskType,
   HarddiskComputerinterface,
   HarddiskCapacity,
-
+  HarddiskDiscFormat,
   HarddiskBrand
 }) => {
   const params = useParams();
@@ -98,7 +99,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
     brandId:  initialData.storages[0].brandId,
     ComputerinterfaceId:  initialData.storages[0].ComputerinterfaceId,
-
+    DiscFormatId: initialData.storages[0].DiscFormatId,
     capacityId:  initialData.storages[0].capacityId,
     typeId: initialData.storages[0].typeId,
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),
@@ -419,7 +420,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               formCControlName="HarddiskComputerinterface"
               IsNumber={false}
               />
-        
+          <PopFormModal label={"HarddiskDiscFormat"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...HarddiskDiscFormat}
+              fieldaAfficher="name"
+              url="/api/harddisk/HarddiskDiscFormat"
+              formLab="DiscFormatId"
+              formCControlName="HarddiskDiscFormat"
+              IsNumber={false}
+              />
       <PopFormModal label={"HarddiskType"} 
               form1={form} 
               loading={loading} 

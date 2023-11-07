@@ -67,6 +67,7 @@ export async function DELETE(
       const { name, price, categoryId,  images, isFeatured, isArchived , 
         brandId,
         capacityId,
+        DiscFormatId,
         ComputerinterfaceId,
         typeId,
   } = body;
@@ -110,6 +111,7 @@ export async function DELETE(
         data:{
           brandId,
           capacityId,
+          DiscFormatId,
           ComputerinterfaceId,
           typeId,
 

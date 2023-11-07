@@ -23,6 +23,7 @@ const ProductPage = async ({
   const HarddiskType = await prismadb.harddiskType.findMany()
   const HarddiskComputerinterface= await prismadb.harddiskComputerinterface.findMany()
   const HarddiskCapacity= await prismadb.harddiskCapacity.findMany()
+  const harddiskDiscFormat= await prismadb.harddiskDiscFormat.findMany()
  const HarddiskBrand= await prismadb.harddiskBrand.findMany()
   return ( 
     <div className="flex-col">
@@ -35,6 +36,7 @@ const ProductPage = async ({
           HarddiskType={HarddiskType}
           HarddiskComputerinterface={HarddiskComputerinterface}
           HarddiskCapacity={HarddiskCapacity}
+          HarddiskDiscFormat={harddiskDiscFormat} 
 
           initialData={product}        />
       </div>
