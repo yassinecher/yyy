@@ -73,12 +73,14 @@ export async function PATCH(
       isFeatured,
       isArchived,
       manufacturerId,
-
-      keyboarFormatId,
-
-      keyboarTouchTypeId,
-      wireless,
-      rgb,
+      ProcesseurId,
+      SystemId,
+      GraphiccardId,
+      HardiskId,
+      ScreenSizeId,
+      RefreshRateId,
+      memoryId,
+      TouchScreen,
       description,
       stock,
       dicountPrice,
@@ -102,7 +104,7 @@ export async function PATCH(
     if (!categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
-   
+  
     if (!stock) {
       return new NextResponse("stock id is required", { status: 400 });
     }
@@ -110,7 +112,7 @@ export async function PATCH(
       return new NextResponse("manufacturerId id is required", { status: 400 });
     }
 
-    const associatedMotherboards = await prismadb.keyboard.findFirst({
+    const associatedMotherboards = await prismadb.laptop.findFirst({
       where: {
         product: {
           some: {
@@ -120,7 +122,7 @@ export async function PATCH(
       }
     });
     
-   await prismadb.keyboard.update({
+   await prismadb.laptop.update({
       where: {
      
             id: associatedMotherboards?.id
@@ -129,11 +131,20 @@ export async function PATCH(
 
       data: {
         manufacturerId,
-        rgb,
-        wireless,
-  
-        keyboarFormatId,
-        keyboarTouchTypeId,
+        ProcesseurId,
+        ProcesseurReId,
+        SystemId,
+        GraphiccardId,
+        GraphiccardRefId,
+        HardiskId,
+        ScreenSizeId,
+        ScreenTypeId,
+        RefreshRateId,
+        SoundId,
+        memoryId,
+        networkId,
+        CameraId,
+        TouchScreen,
       }
     });
 

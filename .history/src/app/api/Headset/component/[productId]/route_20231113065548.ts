@@ -73,10 +73,9 @@ export async function PATCH(
       isFeatured,
       isArchived,
       manufacturerId,
-
-      keyboarFormatId,
-
-      keyboarTouchTypeId,
+      headsetModelId,
+      headsetSonSurroundId,
+      headsetInterfaceAvecOrdinateurId,
       wireless,
       rgb,
       description,
@@ -110,7 +109,7 @@ export async function PATCH(
       return new NextResponse("manufacturerId id is required", { status: 400 });
     }
 
-    const associatedMotherboards = await prismadb.keyboard.findFirst({
+    const associatedMotherboards = await prismadb.headset.findFirst({
       where: {
         product: {
           some: {
@@ -120,7 +119,7 @@ export async function PATCH(
       }
     });
     
-   await prismadb.keyboard.update({
+   await prismadb.headset.update({
       where: {
      
             id: associatedMotherboards?.id
@@ -131,9 +130,9 @@ export async function PATCH(
         manufacturerId,
         rgb,
         wireless,
-  
-        keyboarFormatId,
-        keyboarTouchTypeId,
+        headsetModelId,
+        headsetSonSurroundId,
+        headsetInterfaceAvecOrdinateurId,
       }
     });
 

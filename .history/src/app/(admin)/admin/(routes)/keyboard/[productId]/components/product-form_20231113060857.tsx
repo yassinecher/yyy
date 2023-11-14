@@ -45,9 +45,9 @@ const formSchema = z.object({
   categoryId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
-
+  keyboarbrandId:z.string().min(1),
   keyboarFormatId:z.string().min(1),
-
+  keyboarButtonsNumberId:z.string().min(1),
   keyboarTouchTypeId:z.string().min(1),
   wireless: z.boolean().default(false).optional(),
   rgb: z.boolean().default(false).optional(),
@@ -583,7 +583,17 @@ console.log(initialData)
 
 
           
- 
+          <PopFormModal label={"keyboard brand"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...keyboarbrand}
+              fieldaAfficher="name"
+              url="/api/keyboard/keyboarbrand"
+              formLab="keyboarbrandId"
+              formCControlName="keyboarbrand"
+              IsNumber={false}
+              />
 
 <PopFormModal label={"keyboard Format"} 
               form1={form} 
@@ -596,7 +606,18 @@ console.log(initialData)
               formCControlName="keyboarFormat"
               IsNumber={false}
               />
-  
+              
+          <PopFormModal label={"keyboar Buttons Number"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...keyboarButtonsNumber}
+              fieldaAfficher="name"
+              url="/api/keyboard/keyboarButtonsNumber"
+              formLab="keyboarButtonsNumberId"
+              formCControlName="keyboarButtonsNumber"
+              IsNumber={false}
+              />
               
           <PopFormModal label={"keyboar Touch Type"} 
               form1={form} 

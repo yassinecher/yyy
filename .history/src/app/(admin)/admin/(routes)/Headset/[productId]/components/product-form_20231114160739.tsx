@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, Motherboard, Field, Laptop, LapRefreshRate, LapCamera, LapSound, Lapnetwork, Lapmemory, LapHardisk, LapScreenType, LapScreenSize, LapGraphiccardRef, LapGraphiccard, LapProcesseurRe, LapProcesseur, LapSystem, keyboard, keyboarButtonsNumber, keyboarFormat, keyboarTouchType, keyboarbrand } from "@prisma/client"
+import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, Motherboard, Field, Laptop, LapRefreshRate, LapCamera, LapSound, Lapnetwork, Lapmemory, LapHardisk, LapScreenType, LapScreenSize, LapGraphiccardRef, LapGraphiccard, LapProcesseurRe, LapProcesseur, LapSystem, keyboard, keyboarButtonsNumber, keyboarFormat, keyboarTouchType, keyboarbrand, Headset, HeadsetModel, HeadsetSonSurround, HeadsetInterfaceAvecOrdinateur } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -46,9 +46,9 @@ const formSchema = z.object({
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 
-  keyboarFormatId:z.string().min(1),
+  headsetSonSurroundId:z.string().min(1),
+  headsetInterfaceAvecOrdinateurId:z.string().min(1),
 
-  keyboarTouchTypeId:z.string().min(1),
   wireless: z.boolean().default(false).optional(),
   rgb: z.boolean().default(false).optional(),
   manufacturerId:z.string().min(1),
@@ -66,14 +66,13 @@ type ProductFormValues = z.infer<typeof formSchema>
 interface ProductFormProps {
   initialData: Product & {
     images: Image[],
-    keyboard:keyboard[]
+    Headset:Headset[]
     additionalDetails:Field[]
   } | null;
   categories: Category[];
-  keyboarbrand:keyboarbrand[];
-  keyboarFormat:keyboarFormat[]
-  keyboarButtonsNumber:keyboarButtonsNumber[]
-  keyboarTouchType:keyboarTouchType[]
+  HeadsetModel:HeadsetModel[];
+  HeadsetSonSurround:HeadsetSonSurround[]
+  HeadsetInterfaceAvecOrdinateur:HeadsetInterfaceAvecOrdinateur[]
   manufacturers:Manufacturer[]
   
 };
@@ -81,7 +80,7 @@ interface ProductFormProps {
 
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
-  categories, keyboarbrand, keyboarFormat, keyboarButtonsNumber, keyboarTouchType,manufacturers
+  categories, HeadsetModel, HeadsetSonSurround, HeadsetInterfaceAvecOrdinateur,manufacturers
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -94,18 +93,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const toastMessage = initialData ? 'Product updated.' : 'Product created.';
   const action = initialData ? 'Save changes' : 'Create';
 
-  const defaultValues = initialData  && initialData.keyboard ? {
+  const defaultValues = initialData  && initialData.Headset ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),
     stock: parseFloat(String(initialData?.stock)),
-    keyboarbrandId:initialData.keyboard[0].keyboarbrandId??'',
-    keyboarFormatId:initialData.keyboard[0].keyboarFormatId??'',
-    keyboarButtonsNumberId:initialData.keyboard[0].keyboarButtonsNumberId??'',
-    keyboarTouchTypeId:initialData.keyboard[0].keyboarTouchTypeId??'',
-    wireless:initialData.keyboard[0].wireless??false,
-    rgb:initialData.keyboard[0].rgb??false,
-    manufacturerId:initialData.keyboard[0].manufacturerId??'',
+    headsetModelId:initialData.Headset[0].headsetModelId??'',
+    headsetSonSurroundId:initialData.Headset[0].headsetSonSurroundId??'',
+    headsetInterfaceAvecOrdinateurId:initialData.Headset[0].headsetInterfaceAvecOrdinateurId??'',
+    wireless:initialData.Headset[0].wireless??false,
+    rgb:initialData.Headset[0].rgb??false,
+    manufacturerId:initialData.Headset[0].manufacturerId??'',
   
 
     additionalDetails:   (initialData?.additionalDetails || []).map((item) => ({
@@ -141,12 +139,12 @@ console.log(initialData)
     
   
       if (initialData) {
-        await axios.patch(`/api/keyboard/component/${params.productId}`, data);
+        await axios.patch(`/api/Headset/component/${params.productId}`, data);
       } else {
-        await axios.post(`/api/keyboard/component`, data);
+        await axios.post(`/api/Headset/component`, data);
       }
       router.refresh();
-      router.push(`/admin/keyboard`);
+      router.push(`/admin/Headset`);
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error('Something went wrong.');
@@ -160,7 +158,7 @@ console.log(initialData)
       setLoading(true);
       await axios.delete(`/api/products/${params.productId}`);
       router.refresh();
-      router.push(`/admin/keyboard`);
+      router.push(`/admin/Headset`);
       toast.success('Product deleted.');
     } catch (error: any) {
       toast.error('Something went wrong.');
@@ -583,32 +581,43 @@ console.log(initialData)
 
 
           
- 
+          <PopFormModal label={"Headset Model"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...HeadsetModel}
+              fieldaAfficher="name"
+              url="/api/Headset/HeadsetModel"
+              formLab="headsetModelId"
+              formCControlName="HeadsetModel"
+              IsNumber={false}
+              />
 
-<PopFormModal label={"keyboard Format"} 
+<PopFormModal label={"Son Surround"} 
               form1={form} 
               loading={loading} 
               setLoading={setLoading} 
-              data={...keyboarFormat}
+              data={...HeadsetSonSurround}
               fieldaAfficher="name"
-              url="/api/keyboard/keyboarFormat"
-              formLab="keyboarFormatId"
-              formCControlName="keyboarFormat"
+              url="/api/Headset/HeadsetSonSurround"
+              formLab="headsetSonSurroundId"
+              formCControlName="HeadsetSonSurround"
               IsNumber={false}
               />
-  
               
-          <PopFormModal label={"keyboar Touch Type"} 
+          <PopFormModal label={"Interface Avec Ordinateur"} 
               form1={form} 
               loading={loading} 
               setLoading={setLoading} 
-              data={...keyboarTouchType}
+              data={...HeadsetInterfaceAvecOrdinateur}
               fieldaAfficher="name"
-              url="/api/keyboard/keyboarTouchType"
-              formLab="keyboarTouchTypeId"
-              formCControlName="keyboarTouchType"
+              url="/api/Headset/HeadsetInterfaceAvecOrdinateur"
+              formLab="headsetInterfaceAvecOrdinateurId"
+              formCControlName="HeadsetInterfaceAvecOrdinateur"
               IsNumber={false}
               />
+              
+        
               
              
              <FormField

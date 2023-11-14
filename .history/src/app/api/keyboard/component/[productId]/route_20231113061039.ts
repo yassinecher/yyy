@@ -73,9 +73,9 @@ export async function PATCH(
       isFeatured,
       isArchived,
       manufacturerId,
-
+      keyboarbrandId,
       keyboarFormatId,
-
+      keyboarButtonsNumberId,
       keyboarTouchTypeId,
       wireless,
       rgb,
@@ -131,7 +131,8 @@ export async function PATCH(
         manufacturerId,
         rgb,
         wireless,
-  
+        keyboarbrandId,
+        keyboarButtonsNumberId,
         keyboarFormatId,
         keyboarTouchTypeId,
       }

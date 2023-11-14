@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, Motherboard, Field, Laptop, LapRefreshRate, LapCamera, LapSound, Lapnetwork, Lapmemory, LapHardisk, LapScreenType, LapScreenSize, LapGraphiccardRef, LapGraphiccard, LapProcesseurRe, LapProcesseur, LapSystem, keyboard, keyboarButtonsNumber, keyboarFormat, keyboarTouchType, keyboarbrand } from "@prisma/client"
+import { Category, Image, Product, Manufacturer, RamSlots, MotherboardChipset, CPUSupport, Guarantee, MotherboardFormat, Motherboard, Field, Laptop, LapRefreshRate, LapCamera, LapSound, Lapnetwork, Lapmemory, LapHardisk, LapScreenType, LapScreenSize, LapGraphiccardRef, LapGraphiccard, LapProcesseurRe, LapProcesseur, LapSystem } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -45,13 +45,24 @@ const formSchema = z.object({
   categoryId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
+  SystemId:z.string().min(1),
+  ProcesseurId:z.string().min(1),
+  ProcesseurReId:z.string().min(1),
+  GraphiccardId:z.string().min(1),
+  GraphiccardRefId:z.string().min(1),
+  HardiskId:z.string().min(1),
 
-  keyboarFormatId:z.string().min(1),
+  ScreenSizeId:z.string().min(1),
+  ScreenTypeId:z.string().min(1),
+  
+  RefreshRateId:z.string().min(1),
+  SoundId:z.string().min(1),
 
-  keyboarTouchTypeId:z.string().min(1),
-  wireless: z.boolean().default(false).optional(),
-  rgb: z.boolean().default(false).optional(),
   manufacturerId:z.string().min(1),
+  memoryId:z.string().min(1),
+  CameraId:z.string().min(1),
+  networkId:z.string().min(1),
+  TouchScreen:z.boolean().default(false).optional(),
   dicountPrice: z.coerce.number().optional(),
   stock: z.coerce.number().min(1),
   description:z.string().min(1),
@@ -66,14 +77,23 @@ type ProductFormValues = z.infer<typeof formSchema>
 interface ProductFormProps {
   initialData: Product & {
     images: Image[],
-    keyboard:keyboard[]
+    Laptop:Laptop[]
     additionalDetails:Field[]
   } | null;
   categories: Category[];
-  keyboarbrand:keyboarbrand[];
-  keyboarFormat:keyboarFormat[]
-  keyboarButtonsNumber:keyboarButtonsNumber[]
-  keyboarTouchType:keyboarTouchType[]
+  LapSystem:LapSystem[];
+  LapProcesseur:LapProcesseur[]
+  LapProcesseurRe:LapProcesseurRe[]
+  LapGraphiccard:LapGraphiccard[]
+  LapGraphiccardRef:LapGraphiccardRef[]
+  LapScreenSize:LapScreenSize[]
+  LapScreenType:LapScreenType[]
+  LapHardisk:LapHardisk[]
+  Lapmemory:Lapmemory[]
+  Lapnetwork:Lapnetwork[]
+  LapSound:LapSound[]
+  LapCamera:LapCamera[]
+  LapRefreshRate:LapRefreshRate[]
   manufacturers:Manufacturer[]
   
 };
@@ -81,7 +101,8 @@ interface ProductFormProps {
 
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
-  categories, keyboarbrand, keyboarFormat, keyboarButtonsNumber, keyboarTouchType,manufacturers
+  categories, LapSystem, LapProcesseur, LapProcesseurRe, LapGraphiccard, LapGraphiccardRef,
+  LapScreenSize,LapScreenType,LapHardisk,Lapmemory,Lapnetwork,LapSound,LapCamera,LapRefreshRate,manufacturers
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -94,19 +115,26 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const toastMessage = initialData ? 'Product updated.' : 'Product created.';
   const action = initialData ? 'Save changes' : 'Create';
 
-  const defaultValues = initialData  && initialData.keyboard ? {
+  const defaultValues = initialData  && initialData.Laptop ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
     dicountPrice: parseFloat(String(initialData?.dicountPrice)),
     stock: parseFloat(String(initialData?.stock)),
-    keyboarbrandId:initialData.keyboard[0].keyboarbrandId??'',
-    keyboarFormatId:initialData.keyboard[0].keyboarFormatId??'',
-    keyboarButtonsNumberId:initialData.keyboard[0].keyboarButtonsNumberId??'',
-    keyboarTouchTypeId:initialData.keyboard[0].keyboarTouchTypeId??'',
-    wireless:initialData.keyboard[0].wireless??false,
-    rgb:initialData.keyboard[0].rgb??false,
-    manufacturerId:initialData.keyboard[0].manufacturerId??'',
-  
+    CameraId:initialData.Laptop[0].CameraId??'',
+    GraphiccardId:initialData.Laptop[0].GraphiccardId??'',
+    GraphiccardRefId:initialData.Laptop[0].GraphiccardRefId??'',
+    HardiskId:initialData.Laptop[0].HardiskId??'',
+    ProcesseurId:initialData.Laptop[0].ProcesseurId??'',
+    ProcesseurReId:initialData.Laptop[0].ProcesseurReId??'',
+    RefreshRateId:initialData.Laptop[0].RefreshRateId??'',
+    ScreenSizeId:initialData.Laptop[0].ScreenSizeId??'',
+    ScreenTypeId:initialData.Laptop[0].ScreenTypeId??'',
+    SoundId:initialData.Laptop[0].SoundId??'',
+    SystemId:initialData.Laptop[0].SystemId??'',
+    manufacturerId:initialData.Laptop[0].manufacturerId??'',
+    memoryId:initialData.Laptop[0].memoryId??'',
+    networkId:initialData.Laptop[0].networkId??'',
+    TouchScreen:initialData.Laptop[0].TouchScreen,
 
     additionalDetails:   (initialData?.additionalDetails || []).map((item) => ({
       name: item.name,
@@ -124,8 +152,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     isFeatured: false,
     isArchived: false,
     additionalDetails:[],
-    wireless:false,
-    rgb:false
+    TouchScreen:false
   }
 console.log(initialData)
   const form = useForm<ProductFormValues>({
@@ -141,12 +168,12 @@ console.log(initialData)
     
   
       if (initialData) {
-        await axios.patch(`/api/keyboard/component/${params.productId}`, data);
+        await axios.patch(`/api/laptop/component/${params.productId}`, data);
       } else {
-        await axios.post(`/api/keyboard/component`, data);
+        await axios.post(`/api/laptop/component`, data);
       }
       router.refresh();
-      router.push(`/admin/keyboard`);
+      router.push(`/admin/Laptop`);
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error('Something went wrong.');
@@ -160,7 +187,7 @@ console.log(initialData)
       setLoading(true);
       await axios.delete(`/api/products/${params.productId}`);
       router.refresh();
-      router.push(`/admin/keyboard`);
+      router.push(`/admin/Laptop`);
       toast.success('Product deleted.');
     } catch (error: any) {
       toast.error('Something went wrong.');
@@ -583,37 +610,163 @@ console.log(initialData)
 
 
           
- 
-
-<PopFormModal label={"keyboard Format"} 
+          <PopFormModal label={"System"} 
               form1={form} 
               loading={loading} 
               setLoading={setLoading} 
-              data={...keyboarFormat}
+              data={...LapSystem}
               fieldaAfficher="name"
-              url="/api/keyboard/keyboarFormat"
-              formLab="keyboarFormatId"
-              formCControlName="keyboarFormat"
+              url="/api/laptop/LapSystem"
+              formLab="SystemId"
+              formCControlName="System"
+              IsNumber={false}
+              />
+
+<PopFormModal label={"Processeur"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapProcesseur}
+              fieldaAfficher="name"
+              url="/api/laptop/LapProcesseur"
+              formLab="ProcesseurId"
+              formCControlName="Processeur"
+              IsNumber={false}
+              />
+              
+          <PopFormModal label={"Processeur Ref"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapProcesseurRe}
+              fieldaAfficher="name"
+              url="/api/laptop/LapProcesseurRe"
+              formLab="ProcesseurReId"
+              formCControlName="ProcesseurRe"
+              IsNumber={false}
+              />
+              
+          <PopFormModal label={"Graphic card"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapGraphiccard}
+              fieldaAfficher="name"
+              url="/api/laptop/LapGraphiccard"
+              formLab="GraphiccardId"
+              formCControlName="Graphiccard"
+              IsNumber={false}
+              />
+              
+          <PopFormModal label={"Graphic card Ref"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapGraphiccardRef}
+              fieldaAfficher="name"
+              url="/api/laptop/LapGraphiccardRef"
+              formLab="GraphiccardRefId"
+              formCControlName="GraphiccardRef"
+              IsNumber={false}
+              />
+                      <PopFormModal label={"memory"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...Lapmemory}
+              fieldaAfficher="name"
+              url="/api/laptop/Lapmemory"
+              formLab="memoryId"
+              formCControlName="memory"
+              IsNumber={false}
+              />
+                      <PopFormModal label={"Hard disk"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapHardisk}
+              fieldaAfficher="name"
+              url="/api/laptop/LapHardisk"
+              formLab="HardiskId"
+              formCControlName="Hardisk"
+              IsNumber={false}
+              />
+              
+          <PopFormModal label={"Screen Size"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapScreenSize}
+              fieldaAfficher="name"
+              url="/api/laptop/LapScreenSize"
+              formLab="ScreenSizeId"
+              formCControlName="ScreenSize"
+              IsNumber={false}
+              />
+          <PopFormModal label={"Screen Type"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapScreenType}
+              fieldaAfficher="name"
+              url="/api/laptop/LapScreenType"
+              formLab="ScreenTypeId"
+              formCControlName="ScreenType"
+              IsNumber={false}
+              />
+                 <PopFormModal label={"Refresh Rate"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapRefreshRate}
+              fieldaAfficher="name"
+              url="/api/laptop/LapRefreshRate"
+              formLab="RefreshRateId"
+              formCControlName="RefreshRate"
               IsNumber={false}
               />
   
+  
               
-          <PopFormModal label={"keyboar Touch Type"} 
+          <PopFormModal label={"Network"} 
               form1={form} 
               loading={loading} 
               setLoading={setLoading} 
-              data={...keyboarTouchType}
+              data={...Lapnetwork}
               fieldaAfficher="name"
-              url="/api/keyboard/keyboarTouchType"
-              formLab="keyboarTouchTypeId"
-              formCControlName="keyboarTouchType"
+              url="/api/laptop/Lapnetwork"
+              formLab="networkId"
+              formCControlName="network"
               IsNumber={false}
               />
               
+          <PopFormModal label={"Sound"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapSound}
+              fieldaAfficher="name"
+              url="/api/laptop/LapSound"
+              formLab="SoundId"
+              formCControlName="Sound"
+              IsNumber={false}
+              />
+              
+          <PopFormModal label={"Camera"} 
+              form1={form} 
+              loading={loading} 
+              setLoading={setLoading} 
+              data={...LapCamera}
+              fieldaAfficher="name"
+              url="/api/laptop/LapCamera"
+              formLab="CameraId"
+              formCControlName="Camera"
+              IsNumber={false}
+              />
              
              <FormField
               control={form.control}
-              name="wireless"
+              name="TouchScreen"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
@@ -625,39 +778,17 @@ console.log(initialData)
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                    Wireless
+                    Touch Screen
                     </FormLabel>
                     <FormDescription>
-                      This product is Wireless
+                      This product is TouchScreen
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
 
-<FormField
-              control={form.control}
-              name="rgb"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      // @ts-ignore
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>
-                    RGB
-                    </FormLabel>
-                    <FormDescription>
-                      This product has rgb
-                    </FormDescription>
-                  </div>
-                </FormItem>
-              )}
-            />
+
         
 </div>
           <Separator />
