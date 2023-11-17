@@ -184,12 +184,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const [DiskSlot,setDiskSlot]=useState<DiskSlot[]>(initialData?.disks.map((ee)=>({
     disk:diks.filter((e)=>ee.Components.find((x)=>x.productId==e.id))
   }))??[{disk:[]}])
-
+  console.log(DiskSlot)
 const [name,setName]=useState(initialData?.name??'')
 
 
 const onSubmit = async () => {
-
+  console.log('za')
 
 
   if(mbs.length==0){
@@ -359,7 +359,7 @@ const [motherboardId,setMotherBoardId]=useState("")
               let newram=[...ramSlot]
               newram[key].rams=e
               setramslot([...newram])
-             
+              console.log(newram)
               }} selectionStaue={selectionStatu} onSlectionChange={(e)=>setSelectionStatu(e)} />
 
           </div>
@@ -384,7 +384,7 @@ const [motherboardId,setMotherBoardId]=useState("")
               let newram=[...DiskSlot]
               newram[key].disk=e
               setDiskSlot([...newram])
-             
+              console.log(newram)
               }} selectionStaue={selectionStatu} onSlectionChange={(e)=>setSelectionStatu(e)} />
 
           </div>

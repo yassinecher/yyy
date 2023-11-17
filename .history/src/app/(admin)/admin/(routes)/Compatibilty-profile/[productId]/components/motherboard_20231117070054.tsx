@@ -206,7 +206,7 @@ switch (dayOfWeek) {
 
     // Use filter to create a new array without the item to be removed
     const updatedItems = motherboardList.filter(item => item.id !== itemToRemove);
-    updateList(updatedItems)
+ 
     // Update the state with the new array
     setOtherboardListt(updatedItems);
     console.log("xxxxxxxx")
