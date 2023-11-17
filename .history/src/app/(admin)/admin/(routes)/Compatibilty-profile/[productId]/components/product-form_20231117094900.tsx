@@ -161,7 +161,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       setLoading(true);
       await axios.delete(`/api/compatibilityProfile/${params.productId}`);
       router.refresh();
-      router.push(`/admin/Compatibilty-profile`);
+      router.push(`/Compatibilty-profile`);
       toast.success('Product deleted.');
     } catch (error: any) {
       toast.error('Something went wrong.');
