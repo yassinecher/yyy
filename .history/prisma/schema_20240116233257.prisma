@@ -1,0 +1,805 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  CreatedAt DateTime @default(now())
+  UpdateAt  DateTime @default(now())
+  role      String   @default("user")
+}
+
+model Product {
+  id                String        @id @default(uuid())
+  categoryId        String
+  name              String
+  dicountPrice      Decimal       @default(0)
+  description       String
+  price             Decimal
+  stock             Decimal
+  isFeatured        Boolean       @default(false)
+  isArchived        Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  template          String        @default("")
+  soldnumber        Decimal       @default(0)
+  useTemplate       Boolean       @default(false)
+  category          Category      @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  images            Image[]
+  orderItems        OrderItem[]
+  motherboard       Motherboard[] @relation("ProductToMotherboard")
+  cpus              Processor[]   @relation("ProductToCPU")
+  gpus              Gpu[]         @relation("ProductToGPU")
+  memories          Memory[]      @relation("ProductToMemory")
+  powersupplies     Powersupply[] @relation("ProductToPowersupply")
+  storages          Harddisk[]    @relation("ProductToStorage")
+  cases             PCcase[]      @relation("ProductToPCCase")
+  screens           Screen[]      @relation("ProductToScreen")
+  additionalDetails Field[]
+  cooling           Cooling[]     @relation("ProductToCooling")
+
+  Laptop          Laptop[]         @relation("ProductToLaptop")
+  keyboard        keyboard[]       @relation("ProductTokeyboard")
+  Headset         Headset[]        @relation("ProductToHeadset")
+  Mic             Mic[]            @relation("ProductToMic")
+  Mousepad        Mousepad[]       @relation("ProductToMousepad")
+  Mouse           Mouse[]          @relation("ProductToMouse")
+  PreBuiltPcmodel PreBuiltPcmodel?
+  mouseId         String?
+}
+
+model Field {
+  id        String  @id @default(uuid())
+  productId String
+  name      String
+  value     String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String
+  products  Product[] @relation("CategoryToProduct")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  navLab    NavLab    @default(COMPONENTS)
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  isPaid     Boolean     @default(false)
+  phone      String      @default("")
+  address    String      @default("")
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  productId String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+model Screen {
+  id            String      @id @default(uuid())
+  products      Product[]   @relation("ProductToScreen")
+  curved        Boolean
+  resolutionId  String
+  resolution    Resolution  @relation(fields: [resolutionId], references: [id])
+  RefreshRateId String
+  RefreshRate   RefreshRate @relation(fields: [RefreshRateId], references: [id])
+  PouceId       String
+  Pouce         Pouce       @relation(fields: [PouceId], references: [id])
+  MarkId        String
+  Mark          Mark        @relation(fields: [MarkId], references: [id])
+}
+
+model Mark {
+  id      String   @id @default(uuid())
+  name    String
+  screens Screen[]
+}
+
+model Pouce {
+  id      String   @id @default(uuid())
+  name    String
+  screens Screen[]
+}
+
+model Resolution {
+  id      String   @id @default(uuid())
+  name    String
+  screens Screen[]
+}
+
+model RefreshRate {
+  id      String   @id @default(uuid())
+  name    String
+  screens Screen[]
+}
+
+model Motherboard {
+  id             String             @id @default(uuid())
+  products       Product[]          @relation("ProductToMotherboard")
+  manufacturerId String
+  manufacturer   Manufacturer       @relation("ManufacturerToMotherboard", fields: [manufacturerId], references: [id])
+  ramslotsId     String
+  ramslots       RamSlots           @relation(fields: [ramslotsId], references: [id])
+  chipsetId      String
+  chipset        MotherboardChipset @relation(fields: [chipsetId], references: [id])
+  cpusupportId   String
+  cpusupport     CPUSupport         @relation(fields: [cpusupportId], references: [id])
+  formatId       String
+  format         MotherboardFormat  @relation(fields: [formatId], references: [id])
+}
+
+model RamSlots {
+  id           String        @id @default(uuid())
+  name         String
+  number       Int
+  type         String
+  motherboards Motherboard[]
+}
+
+model MotherboardChipset {
+  id   String @id @default(uuid())
+  name String
+
+  motherboards Motherboard[]
+}
+
+model CPUSupport {
+  id           String        @id @default(uuid())
+  name         String
+  motherboards Motherboard[]
+  processor    Processor[]
+  cooling      Cooling[]
+}
+
+model Guarantee {
+  id   String @id @default(uuid())
+  name String
+}
+
+model MotherboardFormat {
+  id           String        @id @default(uuid())
+  name         String
+  motherboards Motherboard[]
+}
+
+model Manufacturer {
+  id           String        @id @default(uuid())
+  name         String
+  imageUrl     String
+  motherboards Motherboard[] @relation("ManufacturerToMotherboard")
+  Laptops      Laptop[]
+  keyboard     keyboard[]
+  Headset      Headset[]
+  Mic          Mic[]
+  Mousepad     Mousepad[]
+  Mouse        Mouse[]
+}
+
+model Processor {
+  id               String         @id @default(uuid())
+  products         Product[]      @relation("ProductToCPU")
+  processorModelId String
+  processorModel   ProcessorModel @relation(fields: [processorModelId], references: [id])
+
+  cpusupportId String
+  cpusupport   CPUSupport @relation(fields: [cpusupportId], references: [id])
+}
+
+model ProcessorModel {
+  id        String      @id @default(uuid())
+  name      String
+  processor Processor[]
+}
+
+model Memory {
+  id          String          @id @default(uuid())
+  products    Product[]       @relation("ProductToMemory")
+  rgb         Boolean
+  marqueId    String
+  numberId    String
+  typeId      String
+  frequencyId String
+  marque      MemoryMarque    @relation(fields: [marqueId], references: [id])
+  number      MemoryNumber    @relation(fields: [numberId], references: [id])
+  type        MemoryType      @relation(fields: [typeId], references: [id])
+  frequency   MemoryFrequency @relation(fields: [frequencyId], references: [id])
+}
+
+model MemoryMarque {
+  id           String   @id @default(uuid())
+  name         String
+  memoryboards Memory[]
+}
+
+model MemoryNumber {
+  id           String   @id @default(uuid())
+  number       Int
+  memoryboards Memory[]
+}
+
+model MemoryType {
+  id           String   @id @default(uuid())
+  name         String
+  memoryboards Memory[]
+}
+
+model MemoryFrequency {
+  id           String   @id @default(uuid())
+  name         String
+  memoryboards Memory[]
+}
+
+model Powersupply {
+  id String @id @default(uuid())
+
+  products        Product[]       @relation("ProductToPowersupply")
+  modularity      Boolean
+  certificationId String
+  certification   PsCertification @relation(fields: [certificationId], references: [id])
+
+  Power               Int
+  powersupplyMarqueId String
+  Marque              PowersupplyMarque @relation(fields: [powersupplyMarqueId], references: [id])
+}
+
+model PowersupplyMarque {
+  id   String @id @default(uuid())
+  name String
+
+  powersupplies Powersupply[]
+}
+
+model PsCertification {
+  id   String @id @default(uuid())
+  name String
+
+  powersupplies Powersupply[]
+}
+
+model Gpu {
+  id                String          @id @default(uuid())
+  products          Product[]       @relation("ProductToGPU")
+  GpuBrandId        String
+  gpuBrand          GpuBrand        @relation(fields: [GpuBrandId], references: [id])
+  gpuArchBrandId    String
+  gpuArchBrand      GpuArchBrand    @relation(fields: [gpuArchBrandId], references: [id])
+  graphiccardNameId String
+  graphiccardName   GraphiccardName @relation(fields: [graphiccardNameId], references: [id])
+}
+
+model GpuBrand {
+  id           String @id @default(uuid())
+  name         String
+  motherboards Gpu[]
+}
+
+model GpuArchBrand {
+  id           String @id @default(uuid())
+  name         String
+  motherboards Gpu[]
+}
+
+model GraphiccardName {
+  id           String @id @default(uuid())
+  name         String
+  motherboards Gpu[]
+}
+
+model PCcase {
+  id                         String                         @id @default(uuid())
+  product                    Product[]                      @relation("ProductToPCCase")
+  brandId                    String
+  brand                      PCcaseBrand                    @relation(fields: [brandId], references: [id])
+  caseformatiD               String
+  caseformat                 PCcaseCaseformat               @relation(fields: [caseformatiD], references: [id])
+  numberofFansPreinstalledId String
+  numberofFansPreinstalled   PCcaseNumberofFansPreinstalled @relation(fields: [numberofFansPreinstalledId], references: [id])
+  rGBTypeId                  String
+  rGBType                    PCcaseRGBType                  @relation(fields: [rGBTypeId], references: [id])
+}
+
+
+model PCcaseBrand {
+  id     String   @id @default(uuid())
+  name   String
+  pccase PCcase[]
+}
+
+model PCcaseCaseformat {
+  id     String   @id @default(uuid())
+  name   String
+  pccase PCcase[]
+}
+
+model PCcaseNumberofFansPreinstalled {
+  id     String   @id @default(uuid())
+  name   String
+  pccase PCcase[]
+}
+
+model PCcaseRGBType {
+  id     String   @id @default(uuid())
+  name   String
+  pccase PCcase[]
+}
+
+model Harddisk {
+  id                  String                    @id @default(uuid())
+  product             Product[]                 @relation("ProductToStorage")
+  brandId             String
+  brand               HarddiskBrand             @relation(fields: [brandId], references: [id])
+  typeId              String
+  type                HarddiskType              @relation(fields: [typeId], references: [id])
+  capacityId          String
+  capacity            HarddiskCapacity          @relation(fields: [capacityId], references: [id])
+  ComputerinterfaceId String
+  Computerinterface   HarddiskComputerinterface @relation(fields: [ComputerinterfaceId], references: [id])
+}
+
+model HarddiskBrand {
+  id       String     @id @default(uuid())
+  name     String
+  harddisk Harddisk[]
+}
+
+model HarddiskType {
+  id       String     @id @default(uuid())
+  name     String
+  harddisk Harddisk[]
+}
+
+model HarddiskCapacity {
+  id       String     @id @default(uuid())
+  name     String
+  harddisk Harddisk[]
+}
+
+model HarddiskComputerinterface {
+  id       String     @id @default(uuid())
+  name     String
+  harddisk Harddisk[]
+}
+
+model Cooling {
+  id            String      @id @default(uuid())
+  product       Product[]   @relation("ProductToCooling")
+  Rgb           Boolean
+  CoolingMarkId String
+  CoolingMark   CoolingMark @relation(fields: [CoolingMarkId], references: [id])
+  CoolingTypeId String
+  CoolingType   CoolingType @relation(fields: [CoolingTypeId], references: [id])
+  FansNumberId  String
+  FansNumber    FansNumber  @relation(fields: [FansNumberId], references: [id])
+  CPUSupportId  String
+  CPUSupport    CPUSupport  @relation(fields: [CPUSupportId], references: [id])
+}
+
+model CoolingMark {
+  id      String    @id @default(uuid())
+  name    String
+  cooling Cooling[]
+}
+
+model CoolingType {
+  id      String    @id @default(uuid())
+  name    String
+  cooling Cooling[]
+}
+
+model FansNumber {
+  id      String    @id @default(uuid())
+  number  Int
+  cooling Cooling[]
+}
+
+model Slide {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  imageUrl    String
+  url         String
+  discount    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum NavLab {
+  PCS
+  COMPONENTS
+  PEREPHRALS
+  PACKS
+}
+
+model SearchQuery {
+  id    String @id @default(cuid())
+  query String
+}
+
+enum Componenets {
+  MOTHERBOARD
+  CPU
+  GPU
+  RAM
+  DISK
+  CASE
+  POWERSUPPLY
+}
+
+model ComponentOnPc {
+  id                    String                @id @default(uuid())
+  productId             String
+  CPmotherboards        CompatibiltyProfile[] @relation("Motherboards")
+  CPCPUs                CompatibiltyProfile[] @relation("CPUs")
+  CPGPUs                CompatibiltyProfile[] @relation("GPUs")
+  CPcases               CompatibiltyProfile[] @relation("Cases")
+  CPpowersupplys        CompatibiltyProfile[] @relation("PowerSupplies")
+  ComponentOnPcGroupe   ComponentOnPcGroupe?  @relation(fields: [componentOnPcGroupeId], references: [id])
+  componentOnPcGroupeId String?
+}
+
+model ComponentOnPcGroupe {
+  id         String                @id @default(uuid())
+  Components ComponentOnPc[]
+  rams       CompatibiltyProfile[] @relation("Rams")
+  disks      CompatibiltyProfile[] @relation("Disks")
+}
+
+model CompatibiltyProfile {
+  id           String                @id @default(uuid())
+  name         String
+  motherboards ComponentOnPc[]       @relation("Motherboards")
+  CPUs         ComponentOnPc[]       @relation("CPUs")
+  GPUs         ComponentOnPc[]       @relation("GPUs")
+  RAMs         ComponentOnPcGroupe[] @relation("Rams")
+  disks        ComponentOnPcGroupe[] @relation("Disks")
+  cases        ComponentOnPc[]       @relation("Cases")
+  powersupplys ComponentOnPc[]       @relation("PowerSupplies")
+  createdAt    DateTime              @default(now())
+}
+
+model navitem {
+  id                  String                @id @default(uuid())
+  label               String
+  link                String
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  CathegoryCollection CathegoryCollection[]
+}
+
+model CathegoryCollection {
+  id        String         @id @default(uuid())
+  Label     String
+  index     Decimal
+  navitemId String
+  navitem   navitem        @relation(fields: [navitemId], references: [id], onDelete: Cascade)
+  catgories Cathegorilab[]
+}
+
+model Cathegorilab {
+  id                    String              @id @default(uuid())
+  index                 Decimal
+  catId                 String
+  Label                 String
+  CathegoryCollectionId String
+  cathegoryCollection   CathegoryCollection @relation(fields: [CathegoryCollectionId], references: [id], onDelete: Cascade)
+}
+
+model Laptop {
+  id      String    @id @default(uuid())
+  product Product[] @relation("ProductToLaptop")
+
+  TouchScreen      Boolean
+  System           LapSystem?         @relation(fields: [SystemId], references: [id])
+  SystemId         String?
+  Processeur       LapProcesseur?     @relation(fields: [ProcesseurId], references: [id])
+  ProcesseurId     String?
+  ProcesseurRe     LapProcesseurRe?   @relation(fields: [ProcesseurReId], references: [id])
+  ProcesseurReId   String?
+  Graphiccard      LapGraphiccard?    @relation(fields: [GraphiccardId], references: [id])
+  GraphiccardId    String?
+  GraphiccardRef   LapGraphiccardRef? @relation(fields: [GraphiccardRefId], references: [id])
+  GraphiccardRefId String?
+  ScreenSize       LapScreenSize?     @relation(fields: [ScreenSizeId], references: [id])
+  ScreenSizeId     String?
+  ScreenType       LapScreenType?     @relation(fields: [ScreenTypeId], references: [id])
+  ScreenTypeId     String?
+  Hardisk          LapHardisk?        @relation(fields: [HardiskId], references: [id])
+  HardiskId        String?
+  memory           Lapmemory?         @relation(fields: [memoryId], references: [id])
+  memoryId         String?
+  network          Lapnetwork?        @relation(fields: [networkId], references: [id])
+  networkId        String?
+  Sound            LapSound?          @relation(fields: [SoundId], references: [id])
+  SoundId          String?
+  Camera           LapCamera?         @relation(fields: [CameraId], references: [id])
+  CameraId         String?
+  RefreshRate      LapRefreshRate?    @relation(fields: [RefreshRateId], references: [id])
+  RefreshRateId    String?
+
+  Manufacturer   Manufacturer? @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String?
+}
+
+model LapSystem {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapProcesseur {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapProcesseurRe {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapGraphiccard {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapGraphiccardRef {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapScreenSize {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapScreenType {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapHardisk {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model Lapmemory {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model Lapnetwork {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapSound {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapCamera {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model LapRefreshRate {
+  id      String   @id @default(uuid())
+  name    String
+  laptops Laptop[]
+}
+
+model keyboard {
+  id                     String                @id @default(uuid())
+  product                Product[]             @relation("ProductTokeyboard")
+  Manufacturer           Manufacturer?         @relation(fields: [manufacturerId], references: [id])
+  manufacturerId         String?
+  keyboarbrand           keyboarbrand?         @relation(fields: [keyboarbrandId], references: [id])
+  keyboarbrandId         String?
+  keyboarFormat          keyboarFormat?        @relation(fields: [keyboarFormatId], references: [id])
+  keyboarFormatId        String?
+  keyboarButtonsNumber   keyboarButtonsNumber? @relation(fields: [keyboarButtonsNumberId], references: [id])
+  keyboarButtonsNumberId String?
+  keyboarTouchType       keyboarTouchType?     @relation(fields: [keyboarTouchTypeId], references: [id])
+  keyboarTouchTypeId     String?
+  wireless               Boolean
+  rgb                    Boolean
+}
+
+model keyboarbrand {
+  id        String     @id @default(uuid())
+  name      String
+  keyboards keyboard[]
+}
+
+model keyboarFormat {
+  id        String     @id @default(uuid())
+  name      String
+  keyboards keyboard[]
+}
+
+model keyboarButtonsNumber {
+  id        String     @id @default(uuid())
+  name      String
+  keyboards keyboard[]
+}
+
+model keyboarTouchType {
+  id        String     @id @default(uuid())
+  name      String
+  keyboards keyboard[]
+}
+
+model Headset {
+  id             String        @id @default(uuid())
+  product        Product[]     @relation("ProductToHeadset")
+  Manufacturer   Manufacturer? @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String?
+
+  HeadsetModel                     HeadsetModel?                   @relation(fields: [headsetModelId], references: [id])
+  headsetModelId                   String?
+  HeadsetSonSurround               HeadsetSonSurround?             @relation(fields: [headsetSonSurroundId], references: [id])
+  headsetSonSurroundId             String?
+  wireless                         Boolean
+  rgb                              Boolean
+  HeadsetInterfaceAvecOrdinateur   HeadsetInterfaceAvecOrdinateur? @relation(fields: [headsetInterfaceAvecOrdinateurId], references: [id])
+  headsetInterfaceAvecOrdinateurId String?
+}
+
+model HeadsetModel {
+  id      String    @id @default(uuid())
+  name    String
+  Headset Headset[]
+}
+
+model HeadsetInterfaceAvecOrdinateur {
+  id      String    @id @default(uuid())
+  name    String
+  Headset Headset[]
+}
+
+model HeadsetSonSurround {
+  id      String    @id @default(uuid())
+  name    String
+  Headset Headset[]
+}
+
+model Mic {
+  id             String        @id @default(uuid())
+  product        Product[]     @relation("ProductToMic")
+  Manufacturer   Manufacturer? @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String?
+  wireless       Boolean
+  rgb            Boolean
+
+  MicModel                     MicModel?                   @relation(fields: [micModelId], references: [id])
+  micModelId                   String?
+  MicInterfaceAvecOrdinateur   MicInterfaceAvecOrdinateur? @relation(fields: [micInterfaceAvecOrdinateurId], references: [id])
+  micInterfaceAvecOrdinateurId String?
+  MicSonSurround               MicSonSurround?             @relation(fields: [micSonSurroundId], references: [id])
+  micSonSurroundId             String?
+}
+
+model MicModel {
+  id   String @id @default(uuid())
+  name String
+  Mic  Mic[]
+}
+
+model MicInterfaceAvecOrdinateur {
+  id   String @id @default(uuid())
+  name String
+  Mic  Mic[]
+}
+
+model MicSonSurround {
+  id   String @id @default(uuid())
+  name String
+  Mic  Mic[]
+}
+
+model Mousepad {
+  id              String         @id @default(uuid())
+  product         Product[]      @relation("ProductToMousepad")
+  Manufacturer    Manufacturer?  @relation(fields: [manufacturerId], references: [id])
+  manufacturerId  String?
+  rgb             Boolean
+  MousepadModel   MousepadModel? @relation(fields: [mousepadModelId], references: [id])
+  mousepadModelId String?
+  MousepadSize    MousepadSize?  @relation(fields: [mousepadSizeId], references: [id])
+  mousepadSizeId  String?
+}
+
+model MousepadModel {
+  id       String     @id @default(uuid())
+  name     String
+  Mousepad Mousepad[]
+}
+
+model MousepadSize {
+  id       String     @id @default(uuid())
+  name     String
+  Mousepad Mousepad[]
+}
+
+model Mouse {
+  id             String        @id @default(uuid())
+  product        Product[]     @relation("ProductToMouse")
+  Manufacturer   Manufacturer? @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String?
+  rgb            Boolean
+  wirless        Boolean
+
+  SensorType   SensorType? @relation(fields: [sensorTypeId], references: [id])
+  sensorTypeId String?
+}
+
+model SensorType {
+  id    String  @id @default(uuid())
+  name  String
+  Mouse Mouse[]
+}
+
+model pcTemplate {
+  id              String            @id @default(uuid())
+  motherBoardId   String
+  processorId     String
+  graphicCardId   String
+  powerSupplyId   String
+  caseId          String
+  ramIdArray      String[]
+  hardDiskArray   String[]
+  PreBuiltPcmodel PreBuiltPcmodel[]
+}
+
+model PreBuiltPcmodel {
+  id           String     @id @default(uuid())
+  product      Product    @relation(fields: [productId], references: [id])
+  pcTemplate   pcTemplate @relation(fields: [pcTemplateId], references: [id])
+  productId    String @unique
+  pcTemplateId String
+}
