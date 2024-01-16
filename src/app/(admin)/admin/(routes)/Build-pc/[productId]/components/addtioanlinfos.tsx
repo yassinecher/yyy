@@ -1,4 +1,9 @@
+import TextEditor from '@/components/custom/EditorWithUseQuill';
+import Editor from '@/components/custom/EditorWithUseQuill';
+import Editorr from '@/components/custom/EditorWithUseQuill';
+
 import { Button } from '@/components/ui/button';
+import { FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Trash } from 'lucide-react';
 import React, { useState } from 'react';
@@ -37,9 +42,18 @@ function InputArray({  inputArrayp ,onChange}: InputArrayProps) {
   const exportInputArray = () => {
    
   };
-
+  const [text, setText] = useState('');
+  const handleTextChange=(e :string)=>{
+setText(e)
+console.log(e)
+  }
   return (
+    <>
+   <h1>Infos Descitption</h1>
+   <TextEditor OnUpdate={(e)=>handleTextChange(e.toString())} value={text} />
+   <h1>Infos Table</h1>
     <div className="space-y-4">
+      
       {inputArray.map((input, index) => (
         <div key={index} className="flex space-x-4 items-center">
           <Input
@@ -76,6 +90,8 @@ function InputArray({  inputArrayp ,onChange}: InputArrayProps) {
         Add Inputs
       </Button>
     </div>
+    </>
+    
   );
 }
 
