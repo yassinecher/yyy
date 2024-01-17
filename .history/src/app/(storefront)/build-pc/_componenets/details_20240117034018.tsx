@@ -36,7 +36,7 @@ const Details = (props: {
                     </button>
 
                 </PopoverTrigger>
-                <PopoverContent className=" dark:bg-black mr-7 mb-0 w-screen lg:w-auto md:w-auto">
+                <PopoverContent className="w-auto dark:bg-black mr-7 mb-0 md:w-full sm:w-full">
                     <div className="grid gap-4">
                         <div className="space-y-2">
                             <p>
