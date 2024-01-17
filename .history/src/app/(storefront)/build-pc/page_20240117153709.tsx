@@ -56,12 +56,8 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        
+        select:{screens:{}}
       }
     }
      })
@@ -86,11 +82,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{screens:{}}
       }
     }
      })
@@ -115,11 +107,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{screens:{}}
       }
     }
      })
@@ -144,11 +132,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{screens:{}}
       }
     }
      })
@@ -173,11 +157,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{motherboards:{}}
       }
     }
      })
@@ -202,9 +182,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{ where:{
-          products:{some:{}}
-        }}}
+        select:{motherboards:{}}
       }
     }
      })
@@ -229,9 +207,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{ where:{
-          products:{some:{}}
-        }}}
+        select:{motherboards:{}}
       }
     }
      })

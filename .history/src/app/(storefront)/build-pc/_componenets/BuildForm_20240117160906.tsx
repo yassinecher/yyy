@@ -98,7 +98,7 @@ export const BuildForm = (props: {
     const [powerId, setPowerId] = useState<Product>(retrieveFromLocalStorage('powerId'))
     const [cooling, setcooling] = useState<Product>(retrieveFromLocalStorage('cooling'))
     const [screen, setscreen] = useState<Product>(retrieveFromLocalStorage('screen'))
-    const [prix, setPrix] = useState<number>(0)
+    const [prix, setPrix] = useState(0)
     console.log(props.profiles)
 
 
@@ -163,7 +163,6 @@ export const BuildForm = (props: {
             }
 
         }
-   
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
     useEffect(() => {
         saveToLocalStorage('motherboardId', motherboardId);
@@ -176,7 +175,6 @@ export const BuildForm = (props: {
         saveToLocalStorage('powerId', powerId);
         saveToLocalStorage('cooling', cooling);   
         saveToLocalStorage('screen', screen);
-        calculePrix()
         // ... save other state variables
       }, [motherboardId,processorId,gpuId,ramId,hardDiskPrimaireId,hardDiskSecondaire,caseId,powerId,cooling,screen]);
     useEffect(() => {
@@ -257,58 +255,50 @@ export const BuildForm = (props: {
             }
 
         }
-     
+        calculePrix()
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
 const calculePrix=()=>{
-    let prix1=0
+    setPrix(0)
 if(motherboardId){
-    prix1=(prix1+parseInt(motherboardId.price.toString()))
+setPrix(prix+parseInt(motherboardId.price.toString()))
 }
-
+console.log(motherboardId.price)
 if(processorId){
-    prix1=(prix1+parseInt(processorId.price.toString()))
-
+    setPrix(prix+processorId.price)
     }
     
 if(gpuId){
-    prix1=(prix1+parseInt(gpuId.price.toString()))
-
+    setPrix(prix+gpuId.price)
     }
     
 if(ramId.findIndex((e)=>e!=null)){
     ramId.every((e)=>{
         if(e!=null){
-            prix1=(prix1+parseInt(e.price.toString()))
-
+            setPrix(prix+e.price)
         }
     })
     }
     
 if(hardDiskSecondaire){
-    prix1=(prix1+parseInt(hardDiskSecondaire.price.toString()))
-
+    setPrix(prix+hardDiskSecondaire.price)
     }
     
 if(caseId){
-    prix1=(prix1+parseInt(caseId.price.toString()))
-
+    setPrix(prix+caseId.price)
     }
         
 if(powerId){
-    prix1=(prix1+parseInt(powerId.price.toString()))
-
+    setPrix(prix+powerId.price)
     }
         
 if(cooling){
-    prix1=(prix1+parseInt(cooling.price.toString()))
-
+    setPrix(prix+cooling.price)
     }
         
 if(screen){
-    prix1=(prix1+parseInt(screen.price.toString()))
-
+    setPrix(prix+screen.price)
     }
- setPrix(prix1)
+ 
 }
     return (
         <div>

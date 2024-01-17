@@ -100,7 +100,7 @@ export async function GET(req: Request, res: NextApiResponse) {
 
    
     const whereClause: Record<string, any> = {
-      screens: {
+      cpus: {
         some: {},
       },
     };
@@ -168,8 +168,8 @@ export async function GET(req: Request, res: NextApiResponse) {
         });
       }
     
-      const motherboardscreensupportFilter = decodedFilterList.pouce;
-      if (motherboardscreensupportFilter && motherboardscreensupportFilter.length > 0) {
+      const motherboardcpusupportFilter = decodedFilterList.pouce;
+      if (motherboardcpusupportFilter && motherboardcpusupportFilter.length > 0) {
         cpuFilters.push({
           Pouce: {
             name: {
@@ -213,7 +213,7 @@ export async function GET(req: Request, res: NextApiResponse) {
       }
      
       if (cpuFilters.length > 0) {
-        whereClause.screens = {
+        whereClause.cpus = {
           some: {
             AND: cpuFilters,
           },
@@ -225,7 +225,7 @@ export async function GET(req: Request, res: NextApiResponse) {
     const products = await prismadb.product.findMany({
       where: whereClause,
       include: {
-       
+        motherboard: true,
         images: true,
       },
       orderBy: orderByClause,
@@ -234,6 +234,8 @@ export async function GET(req: Request, res: NextApiResponse) {
     });
     const total=  await prismadb.product.count({
       where: whereClause,
+    
+   
     });
     console.log();
     return NextResponse.json({data:products,total});

@@ -16,42 +16,8 @@ import { GraphicCard } from './GraphicCard'
 import { Screen } from './Screen'
 
 
-const EXPIRATION_TIME = 12* 60 * 60 * 1000; // 5 minutes in milliseconds
-
-const saveToLocalStorage = (key: string, value: any) => {
-  const data = {
-    value,
-    timestamp: new Date().getTime(),
-  };
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-const retrieveFromLocalStorage = (key: string) => {
-  const data = localStorage.getItem(key);
-  if (data) {
-    const parsedData = JSON.parse(data);
-    const { value, timestamp } = parsedData;
-    const currentTime = new Date().getTime();
-   
-    // Check if the data is still within the expiration time
-    if (currentTime - timestamp < EXPIRATION_TIME) {
-      return value;
-    } else {
-      // Data has expired, remove it
-      localStorage.removeItem(key);
-    }
-  }else if(key=="ramId"){
-    return [null,null];
-  }
-  return null;
-};
 export const BuildForm = (props: {
     profiles: ProfileType[],
-    mark: Filter
-    pouce: Filter
-    refreshRate: Filter
-    resolution: Filter
-
     gpuBrand: Filter
     gpuArchBrand: Filter
     graphiccardName: Filter
@@ -86,19 +52,17 @@ export const BuildForm = (props: {
     memoryNumber: Filter
     memoryType: Filter
 }) => {
-    const [motherboardId, setMotherboardId] = useState<Product>(retrieveFromLocalStorage('motherboardId'))
+    const [motherboardId, setMotherboardId] = useState<Product>()
     const [allProductCompatibility, setAllProductCompatibility] = useState<AllProductsCompatibility>(defaultAllProductsCompatibility)
-    const [processorId, setProcessorId] = useState<Product>(retrieveFromLocalStorage('processorId'))
-    const [gpuId, setGpuId] = useState<Product>(retrieveFromLocalStorage('gpuId'))
-    const [ramId, setRamId] = useState<(Memory | null)[]>(retrieveFromLocalStorage('ramId'))
+    const [processorId, setProcessorId] = useState<Product>()
+    const [gpuId, setGpuId] = useState<Product>()
+    const [ramId, setRamId] = useState<(Memory | null)[]>([null, null, null, null])
     const [hardDiskSecondaire, setHardDiskSecondaire
-    ] = useState<Product>(retrieveFromLocalStorage('hardDiskSecondaire'))
-    const [hardDiskPrimaireId, sethardDiskPrimaireId] = useState<Product>(retrieveFromLocalStorage('hardDiskPrimaireId'))
-    const [caseId, setCase] = useState<Product>(retrieveFromLocalStorage('caseId'))
-    const [powerId, setPowerId] = useState<Product>(retrieveFromLocalStorage('powerId'))
-    const [cooling, setcooling] = useState<Product>(retrieveFromLocalStorage('cooling'))
-    const [screen, setscreen] = useState<Product>(retrieveFromLocalStorage('screen'))
-    const [prix, setPrix] = useState<number>(0)
+    ] = useState<Product>()
+    const [hardDiskPrimaireId, sethardDiskPrimaireId] = useState<Product>()
+    const [caseId, setCase] = useState<Product>()
+    const [powerId, setPowerId] = useState<Product>()
+    const [cooling, setcooling] = useState<Product>()
     console.log(props.profiles)
 
 
@@ -163,22 +127,7 @@ export const BuildForm = (props: {
             }
 
         }
-   
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
-    useEffect(() => {
-        saveToLocalStorage('motherboardId', motherboardId);
-        saveToLocalStorage('processorId', processorId);
-        saveToLocalStorage('gpuId', gpuId);
-        saveToLocalStorage('ramId', ramId);
-        saveToLocalStorage('hardDiskPrimaireId', hardDiskPrimaireId);
-        saveToLocalStorage('hardDiskSecondaire', hardDiskSecondaire);
-        saveToLocalStorage('caseId', caseId);
-        saveToLocalStorage('powerId', powerId);
-        saveToLocalStorage('cooling', cooling);   
-        saveToLocalStorage('screen', screen);
-        calculePrix()
-        // ... save other state variables
-      }, [motherboardId,processorId,gpuId,ramId,hardDiskPrimaireId,hardDiskSecondaire,caseId,powerId,cooling,screen]);
     useEffect(() => {
         if (processorId) {
             const PProfiles = props.profiles.filter((e) => e.CPUs.find((ee) => ee.productId == processorId.id))
@@ -257,59 +206,8 @@ export const BuildForm = (props: {
             }
 
         }
-     
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
-const calculePrix=()=>{
-    let prix1=0
-if(motherboardId){
-    prix1=(prix1+parseInt(motherboardId.price.toString()))
-}
 
-if(processorId){
-    prix1=(prix1+parseInt(processorId.price.toString()))
-
-    }
-    
-if(gpuId){
-    prix1=(prix1+parseInt(gpuId.price.toString()))
-
-    }
-    
-if(ramId.findIndex((e)=>e!=null)){
-    ramId.every((e)=>{
-        if(e!=null){
-            prix1=(prix1+parseInt(e.price.toString()))
-
-        }
-    })
-    }
-    
-if(hardDiskSecondaire){
-    prix1=(prix1+parseInt(hardDiskSecondaire.price.toString()))
-
-    }
-    
-if(caseId){
-    prix1=(prix1+parseInt(caseId.price.toString()))
-
-    }
-        
-if(powerId){
-    prix1=(prix1+parseInt(powerId.price.toString()))
-
-    }
-        
-if(cooling){
-    prix1=(prix1+parseInt(cooling.price.toString()))
-
-    }
-        
-if(screen){
-    prix1=(prix1+parseInt(screen.price.toString()))
-
-    }
- setPrix(prix1)
-}
     return (
         <div>
             <Motherboard
@@ -415,16 +313,13 @@ if(screen){
                 fansNumber={props.fansNumber}
             />
             <Screen
-                setProcessorId={setscreen}
-                processorId={screen}
+                setProcessorId={setProcessorId}
+                processorId={processorId}
                 motherboardId={motherboardId}
                 selectedCompatibility={allProductCompatibility}
                 profiles={props.profiles}
-                mark={props.mark}
-                pouce={props.pouce}
-                refreshRate={props.refreshRate}
-                resolution={props.resolution}
-        
+                cPUSupport={props.cPUSupport}
+                processorModel={props.processorModel}
             />
             <Details
                 motherboardId={motherboardId}
@@ -436,8 +331,6 @@ if(screen){
                 caseId={caseId}
                 powerId={powerId}
                 cooling={cooling}
-                screen={screen}
-                prix={prix}
             />
         </div>
     )

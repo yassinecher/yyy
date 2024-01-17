@@ -23,9 +23,7 @@ const Details = (props: {
  powerId:Product | undefined,
  cooling:Product | undefined,
  gpuId:Product | undefined,
- screen:Product | undefined,
- prix:number
-}
+ screen:Product | undefined,}
 ) => {
 
     return (
@@ -46,7 +44,6 @@ const Details = (props: {
                           
                                 <div className='text-sm'>  <span className='font-bold text-lg'>Mon PC </span>sur mesure, l&apos;outil parfait, conçu exactement pour moi !</div>
                             </p>
-
                         </div>
                         <div className="grid gap-2">
                             <div>
@@ -237,26 +234,6 @@ const Details = (props: {
                                     
                                 </CardContent>
                             </Card> </>:<></>}
-                            {props.screen?<>
-                            <Card>
-                                <CardContent className='p-0 flex align-middle '>
-                                    <div className=' p-2 text-sm font-semibold'>
-                                    Ecran
-                                    </div>
-                                 
-                                    <div className='text-sm p-2 h-full border-l-1'>
-                                    { props.screen.name+' '} 
-                                    <span className='font-semibold ml-1'> {' '+ props.screen.price} (TND) X 1</span>
-                                   </div>
-                                
-                                  
-                                  
-                                    
-                                </CardContent>
-                            </Card> </>:<></>}
-                            <div>
-                                <span>Total :</span> {props.prix} (TND)
-                            </div>
                         </div>
                     </div>
                     <div className='w-full mt-3 flex justify-end'>

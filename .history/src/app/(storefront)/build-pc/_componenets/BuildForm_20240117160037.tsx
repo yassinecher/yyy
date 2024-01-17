@@ -98,7 +98,7 @@ export const BuildForm = (props: {
     const [powerId, setPowerId] = useState<Product>(retrieveFromLocalStorage('powerId'))
     const [cooling, setcooling] = useState<Product>(retrieveFromLocalStorage('cooling'))
     const [screen, setscreen] = useState<Product>(retrieveFromLocalStorage('screen'))
-    const [prix, setPrix] = useState<number>(0)
+    const [prix, setPrix] = useState(0)
     console.log(props.profiles)
 
 
@@ -163,7 +163,6 @@ export const BuildForm = (props: {
             }
 
         }
-   
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
     useEffect(() => {
         saveToLocalStorage('motherboardId', motherboardId);
@@ -176,7 +175,6 @@ export const BuildForm = (props: {
         saveToLocalStorage('powerId', powerId);
         saveToLocalStorage('cooling', cooling);   
         saveToLocalStorage('screen', screen);
-        calculePrix()
         // ... save other state variables
       }, [motherboardId,processorId,gpuId,ramId,hardDiskPrimaireId,hardDiskSecondaire,caseId,powerId,cooling,screen]);
     useEffect(() => {
@@ -257,58 +255,9 @@ export const BuildForm = (props: {
             }
 
         }
-     
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
-const calculePrix=()=>{
-    let prix1=0
-if(motherboardId){
-    prix1=(prix1+parseInt(motherboardId.price.toString()))
-}
+const calculePrix={
 
-if(processorId){
-    prix1=(prix1+parseInt(processorId.price.toString()))
-
-    }
-    
-if(gpuId){
-    prix1=(prix1+parseInt(gpuId.price.toString()))
-
-    }
-    
-if(ramId.findIndex((e)=>e!=null)){
-    ramId.every((e)=>{
-        if(e!=null){
-            prix1=(prix1+parseInt(e.price.toString()))
-
-        }
-    })
-    }
-    
-if(hardDiskSecondaire){
-    prix1=(prix1+parseInt(hardDiskSecondaire.price.toString()))
-
-    }
-    
-if(caseId){
-    prix1=(prix1+parseInt(caseId.price.toString()))
-
-    }
-        
-if(powerId){
-    prix1=(prix1+parseInt(powerId.price.toString()))
-
-    }
-        
-if(cooling){
-    prix1=(prix1+parseInt(cooling.price.toString()))
-
-    }
-        
-if(screen){
-    prix1=(prix1+parseInt(screen.price.toString()))
-
-    }
- setPrix(prix1)
 }
     return (
         <div>
@@ -437,7 +386,6 @@ if(screen){
                 powerId={powerId}
                 cooling={cooling}
                 screen={screen}
-                prix={prix}
             />
         </div>
     )

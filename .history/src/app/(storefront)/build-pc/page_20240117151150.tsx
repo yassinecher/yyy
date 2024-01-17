@@ -46,94 +46,7 @@ const getprofiles= async ()=>{
 const buildPc = async () => {
   try {
    const profiles = await getprofiles()
-   const markk =await prismadb.mark.findMany({
-    where:{
-      screens:{
-        some:{
-          products:{some:{}}
-        }
-      }
-    }
-    ,include:{
-      _count:{
 
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
-      }
-    }
-     })
-
-     const mark: Filter = {
-      title: "Mark",
-      list: markk.map((manufacturer) => {
-      return {  name:manufacturer.name,
-        number: manufacturer._count?.screens ?? 0,
-      
-      }
-      
-      }),
-    };
-   const poucee =await prismadb.pouce.findMany({
-    where:{
-      screens:{
-        some:{
-          products:{some:{}}
-        }
-      }
-    }
-    ,include:{
-      _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
-      }
-    }
-     })
-
-     const pouce: Filter = {
-      title: "Pouce",
-      list: poucee.map((manufacturer) => {
-      return {  name:manufacturer.name,
-        number: manufacturer._count?.screens ?? 0,
-      
-      }
-      
-      }),
-    };
-   const refreshRatee =await prismadb.refreshRate.findMany({
-    where:{
-      screens:{
-        some:{
-          products:{some:{}}
-        }
-      }
-    }
-    ,include:{
-      _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
-      }
-    }
-     })
-
-     const refreshRate: Filter = {
-      title: "Refresh Rate",
-      list: refreshRatee.map((manufacturer) => {
-      return {  name:manufacturer.name,
-        number: manufacturer._count?.screens ?? 0,
-      
-      }
-      
-      }),
-    };
    const resolutionn =await prismadb.resolution.findMany({
     where:{
       screens:{
@@ -144,11 +57,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{screens:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{screens:{}}
       }
     }
      })
@@ -173,11 +82,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{
-          where:{
-            products:{some:{}}
-          }
-        }}
+        select:{motherboards:{}}
       }
     }
      })
@@ -202,9 +107,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{ where:{
-          products:{some:{}}
-        }}}
+        select:{motherboards:{}}
       }
     }
      })
@@ -229,9 +132,7 @@ const buildPc = async () => {
     }
     ,include:{
       _count:{
-        select:{motherboards:{ where:{
-          products:{some:{}}
-        }}}
+        select:{motherboards:{}}
       }
     }
      })
@@ -866,11 +767,6 @@ const buildPc = async () => {
     return (
       <div>
         <BuildForm 
-        mark={mark}
-        pouce={pouce}
-        refreshRate={refreshRate}
-        resolution={resolution}
-
         gpuArchBrand={gpuArchBrand}
         gpuBrand={gpuBrand}
         graphiccardName={graphiccardName}

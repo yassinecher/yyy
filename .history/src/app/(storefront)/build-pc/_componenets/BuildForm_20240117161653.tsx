@@ -163,7 +163,7 @@ export const BuildForm = (props: {
             }
 
         }
-   
+        calculePrix()
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
     useEffect(() => {
         saveToLocalStorage('motherboardId', motherboardId);
@@ -176,7 +176,7 @@ export const BuildForm = (props: {
         saveToLocalStorage('powerId', powerId);
         saveToLocalStorage('cooling', cooling);   
         saveToLocalStorage('screen', screen);
-        calculePrix()
+        
         // ... save other state variables
       }, [motherboardId,processorId,gpuId,ramId,hardDiskPrimaireId,hardDiskSecondaire,caseId,powerId,cooling,screen]);
     useEffect(() => {

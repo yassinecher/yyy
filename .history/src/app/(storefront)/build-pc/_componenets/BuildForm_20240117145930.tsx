@@ -16,7 +16,7 @@ import { GraphicCard } from './GraphicCard'
 import { Screen } from './Screen'
 
 
-const EXPIRATION_TIME = 12* 60 * 60 * 1000; // 5 minutes in milliseconds
+const EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 const saveToLocalStorage = (key: string, value: any) => {
   const data = {
@@ -47,11 +47,6 @@ const retrieveFromLocalStorage = (key: string) => {
 };
 export const BuildForm = (props: {
     profiles: ProfileType[],
-    mark: Filter
-    pouce: Filter
-    refreshRate: Filter
-    resolution: Filter
-
     gpuBrand: Filter
     gpuArchBrand: Filter
     graphiccardName: Filter
@@ -97,8 +92,6 @@ export const BuildForm = (props: {
     const [caseId, setCase] = useState<Product>(retrieveFromLocalStorage('caseId'))
     const [powerId, setPowerId] = useState<Product>(retrieveFromLocalStorage('powerId'))
     const [cooling, setcooling] = useState<Product>(retrieveFromLocalStorage('cooling'))
-    const [screen, setscreen] = useState<Product>(retrieveFromLocalStorage('screen'))
-    const [prix, setPrix] = useState<number>(0)
     console.log(props.profiles)
 
 
@@ -163,7 +156,6 @@ export const BuildForm = (props: {
             }
 
         }
-   
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
     useEffect(() => {
         saveToLocalStorage('motherboardId', motherboardId);
@@ -174,11 +166,9 @@ export const BuildForm = (props: {
         saveToLocalStorage('hardDiskSecondaire', hardDiskSecondaire);
         saveToLocalStorage('caseId', caseId);
         saveToLocalStorage('powerId', powerId);
-        saveToLocalStorage('cooling', cooling);   
-        saveToLocalStorage('screen', screen);
-        calculePrix()
+        saveToLocalStorage('cooling', cooling);
         // ... save other state variables
-      }, [motherboardId,processorId,gpuId,ramId,hardDiskPrimaireId,hardDiskSecondaire,caseId,powerId,cooling,screen]);
+      }, [motherboardId]);
     useEffect(() => {
         if (processorId) {
             const PProfiles = props.profiles.filter((e) => e.CPUs.find((ee) => ee.productId == processorId.id))
@@ -257,59 +247,8 @@ export const BuildForm = (props: {
             }
 
         }
-     
     }, [motherboardId, processorId, ramId, hardDiskSecondaire, caseId, powerId]);
-const calculePrix=()=>{
-    let prix1=0
-if(motherboardId){
-    prix1=(prix1+parseInt(motherboardId.price.toString()))
-}
 
-if(processorId){
-    prix1=(prix1+parseInt(processorId.price.toString()))
-
-    }
-    
-if(gpuId){
-    prix1=(prix1+parseInt(gpuId.price.toString()))
-
-    }
-    
-if(ramId.findIndex((e)=>e!=null)){
-    ramId.every((e)=>{
-        if(e!=null){
-            prix1=(prix1+parseInt(e.price.toString()))
-
-        }
-    })
-    }
-    
-if(hardDiskSecondaire){
-    prix1=(prix1+parseInt(hardDiskSecondaire.price.toString()))
-
-    }
-    
-if(caseId){
-    prix1=(prix1+parseInt(caseId.price.toString()))
-
-    }
-        
-if(powerId){
-    prix1=(prix1+parseInt(powerId.price.toString()))
-
-    }
-        
-if(cooling){
-    prix1=(prix1+parseInt(cooling.price.toString()))
-
-    }
-        
-if(screen){
-    prix1=(prix1+parseInt(screen.price.toString()))
-
-    }
- setPrix(prix1)
-}
     return (
         <div>
             <Motherboard
@@ -415,16 +354,13 @@ if(screen){
                 fansNumber={props.fansNumber}
             />
             <Screen
-                setProcessorId={setscreen}
-                processorId={screen}
+                setProcessorId={setProcessorId}
+                processorId={processorId}
                 motherboardId={motherboardId}
                 selectedCompatibility={allProductCompatibility}
                 profiles={props.profiles}
-                mark={props.mark}
-                pouce={props.pouce}
-                refreshRate={props.refreshRate}
-                resolution={props.resolution}
-        
+                cPUSupport={props.cPUSupport}
+                processorModel={props.processorModel}
             />
             <Details
                 motherboardId={motherboardId}
@@ -436,8 +372,6 @@ if(screen){
                 caseId={caseId}
                 powerId={powerId}
                 cooling={cooling}
-                screen={screen}
-                prix={prix}
             />
         </div>
     )

@@ -46,7 +46,6 @@ const Details = (props: {
                           
                                 <div className='text-sm'>  <span className='font-bold text-lg'>Mon PC </span>sur mesure, l&apos;outil parfait, conçu exactement pour moi !</div>
                             </p>
-
                         </div>
                         <div className="grid gap-2">
                             <div>
@@ -254,9 +253,6 @@ const Details = (props: {
                                     
                                 </CardContent>
                             </Card> </>:<></>}
-                            <div>
-                                <span>Total :</span> {props.prix} (TND)
-                            </div>
                         </div>
                     </div>
                     <div className='w-full mt-3 flex justify-end'>
