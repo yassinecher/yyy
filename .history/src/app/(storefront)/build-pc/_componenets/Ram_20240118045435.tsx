@@ -399,76 +399,72 @@ const Number = async () => {
         Number()
     }, [props.motherboardId])
     useEffect(() => {
-        if(props.rams){
-
-            const filteredRams = props.rams.filter((e) => e != null);
+        const filteredRams = props.rams.filter((e) => e != null);
         
-            if (ramSlotNumber === 2) {
-              // Initialize props.rams with two null values
-              
+        if (ramSlotNumber === 2) {
+          // Initialize props.rams with two null values
           
-              let n = 0;
-              let i = 0;
-              let array1:( Memory|null)[] =[]
-              // Distribute products with 2 RAM bars
-              filteredRams.forEach((it) => {
-                if (it && is2caseProduct(it) && n < 2) {
-                  n = n + 2;
-                  array1[i]=it
-                  i++
-                  return
-                }
-              });
-          
-              // Distribute products with 1 RAM bar
-              filteredRams.forEach((it) => {
-                if (it && !is2caseProduct(it) && n < 2) {
-                  n = n + 1;
-                  array1[i]=it
-                  i++;
-                }
-              });
-              for(let Xy=i;Xy<2-n;Xy++){
-                array1[Xy]=null
-                console.log(array1)
-              }
-               props.setRams(()=>{
-                
-                return [...array1]});
-            } else if (ramSlotNumber === 4) {
-                 
-          
-                let n = 0;
-                let i = 0;
-                let array1:( Memory|null)[] =[]
-                // Distribute products with 2 RAM bars
-                filteredRams.forEach((it) => {
-                  if (it && is2caseProduct(it) && n < 4) {
-                    n = n + 2;
-                    array1[i]=it
-                    i++
-                    return
-                  }
-                });
-            
-                // Distribute products with 1 RAM bar
-                filteredRams.forEach((it) => {
-                  if (it && !is2caseProduct(it) && n < 4) {
-                    n = n + 1;
-                    array1[i]=it
-                    i++;
-                  }
-                });
-                for(let Xy=i;Xy<5-n;Xy++){
-                  array1[Xy]=null
-                
-                }
-           
-                 props.setRams(()=>{
-                    return [...array1]});
-            }
-        }
       
+          let n = 0;
+          let i = 0;
+          let array1:( Memory|null)[] =[]
+          // Distribute products with 2 RAM bars
+          filteredRams.forEach((it) => {
+            if (it && is2caseProduct(it) && n < 2) {
+              n = n + 2;
+              array1[i]=it
+              i++
+              return
+            }
+          });
+      
+          // Distribute products with 1 RAM bar
+          filteredRams.forEach((it) => {
+            if (it && !is2caseProduct(it) && n < 2) {
+              n = n + 1;
+              array1[i]=it
+              i++;
+            }
+          });
+          for(let Xy=i;Xy<2-n;Xy++){
+            array1[Xy]=null
+            console.log(array1)
+          }
+           props.setRams(()=>{
+            
+            return [...array1]});
+        } else if (ramSlotNumber === 4) {
+             
+      
+            let n = 0;
+            let i = 0;
+            let array1:( Memory|null)[] =[]
+            // Distribute products with 2 RAM bars
+            filteredRams.forEach((it) => {
+              if (it && is2caseProduct(it) && n < 4) {
+                n = n + 2;
+                array1[i]=it
+                i++
+                return
+              }
+            });
+        
+            // Distribute products with 1 RAM bar
+            filteredRams.forEach((it) => {
+              if (it && !is2caseProduct(it) && n < 4) {
+                n = n + 1;
+                array1[i]=it
+                i++;
+              }
+            });
+            for(let Xy=i;Xy<5-n;Xy++){
+              array1[Xy]=null
+            
+            }
+       
+             props.setRams(()=>{
+                return [...array1]});
+        }
       }, [ramSlotNumber]);
       
 

@@ -96,7 +96,7 @@ export const BuildForm = (props: {
     const [allProductCompatibility, setAllProductCompatibility] = useState<AllProductsCompatibility>(defaultAllProductsCompatibility)
     const [processorId, setProcessorId] = useState<Product>(retrieveFromLocalStorage('processorId'))
     const [gpuId, setGpuId] = useState<Product>(retrieveFromLocalStorage('gpuId'))
-    const [ramId, setRamId] = useState<(Memory | null)[]>(retrieveFromLocalStorage('ramId')||[null,null])
+    const [ramId, setRamId] = useState<(Memory | null)[]>(retrieveFromLocalStorage('ramId'))
     const [hardDiskSecondaire, setHardDiskSecondaire
     ] = useState<Product>(retrieveFromLocalStorage('hardDiskSecondaire'))
     const [hardDiskPrimaireId, sethardDiskPrimaireId] = useState<Product>(retrieveFromLocalStorage('hardDiskPrimaireId'))
