@@ -26,7 +26,7 @@ const saveToLocalStorage = (key: string, value: any) => {
             value,
             timestamp: new Date().getTime(),
           };
-
+          console.log(value)
           localStorage.setItem(key, JSON.stringify(data));
     }
  

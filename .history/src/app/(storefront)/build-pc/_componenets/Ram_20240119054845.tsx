@@ -163,7 +163,8 @@ export const Ram: React.FC<YourComponentProps> = (props: {
         });
         console.log(filterList)
     };
-
+    const previewModal = usePreviewModal();
+    const cart = useCart();
     const router = useRouter();
 
     const handleClick = (id: any) => {
@@ -317,7 +318,6 @@ const Number = async () => {
     }
   };
   const updateElementAtIndex = (ind: number, newVe: Memory | null) => {
-    console.log(ind)
   const index = ind;
   const newValue = newVe;
   const prvprod = props.rams[index];
@@ -340,10 +340,6 @@ const Number = async () => {
         updatewithremove2case(index, newValue);
         toast.success('Ce produit a 2 barrettes RAM');
       } else {
-        if (prvprod && is2caseProduct(prvprod) && !is2caseProduct(newValue)) {
-            // Handle the case when transitioning from a 2-case product to a 1-case product
-            updatewithremove2case(index, newValue);
-          }
         toast.error(
           'Ce produit a 2 barrettes RAM, veuillez libérer un autre emplacement RAM.1'
         );
@@ -407,7 +403,7 @@ const Number = async () => {
     }, [props.motherboardId])
     useEffect(() => {
         if(props.rams){
-           
+
             const filteredRams = props.rams.filter((e) => e != null);
         
             if (ramSlotNumber === 2) {
@@ -426,7 +422,7 @@ const Number = async () => {
                   return
                 }
               });
-   
+          
               // Distribute products with 1 RAM bar
               filteredRams.forEach((it) => {
                 if (it && !is2caseProduct(it) && n < 2) {
@@ -435,17 +431,12 @@ const Number = async () => {
                   i++;
                 }
               });
-              console.log(i)
-                   if(i==0){
-                    n=1
-                    
-                   }
-              for(let Xy=i;Xy<3-n;Xy++){
+              for(let Xy=i;Xy<2-n;Xy++){
                 array1[Xy]=null
                 console.log(array1)
               }
                props.setRams(()=>{
-                console.log(array1)
+                
                 return [...array1]});
             } else if (ramSlotNumber === 4) {
                  
@@ -481,7 +472,7 @@ const Number = async () => {
             }
         }
       
-      }, [ramSlotNumber,props.motherboardId]);
+      }, [ramSlotNumber]);
       
 
     const ramCompatibility=(mem:Memory,index:number)=>{
@@ -501,7 +492,6 @@ const Number = async () => {
             message
         }
     }
-
     return (
         <div>
             {
@@ -846,7 +836,7 @@ const Number = async () => {
                                                         </div>
                                                     </div></> : <>
 
-                                                    <div onClick={() => { setopenedramSlot(k); steOpenDialog(!openDialog); }} className='color-[#f59e0b]  cursor-pointer  w-full h-full flex justify-center items-center'>
+                                                    <div onClick={() => { setopenedramSlot(k-1); steOpenDialog(!openDialog); }} className='color-[#f59e0b]  cursor-pointer  w-full h-full flex justify-center items-center'>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} version="1.1" x="0px" y="0px" viewBox="0 0 44 55" ><g><path fill="#f59e0b" d="M41.9,21H23V2.1c0-0.6-0.5-1-1-1c-0.6,0-1,0.5-1,1V21H2.1c-0.6,0-1,0.5-1,1s0.5,1,1,1H21v18.8   c0,0.6,0.5,1,1,1c0.6,0,1-0.5,1-1V23h18.8c0.6,0,1-0.5,1-1S42.5,21,41.9,21z" /></g></svg>
 
 

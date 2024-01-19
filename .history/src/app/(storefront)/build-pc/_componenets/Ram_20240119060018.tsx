@@ -407,7 +407,7 @@ const Number = async () => {
     }, [props.motherboardId])
     useEffect(() => {
         if(props.rams){
-           
+
             const filteredRams = props.rams.filter((e) => e != null);
         
             if (ramSlotNumber === 2) {
@@ -426,7 +426,7 @@ const Number = async () => {
                   return
                 }
               });
-   
+          
               // Distribute products with 1 RAM bar
               filteredRams.forEach((it) => {
                 if (it && !is2caseProduct(it) && n < 2) {
@@ -435,17 +435,12 @@ const Number = async () => {
                   i++;
                 }
               });
-              console.log(i)
-                   if(i==0){
-                    n=1
-                    
-                   }
-              for(let Xy=i;Xy<3-n;Xy++){
+              for(let Xy=i;Xy<2-n;Xy++){
                 array1[Xy]=null
                 console.log(array1)
               }
                props.setRams(()=>{
-                console.log(array1)
+                
                 return [...array1]});
             } else if (ramSlotNumber === 4) {
                  
@@ -481,7 +476,7 @@ const Number = async () => {
             }
         }
       
-      }, [ramSlotNumber,props.motherboardId]);
+      }, [ramSlotNumber]);
       
 
     const ramCompatibility=(mem:Memory,index:number)=>{
@@ -501,7 +496,6 @@ const Number = async () => {
             message
         }
     }
-
     return (
         <div>
             {

@@ -415,7 +415,7 @@ const Number = async () => {
               
           
               let n = 0;
-              let i = 0;
+              let i = 1;
               let array1:( Memory|null)[] =[]
               // Distribute products with 2 RAM bars
               filteredRams.forEach((it) => {
@@ -435,13 +435,8 @@ const Number = async () => {
                   i++;
                 }
               });
-              console.log(i)
-                   if(i==0){
-                    n=1
-                    
-                   }
               for(let Xy=i;Xy<3-n;Xy++){
-                array1[Xy]=null
+                array1[Xy-1]=null
                 console.log(array1)
               }
                props.setRams(()=>{

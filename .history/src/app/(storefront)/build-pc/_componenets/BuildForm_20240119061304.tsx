@@ -19,17 +19,12 @@ import { Screen } from './Screen'
 const EXPIRATION_TIME = 12* 60 * 60 * 1000; // 5 minutes in milliseconds
 
 const saveToLocalStorage = (key: string, value: any) => {
-
-
-    if(value!=retrieveFromLocalStorage(key)){
-        const data = {
-            value,
-            timestamp: new Date().getTime(),
-          };
-
-          localStorage.setItem(key, JSON.stringify(data));
-    }
- 
+  const data = {
+    value,
+    timestamp: new Date().getTime(),
+  };
+  console.log(value)
+  localStorage.setItem(key, JSON.stringify(data));
 };
 const retrieveFromLocalStorage = (key: string) => {
     // Check if localStorage is available (for example, in a browser environment)

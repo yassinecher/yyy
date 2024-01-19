@@ -118,7 +118,7 @@ export const BuildForm = (props: {
     const [prix, setPrix] = useState<number>(0)
     console.log(props.profiles)
 
-
+    console.log(retrieveFromLocalStorage('ramId'))
 
     function haveCommonElement<T>(set1: T[], array2: T[]): boolean {
         const array1 = Array.from(set1);

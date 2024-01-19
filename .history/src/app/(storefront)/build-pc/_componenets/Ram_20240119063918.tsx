@@ -436,10 +436,7 @@ const Number = async () => {
                 }
               });
               console.log(i)
-                   if(i==0){
-                    n=1
-                    
-                   }
+                   if(i==0)
               for(let Xy=i;Xy<3-n;Xy++){
                 array1[Xy]=null
                 console.log(array1)
