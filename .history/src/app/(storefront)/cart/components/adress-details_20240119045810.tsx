@@ -12,14 +12,12 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import useCart, { CartItem } from '@/hooks/use-cart';
+import { CartItem } from '@/hooks/use-cart';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import toast from 'react-hot-toast';
 import Loading from '../../loading';
 
 const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:number }) => {
-
-  const cart=useCart()
   const [nom, setNom] = useState('');
   const [prenom, setNomUtilisateur] = useState('');
   const [rue, setRue] = useState('');
@@ -37,14 +35,14 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
 
   const handleSubmit = async () => {
     try {
-   
+      setisLoading(true)
       // Validate the form before submitting
       if (!validateForm()) {
         console.error('Veuillez remplir tous les champs obligatoires.');
         toast.error('Veuillez remplir tous les champs obligatoires.')
         return;
       }
-      setisLoading(true)
+
       // Envoyer les données au serveur ou effectuer d'autres actions
       const response = await axios.post('/api/checkout', {
         nom,
@@ -63,8 +61,6 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
         
       console.log('Validation de la commande réussie :', response.data);
       setisLoading(false)
-      setisDone(true)
-      cart.removeAll()
       // Fermer la boîte de dialogue ou naviguer vers l'étape suivante
     } catch (error) {
       setisLoading(false)
@@ -74,23 +70,16 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
 
   return (
     <div>
-      <Dialog onOpenChange={()=>{setisDone(false)}}>
-        <DialogTrigger asChild >
+      <Dialog>
+        <DialogTrigger asChild>
           <Button disabled={data.length === 0} className="w-full mt-6">Passer à la caisse</Button>
         </DialogTrigger>
         <DialogContent className="relative top-0 lg:min-w-[80%] h-[100vh] overflow-y-scroll sm:h-4/6 sm:overflow-y-hidden min-w-[100%]   ">
           <div className='h-[120vh] sm:h-full '>
             {
               isDone?<>
-              <div className='w-full h-full flex align-middle justify-center items-center'>
-                <div className='font-extrabold flex flex-col text-[#77b43f] text-3xl align-middle justify-center items-center' >    <img src="/images/Done1.gif" alt="Your GIF" />
-                
-         Votre commande est complète!
-                </div>
-          
-              </div>
               
-            
+              <img src="/images/Done.gif" alt="Your GIF" />
               </>:<>
               {
   !isLoading? <>     <div>
