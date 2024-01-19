@@ -80,10 +80,9 @@ import { motherboardFilters } from './_componenets/Filters'
 let filters: any[]=[]
 let i=0
 if(prods.findIndex((e)=>e.motherboard.length>0)){
- 
+  filters[i]=await motherboardFilters()
   i++
 }
-filters[i]=await motherboardFilters()
 console.log(prods.findIndex((e)=>e.motherboard))
   const formattedproducts: Product[] = prods.map((item) => ({
     id: item.id,

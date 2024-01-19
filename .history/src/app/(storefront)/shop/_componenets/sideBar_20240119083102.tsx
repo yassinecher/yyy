@@ -304,7 +304,7 @@ interface ProductListProps {
                                                   label={filterData.title.toString()}
                                                   items={filterData.list}
                                                   onChange={(value) => handleCheckboxChange(filterKey , value)}
-                                                  selectedItems={[]}
+                                                  selectedItems={}
                                               />
                                           );
                                           }

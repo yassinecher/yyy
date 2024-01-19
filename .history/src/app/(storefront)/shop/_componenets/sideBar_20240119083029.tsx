@@ -297,14 +297,14 @@ interface ProductListProps {
                                     // Check if the current property is one of the specified properties
                                     const filterData = filtera as Filter;
                                     console.log(filterData)
-                                          if(filterData&&filterData.title&&filterData.list){
+                                          if(filterData&&filterData.title&&filterData.list&&filterList[filterKey ]){
                                             return (
                                               <CheckboxGroup
                                                   key={filterKey}
                                                   label={filterData.title.toString()}
                                                   items={filterData.list}
                                                   onChange={(value) => handleCheckboxChange(filterKey , value)}
-                                                  selectedItems={[]}
+                                                  selectedItems={filterList[filterKey ].map((item: { searchKey: any }) => item.searchKey)}
                                               />
                                           );
                                           }

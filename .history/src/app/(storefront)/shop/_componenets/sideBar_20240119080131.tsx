@@ -12,8 +12,6 @@ import { useRouter } from 'next/navigation'
 import { Loader } from 'lucide-react'
 import { LoadingOverlay } from '@mantine/core'
 import Skeleton from '@/components/ui/skeleton'
-import { Filter, filterItem } from '../../build-pc/page'
-import { Input } from '@/components/ui/input'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -41,7 +39,6 @@ interface ProductListProps {
   categories:Category[]
   isloadingg:boolean
   header:string
-  filter:any[]
 }
  const Sidebar :React.FC<ProductListProps> = ({
     title,
@@ -49,7 +46,7 @@ interface ProductListProps {
     categories,
     isloadingg,
     header,
-    filter
+    filter={filters}
   }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [categorie,setCategorie]=useState({
@@ -63,24 +60,12 @@ interface ProductListProps {
   })
   const [isLoading,setIsloading]=useState(isloadingg)
   const [filters, setfilters]=useState([categorie])
-  const [filterList, setFilterList] = useState<any>({
-   
-})
   const router = useRouter()
- const handleCheckboxChange=(val:any,x:any)=>{
-
- }
+  
   useEffect(()=>{
-    filter.map((e)=>{
-      Object.entries(e).map(([filterKey, filtera]) => {
 
-
-        console.log(filtera)})
-    }) 
-      
   setIsloading(false)
   },[items])
-  console.log(filter)
   return (
     <div className="w-full">
       <div>
@@ -289,34 +274,6 @@ interface ProductListProps {
                     )}
                   </Disclosure>
                 ))}
-                {
-                      filter.map((e)=>{
-                        return  Object.entries(e).map(([filterKey, filtera]) => {
-
-
-                                    // Check if the current property is one of the specified properties
-                                    const filterData = filtera as Filter;
-                                    console.log(filterData)
-                                          if(filterData&&filterData.title&&filterData.list){
-                                            return (
-                                              <CheckboxGroup
-                                                  key={filterKey}
-                                                  label={filterData.title.toString()}
-                                                  items={filterData.list}
-                                                  onChange={(value) => handleCheckboxChange(filterKey , value)}
-                                                  selectedItems={[]}
-                                              />
-                                          );
-                                          }
-                                          return
-                                     // Skip rendering for other properties
-                                })
-
-                                return
-                      })
-                }
-                
-                                
               </form>
 
               {/* Product grid */}
@@ -355,39 +312,4 @@ interface ProductListProps {
     </div>
   )
 }
-
-// You can create a reusable CheckboxGroup component for rendering checkboxes
-const CheckboxGroup = (props: {
-  label: string;
-  items: filterItem[];
-
-  onChange: (value: string) => void;
-  selectedItems: string[];
-}) => {
-  return (
-      <div>
-          <br />
-          <p>{props.label}</p>
-          {props.items.map((item) => (
-              <div key={item.name}>
-                  <div className='flex items-center appearance-none'>
-                      <Input type='checkbox' className='appearance-none forced-colors  focus:outline-none focus-visible:outline-none w-3 h-3 m-2 outline-none'
-                          value={item.name}
-                          checked={props.selectedItems.includes(item.name)}
-                          onChange={() => props.onChange(item.name)}
-                      />
-                      <label className='text-sm'>{item.name} ({item.number})</label>
-                      <div>
-
-                      </div>
-
-                  </div>
-
-
-
-              </div>
-          ))}
-      </div>
-  );
-};
 export default Sidebar

@@ -80,11 +80,10 @@ import { motherboardFilters } from './_componenets/Filters'
 let filters: any[]=[]
 let i=0
 if(prods.findIndex((e)=>e.motherboard.length>0)){
- 
+  filters[i]=await motherboardFilters()
   i++
 }
-filters[i]=await motherboardFilters()
-console.log(prods.findIndex((e)=>e.motherboard))
+console.log(filters)
   const formattedproducts: Product[] = prods.map((item) => ({
     id: item.id,
     name: item.name,
@@ -112,13 +111,11 @@ console.log(prods.findIndex((e)=>e.motherboard))
   if(categoryy.length>0){
     header=categoryy.toString()
   }
-
-  const lfilters=filters
   return (
     <div className=' dark:bg-[#000000e6] bg-[#ffffffe6] my-10 container rounded-lg'>
        
 
-<Sidebar header={header}   filter={filters} isloadingg={false} categories={categorie} title={search.toString()}  items={formattedproducts}  />
+<Sidebar header={header} isloadingg={false} categories={categorie} title={search.toString()}  items={formattedproducts}  />
 
 <div className='flex items-center justify-end p-7'>
 
@@ -127,7 +124,7 @@ console.log(prods.findIndex((e)=>e.motherboard))
         hasPrevPage={pageIndex > 1}
         pagetotal={total}
         perpage={perpage}
-     
+
         pageindex={pageIndex}
       />
     

@@ -289,33 +289,27 @@ interface ProductListProps {
                     )}
                   </Disclosure>
                 ))}
-                {
-                      filter.map((e)=>{
-                        return  Object.entries(e).map(([filterKey, filtera]) => {
+                  {Object.entries(filter).map(([filterKey, filtera]) => {
 
 
+console.log(filtera)
                                     // Check if the current property is one of the specified properties
                                     const filterData = filtera as Filter;
-                                    console.log(filterData)
-                                          if(filterData&&filterData.title&&filterData.list){
+
+                                          if(filterData&&filterData.title){
                                             return (
                                               <CheckboxGroup
                                                   key={filterKey}
                                                   label={filterData.title.toString()}
                                                   items={filterData.list}
                                                   onChange={(value) => handleCheckboxChange(filterKey , value)}
-                                                  selectedItems={[]}
+                                                  selectedItems={filterList[filterKey ].map((item: { searchKey: any }) => item.searchKey)}
                                               />
                                           );
                                           }
                                           return
                                      // Skip rendering for other properties
-                                })
-
-                                return
-                      })
-                }
-                
+                                })}
                                 
               </form>
 
