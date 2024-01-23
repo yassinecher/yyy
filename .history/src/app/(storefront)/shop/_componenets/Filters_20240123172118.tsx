@@ -875,7 +875,7 @@ export const MicFilters = async () => {
 
         title: "mic",
         data: {
-            manufacturer, micModel, micInterfaceAvecOrdinateur
+            manufacturer, micModel, micInterfaceAvecOrdinateur, micSonSurround
 
         }
     }

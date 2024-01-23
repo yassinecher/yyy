@@ -919,23 +919,23 @@ export const addMousepadFitlters=(decodedFilterList:FilterList)=>{
           },
         });
       }
-      const mousepadModel = decodedFilterList.mousepadModel;
-      if (mousepadModel && mousepadModel.length > 0) {
+      const keyboarFormat = decodedFilterList.keyboarFormat;
+      if (keyboarFormat && keyboarFormat.length > 0) {
         cpuFilters.push({
-          MousepadModel: {
+          keyboarFormat: {
             name: {
-              in: mousepadModel.map(item => item.searchKey),
+              in: keyboarFormat.map(item => item.searchKey),
             },
           },
         });
       }
     
-      const mousepadSize = decodedFilterList.mousepadSize;
-      if (mousepadSize && mousepadSize.length > 0) {
+      const keyboarTouchType = decodedFilterList.keyboarTouchType;
+      if (keyboarTouchType && keyboarTouchType.length > 0) {
         cpuFilters.push({
-          MousepadSize: {
+          keyboarTouchType: {
             name: {
-              in: mousepadSize.map(item => item.searchKey),
+              in: keyboarTouchType.map(item => item.searchKey),
             },
           },
         });
@@ -973,34 +973,23 @@ export const addMicFitlters=(decodedFilterList:FilterList)=>{
           },
         });
       }
-      const micModel = decodedFilterList.micModel;
-      if (micModel && micModel.length > 0) {
+      const keyboarFormat = decodedFilterList.keyboarFormat;
+      if (keyboarFormat && keyboarFormat.length > 0) {
         cpuFilters.push({
-          MicModel: {
+          keyboarFormat: {
             name: {
-              in: micModel.map(item => item.searchKey),
+              in: keyboarFormat.map(item => item.searchKey),
             },
           },
         });
       }
     
-      const micInterfaceAvecOrdinateur = decodedFilterList.micInterfaceAvecOrdinateur;
-      if (micInterfaceAvecOrdinateur && micInterfaceAvecOrdinateur.length > 0) {
+      const keyboarTouchType = decodedFilterList.keyboarTouchType;
+      if (keyboarTouchType && keyboarTouchType.length > 0) {
         cpuFilters.push({
-          MicInterfaceAvecOrdinateur: {
+          keyboarTouchType: {
             name: {
-              in: micInterfaceAvecOrdinateur.map(item => item.searchKey),
-            },
-          },
-        });
-      }
-       
-      const micSonSurround = decodedFilterList.micSonSurround;
-      if (micSonSurround && micSonSurround.length > 0) {
-        cpuFilters.push({
-          MicSonSurround: {
-            name: {
-              in: micSonSurround.map(item => item.searchKey),
+              in: keyboarTouchType.map(item => item.searchKey),
             },
           },
         });

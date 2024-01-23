@@ -8,7 +8,7 @@ import { Product } from '@/types'
 import { Pagination } from "@nextui-org/pagination";
 import Sidebar from './_componenets/sideBar'
 import { HeadsetFilters, LaptopFilters, MicFilters, MouseFilters, MousepadFilters, casesFilters, coolingFilters, cpusFilters, gpusFilters, keyboardFilters, memoriesFilters, motherboardFilters, powersuppliesFilters, screensFilters, storagesFilters } from './_componenets/Filters'
-import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addHeadsetFitlters, addKeyboardFitlters, addLaptopFitlters, addMicFitlters, addMouseFitlters, addMousepadFitlters, addPowerFitlters, addRamFitlters, addScreenFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
+import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addPowerFitlters, addRamFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
 
 export type HomeFilter = {
   title: String
@@ -95,36 +95,45 @@ const Home = async ({
       if (typee == "power") {
         whereClause.powersupplies = addPowerFitlters(fList).data
       }
+
+
+
       if (typee == "screen") {
-        whereClause.screens = addScreenFitlters(fList).data
+
       }
-      if (typee == "laptop") {
-        whereClause.Laptop = addLaptopFitlters(fList).data
+
+
+      if (typee == "mic") {
+
+      }
+
+
+
+      if (typee == "casque") {
+
+      }
+
+
+
+      if (typee == "mouse") {
+
+      }
+
+
+
+      if (typee == "mousePad") {
+
       }
 
       if (typee == "keyboard") {
-       whereClause.keyboard = addKeyboardFitlters(fList).data
-   
-      }
-      if (typee == "mic") {
-        whereClause.Mic = addMicFitlters(fList).data
-   
-      }
-      if (typee == "casque") {
-        whereClause.Headset = addHeadsetFitlters(fList).data
-   
-      }
-      if (typee == "mouse") {
-        whereClause.Mouse = addMouseFitlters(fList).data
-   
-      }
-      if (typee == "mousePad") {
-        whereClause.Mousepad = addMousepadFitlters(fList).data
-   
+
       }
 
-     
-  
+
+
+      if (typee == "laptop") {
+
+      }
 
     }
   }

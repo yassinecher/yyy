@@ -8,7 +8,7 @@ import { Product } from '@/types'
 import { Pagination } from "@nextui-org/pagination";
 import Sidebar from './_componenets/sideBar'
 import { HeadsetFilters, LaptopFilters, MicFilters, MouseFilters, MousepadFilters, casesFilters, coolingFilters, cpusFilters, gpusFilters, keyboardFilters, memoriesFilters, motherboardFilters, powersuppliesFilters, screensFilters, storagesFilters } from './_componenets/Filters'
-import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addHeadsetFitlters, addKeyboardFitlters, addLaptopFitlters, addMicFitlters, addMouseFitlters, addMousepadFitlters, addPowerFitlters, addRamFitlters, addScreenFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
+import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addKeyboardFitlters, addLaptopFitlters, addPowerFitlters, addRamFitlters, addScreenFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
 
 export type HomeFilter = {
   title: String
@@ -107,20 +107,16 @@ const Home = async ({
    
       }
       if (typee == "mic") {
-        whereClause.Mic = addMicFitlters(fList).data
-   
+
       }
       if (typee == "casque") {
-        whereClause.Headset = addHeadsetFitlters(fList).data
-   
+
       }
       if (typee == "mouse") {
-        whereClause.Mouse = addMouseFitlters(fList).data
-   
+
       }
       if (typee == "mousePad") {
-        whereClause.Mousepad = addMousepadFitlters(fList).data
-   
+
       }
 
      

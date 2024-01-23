@@ -586,7 +586,7 @@ export const HeadsetFilters = async () => {
     return {
         title: "casque",
         data: {
-            manufacturer, headsetSonSurround, headsetInterfaceAvecOrdinateur
+            manufacturer, headsetModel, headsetSonSurround, headsetInterfaceAvecOrdinateur
 
         }
     }
@@ -732,7 +732,7 @@ export const keyboardFilters = async () => {
 
         title: "keyboard",
         data: {
-            manufacturer, keyboarFormat, keyboarTouchType
+            manufacturer, keyboarFormat, keyboarButtonsNumber, keyboarTouchType
 
         }
     }
@@ -875,7 +875,7 @@ export const MicFilters = async () => {
 
         title: "mic",
         data: {
-            manufacturer, micModel, micInterfaceAvecOrdinateur
+            manufacturer, micModel, micInterfaceAvecOrdinateur, micSonSurround
 
         }
     }
