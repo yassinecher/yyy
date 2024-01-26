@@ -70,7 +70,7 @@ interface HeaderProps {
   
 
 
-  <NavigationMenu.Root className="NavigationMenuRoot flex align-middle items-center">
+  <NavigationMenu.Root className="NavigationMenuRoot flex align-middle">
     <NavigationMenu.List className="NavigationMenuList">
 
     {links.map((linkk ,key)=>(<>
@@ -119,14 +119,13 @@ interface HeaderProps {
                   </>))
                  }
               </li>
-
               {
                 catstodisplay.length>0?<>
-                <div className="col-span-2  bg-[#ffffffed]  dark:bg-[#000000d6]">
-                <div className="  grid grid-cols-2 p-5 h-min     dark:text-white ">
+                
+                <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
                 {
                   catstodisplay.map((item,key)=>(<>
-                       <ListItem key={key} className="hover:dark:bg-black hover:dark:text-white mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
+                       <ListItem key={key} className="hover:dark:bg-amber-100 hover:dark:text-black mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
                        
                        </ListItem>
                   </>))
@@ -134,9 +133,6 @@ interface HeaderProps {
          
           
               </div>
-                </div>
-      
-             
                 </>:<></>
               }
              
@@ -176,7 +172,7 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, forwardedRef) => {
   return (
     <li>
-       <NavigationMenu.Link asChild className="bg-white dark:bg-gray-900 bg-opacity-50  dark:bg-opacity-50 border text-center hover:bg-opacity-100">
+       <NavigationMenu.Link asChild>
       <a className={classNames('ListItemLink', className)} {...props} ref={forwardedRef}>
         <div className="ListItemHeading">{title}</div>
         <p className="ListItemText">{children}</p>

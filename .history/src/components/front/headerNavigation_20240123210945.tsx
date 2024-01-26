@@ -119,14 +119,13 @@ interface HeaderProps {
                   </>))
                  }
               </li>
-
               {
                 catstodisplay.length>0?<>
-                <div className="col-span-2  bg-[#ffffffed]  dark:bg-[#000000d6]">
-                <div className="  grid grid-cols-2 p-5 h-min     dark:text-white ">
+                
+                <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
                 {
                   catstodisplay.map((item,key)=>(<>
-                       <ListItem key={key} className="hover:dark:bg-black hover:dark:text-white mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
+                       <ListItem key={key} className="hover:dark:bg-transparent hover:dark:text-white mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
                        
                        </ListItem>
                   </>))
@@ -134,9 +133,6 @@ interface HeaderProps {
          
           
               </div>
-                </div>
-      
-             
                 </>:<></>
               }
              

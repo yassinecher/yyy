@@ -67,8 +67,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       imageUrl: '', 
       description: '', 
       url:'', 
-      bgUrl:"",
-      mobilebgURl:""
     }
   });
 

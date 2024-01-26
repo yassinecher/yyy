@@ -33,8 +33,6 @@ const formSchema = z.object({
   imageUrl: z.string().min(1),
   description:  z.string().min(1),
   url:  z.string().min(1),
-  bgUrl:  z.string(),
-  mobilebgURl:  z.string(),
   discount: z.number().refine((value) => value >= 0, {
     message: "Discount must be at least 0",
   }).optional(),
@@ -67,8 +65,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       imageUrl: '', 
       description: '', 
       url:'', 
-      bgUrl:"",
-      mobilebgURl:""
     }
   });
 
@@ -134,43 +130,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Image</FormLabel>
-                  <FormControl>
-                    <ImageUpload 
-                      value={field.value ? [field.value] : []} 
-                      disabled={loading} 
-                      onChange={(url) => field.onChange(url)}
-                      onRemove={() => field.onChange('')}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-              <FormField
-              control={form.control}
-              name="bgUrl"
-              render={({ field }) => (
-                <FormItem>
                   <FormLabel>Background image</FormLabel>
-                  <FormControl>
-                    <ImageUpload 
-                      value={field.value ? [field.value] : []} 
-                      disabled={loading} 
-                      onChange={(url) => field.onChange(url)}
-                      onRemove={() => field.onChange('')}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-              <FormField
-              control={form.control}
-              name="mobilebgURl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mobile background image</FormLabel>
                   <FormControl>
                     <ImageUpload 
                       value={field.value ? [field.value] : []} 

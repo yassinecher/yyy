@@ -70,7 +70,7 @@ interface HeaderProps {
   
 
 
-  <NavigationMenu.Root className="NavigationMenuRoot flex align-middle items-center">
+  <NavigationMenu.Root className="NavigationMenuRoot flex">
     <NavigationMenu.List className="NavigationMenuList">
 
     {links.map((linkk ,key)=>(<>
@@ -85,21 +85,10 @@ interface HeaderProps {
       </>:<>
        
       <NavigationMenu.Item>
-          <NavigationMenu.Trigger   className="focus:bg-transparent  text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{
-            const cat=  noscategy.find((e)=>e.navitemId===linkk.id)
-             if(cat){
-              setCatstodisplay(cat.CathegoryCollectiondata.map((e)=>e.Label));
-              setSelected(noscategy.findIndex((e)=>e.navitemId===linkk.id))
-             }else{
-              setCatstodisplay([]);
-              setSelected(NaN)
-             }
-            
-            }}  >{linkk.label}
-
+          <NavigationMenu.Trigger   className="focus:bg-transparent text-black dark:bg-transparent dark:text-black bg-transparent rounded-none hover:bg-transparent active:bg-transparent " onMouseMoveCapture={()=>{setCatstodisplay([]);setSelected(NaN)}}  >{linkk.label}
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className=" NavigationMenuContent ">
-            <ul className={` w-max dark:border-black   gap-0 rounded-none  ${catstodisplay.length>0?' grid lg:grid-cols-3 custom-nav lg:w-[800px]':' grid lg:grid-cols-1  h-full'} `}>
+            <ul className={`"${catstodisplay.length>0?' grid lg:grid-cols-3 lg:w-[800px]':' grid lg:grid-cols-1  h-full'} min-w-min dark:border-black   gap-0 rounded-none   "`}>
               <li className=" p-3  pt-0  pr-0 dark:text-white dark:bg-gray-950 row-span-1 h-full flex flex-col bg-white ">
                  {
                   noscategy.map((item,key)=>(<>
@@ -119,14 +108,13 @@ interface HeaderProps {
                   </>))
                  }
               </li>
-
               {
                 catstodisplay.length>0?<>
-                <div className="col-span-2  bg-[#ffffffed]  dark:bg-[#000000d6]">
-                <div className="  grid grid-cols-2 p-5 h-min     dark:text-white ">
+                
+                <div className=" col-span-2 grid grid-cols-2 p-5 bg-[#ffffffed]  dark:bg-[#000000d6]   dark:text-white ">
                 {
                   catstodisplay.map((item,key)=>(<>
-                       <ListItem key={key} className="hover:dark:bg-black hover:dark:text-white mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
+                       <ListItem key={key} className="hover:dark:bg-amber-100 hover:dark:text-black mx-2 mb-2 " href={`/shop?categorie=${item}`} title={item.toString()}>
                        
                        </ListItem>
                   </>))
@@ -134,9 +122,6 @@ interface HeaderProps {
          
           
               </div>
-                </div>
-      
-             
                 </>:<></>
               }
              
@@ -176,7 +161,7 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, forwardedRef) => {
   return (
     <li>
-       <NavigationMenu.Link asChild className="bg-white dark:bg-gray-900 bg-opacity-50  dark:bg-opacity-50 border text-center hover:bg-opacity-100">
+       <NavigationMenu.Link asChild>
       <a className={classNames('ListItemLink', className)} {...props} ref={forwardedRef}>
         <div className="ListItemHeading">{title}</div>
         <p className="ListItemText">{children}</p>

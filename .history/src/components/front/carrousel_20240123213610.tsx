@@ -18,7 +18,6 @@ export type SlidesColumn = {
     imageUrl: string;
     description: string;
     bgUrl: string;
-    mobilebgURl: string;
     url: string;
     createdAt: string;
     discount:number
