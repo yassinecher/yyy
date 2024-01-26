@@ -23,6 +23,8 @@ export default async function Home() {
     title: item.title,
     description:item.description,
     imageUrl:item.imageUrl,
+    bgUrl: item.bgUrl,
+    mobilebgURl: item.mobilebgURl,
     url:item.url,
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
     discount:item.discount
@@ -42,6 +44,7 @@ export default async function Home() {
     id: item.id,
     name: item.name,
     images:item.images,
+    stock:parseInt(item.stock.toString()),
     price: parseFloat(item.price.toString()),
     category: item.category,
     description:item.description,
@@ -54,7 +57,7 @@ export default async function Home() {
   
   return <>
   
-   <Main slides={formattedslides} featured={formattedproducts} />
+   <Main  slides={formattedslides} featured={formattedproducts} />
   
    </>;
 }
