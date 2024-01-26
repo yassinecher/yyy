@@ -53,13 +53,13 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { SlideId: string, storeId: string } }
+  { params }: { params: { billboardId: string, storeId: string } }
 ) {
   try {   
 
     const body = await req.json();
     
-    const { title,description, imageUrl,mobilebgURl,bgUrl  } = body;
+    const { title,description, imageUrl } = body;
     
   
 
@@ -69,8 +69,8 @@ export async function PATCH(
       return new NextResponse("Image URL is required", { status: 400 });
     }
 
-    if (!params.SlideId) {
-      return new NextResponse("SlideId id is required", { status: 400 });
+    if (!params.billboardId) {
+      return new NextResponse("Billboard id is required", { status: 400 });
     }
 
   
@@ -78,14 +78,12 @@ export async function PATCH(
 
     const billboard = await prismadb.slide.update({
       where: {
-        id: params.SlideId,
+        id: params.billboardId,
       },
       data: {
         title,
         imageUrl,
         description,
-        mobilebgURl:mobilebgURl??"",
-        bgUrl:bgUrl??""
       }
     });
   

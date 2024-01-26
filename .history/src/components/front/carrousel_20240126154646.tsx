@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Zoom } from 'react-slideshow-image';
 import './Carousel.css'
 import 'react-slideshow-image/dist/styles.css';
@@ -27,20 +27,8 @@ interface SlideshowProps {
     slides: SlidesColumn[];
   }
 const Slideshow : React.FC<SlideshowProps> = ({slides} ) => {
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    // Check if the window width is less than a certain value (adjust as needed for your definition of "mobile")
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust the width threshold as needed
-    };
-    handleResize(); // Initial check
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  
     return (
         <Card className=' my-10 border-0 p-0   max-sm:h-auto max-sm:pb-5 bg-orange-50 dark:bg-black  opacity-90  max-sm:rounded-none  '>
   
@@ -54,7 +42,7 @@ const Slideshow : React.FC<SlideshowProps> = ({slides} ) => {
             <div key={index}
             style={{
               width: "100%",
-              backgroundImage: isMobile ? `url(${each.mobilebgURl})` : `url(${each.bgUrl})`,
+              backgroundImage: `url(${each.bgUrl})`,
               backgroundSize: "cover", // You can adjust this property based on your needs
               backgroundPosition: "center", // You can adjust this property based on your needs
             }} className='container flex max-sm:  max-sm:flex-col-reverse flex-row align-middle items-center h-full  '>
