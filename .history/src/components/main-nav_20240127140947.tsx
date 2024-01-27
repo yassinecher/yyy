@@ -179,7 +179,7 @@ export function MainNav({
             <NavigationMenuItem>
           <NavigationMenuTrigger className="text-sm font-medium transition-colors hover:text-primary dark:text-white dark:hover:text-white dark:active:text-white">PC Components</NavigationMenuTrigger>
           <NavigationMenuContent  className="dark:bg-slate-950 rounded-lg ">
-            <ul className="grid bg-white   list-none gap-3 p-4  md:grid-cols-1 w-96 ">
+            <ul className="grid bg-white relative z-50  list-none gap-3 p-4  md:grid-cols-1  ">
               {components.map((component) => (
                 <ListItem className="hover:bg-slate-100 dark:bg-slate-900"
                   key={component.label}

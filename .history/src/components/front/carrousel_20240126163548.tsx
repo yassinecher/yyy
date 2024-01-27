@@ -58,9 +58,9 @@ const Slideshow : React.FC<SlideshowProps> = ({slides} ) => {
               backgroundSize: "cover", // You can adjust this property based on your needs
               backgroundPosition: "center", // You can adjust this property based on your needs
             }} className='container flex max-sm:  max-sm:flex-col-reverse flex-row align-middle items-center h-full  '>
-                <div className='basis-2/3 p-28 dark:text-white max-sm:p-0 max-sm:flex max-sm:align-middle max-sm:content-center max-sm:flex-col '>
-                    <h1 className=' p-3 font-black tracking-wider text-2xl slideTitle  bg-opacity-30'>{each.title}</h1>
-                    <p className='py-7'>{each.description}</p>
+                <div className='basis-2/3 p-28 dark:text-white bg-opacity-30 max-sm:p-0 max-sm:flex max-sm:align-middle max-sm:content-center max-sm:flex-col '>
+                    <h1 className=' p-1 font-black tracking-wider text-2xl slideTitle '>{each.title}</h1>
+                    <p className='py-10'>{each.description}</p>
                     
                    <div className='flex items-center'><Link  className='max-sm:w-full'    href={each.url}><Button  className='max-sm:w-full' variant={"default"} >Shop</Button></Link> <Label className='pl-5'>{each.discount>0? <>{each.discount}</>:<></>} </Label></div> 
                 </div>
