@@ -607,7 +607,7 @@ if(prod.screens.length>0){
     i++
   }
   if(prodet.Pouce){
-    data.push({id:prodet.Pouce?.id??i.toString(),name:"Taille",value:prodet.Pouce.name+'"'??'zz'})
+    data.push({id:prodet.Pouce?.id??i.toString(),name:"Taille",value:prodet.Pouce.name??'zz'})
     i++
   }
   if(prodet.RefreshRate){

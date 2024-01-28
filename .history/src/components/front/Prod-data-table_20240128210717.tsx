@@ -25,13 +25,12 @@ import { Input } from "@/components/ui/input"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  searchKey: string;
+  
 }
 
-export function DataTable<TData, TValue>({
+export function DataTableDetails<TData, TValue>({
   columns,
   data,
-  searchKey,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
@@ -49,6 +48,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex items-center py-4">
+        <h2 className=" text-2xl font-bold">Details du produit </h2>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -76,7 +76,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-     
     </div>
   )
 }

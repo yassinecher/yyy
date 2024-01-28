@@ -31,7 +31,6 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-  searchKey,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
@@ -49,7 +48,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex items-center py-4">
-        <h2 className="bold text-2xl font-extrabold">Product Infos</h2>
+        <h2 className=" text-2xl font-bold">Product Infos</h2>
       </div>
       <div className="rounded-md border">
         <Table>

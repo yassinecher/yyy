@@ -569,29 +569,33 @@ if(prod.motherboard.length>0){
     data.push({id:prodet.ramslots?.id??i.toString(),name:"Emplacements Ram",value:prodet.ramslots.name ??'zz'})
     i++
   }
-
+  if(prodet.){
+    data.push({id:prodet.?.id??i.toString(),name:"Format",value:prodet..name??'zz'})
+    i++
+  }
   return data 
   
 }
 if(prod.powersupplies.length>0){
  
-  const prodet= prod.powersupplies[0]
+  const prodet= prod.cases[0]
   const data:Field[]=[]
   let i=0
-  if(prodet.Marque){
-    data.push({id:prodet.Marque?.id??i.toString(),name:"Mark",value:prodet.Marque.name??'zz'})
+  if(prodet.brand){
+    data.push({id:prodet.brand?.id??i.toString(),name:"Mark",value:prodet.brand.name??'zz'})
     i++
   }
-  if(prodet.Power){
-    data.push({id:i.toString(),name:"Puissance",value:prodet.Power.toString()+" watt"??'zz'})
+  if(prodet.caseformat){
+    data.push({id:prodet.caseformat?.id??i.toString(),name:"Format",value:prodet.caseformat.name??'zz'})
     i++
   }
-  if(prodet.certification){
-    data.push({id:prodet.certification?.id??i.toString(),name:"Certificat80",value:prodet.certification.name??'zz'})
+  if(prodet.numberofFansPreinstalled){
+    data.push({id:prodet.numberofFansPreinstalled?.id??i.toString(),name:"Nombre de ventilateur installé",value:prodet.numberofFansPreinstalled.name??'zz'})
     i++
   }
-  if(prodet.modularity){
-    data.push({id:i.toString(),name:"Modulaire",value:prodet.modularity?"oui":'non'})
+
+  if(prodet.rGBType){
+    data.push({id:prodet.rGBType?.id??i.toString(),name:"RGB",value:prodet.rGBType.name??'zz'})
     i++
   }
   return data 
@@ -599,24 +603,24 @@ if(prod.powersupplies.length>0){
 }
 if(prod.screens.length>0){
  
-  const prodet= prod.screens[0]
+  const prodet= prod.cases[0]
   const data:Field[]=[]
   let i=0
-  if(prodet.Mark){
-    data.push({id:prodet.Mark?.id??i.toString(),name:"Mark",value:prodet.Mark.name??'zz'})
+  if(prodet.brand){
+    data.push({id:prodet.brand?.id??i.toString(),name:"Mark",value:prodet.brand.name??'zz'})
     i++
   }
-  if(prodet.Pouce){
-    data.push({id:prodet.Pouce?.id??i.toString(),name:"Taille",value:prodet.Pouce.name+'"'??'zz'})
+  if(prodet.caseformat){
+    data.push({id:prodet.caseformat?.id??i.toString(),name:"Format",value:prodet.caseformat.name??'zz'})
     i++
   }
-  if(prodet.RefreshRate){
-    data.push({id:prodet.RefreshRate?.id??i.toString(),name:"Fréquence de rafraîchissement",value:prodet.RefreshRate.name??'zz'})
+  if(prodet.numberofFansPreinstalled){
+    data.push({id:prodet.numberofFansPreinstalled?.id??i.toString(),name:"Nombre de ventilateur installé",value:prodet.numberofFansPreinstalled.name??'zz'})
     i++
   }
 
-  if(prodet.curved){
-    data.push({id:i.toString(),name:"Curved",value:prodet.curved?"oui":'non'})
+  if(prodet.rGBType){
+    data.push({id:prodet.rGBType?.id??i.toString(),name:"RGB",value:prodet.rGBType.name??'zz'})
     i++
   }
   return data 
@@ -624,24 +628,24 @@ if(prod.screens.length>0){
 }
 if(prod.storages.length>0){
  
-  const prodet= prod.storages[0]
+  const prodet= prod.cases[0]
   const data:Field[]=[]
   let i=0
   if(prodet.brand){
     data.push({id:prodet.brand?.id??i.toString(),name:"Mark",value:prodet.brand.name??'zz'})
     i++
   }
-  if(prodet.Computerinterface){
-    data.push({id:prodet.Computerinterface?.id??i.toString(),name:"Interface",value:prodet.Computerinterface.name??'zz'})
+  if(prodet.caseformat){
+    data.push({id:prodet.caseformat?.id??i.toString(),name:"Format",value:prodet.caseformat.name??'zz'})
     i++
   }
-  if(prodet.capacity){
-    data.push({id:prodet.capacity?.id??i.toString(),name:"Capacité",value:prodet.capacity.name??'zz'})
+  if(prodet.numberofFansPreinstalled){
+    data.push({id:prodet.numberofFansPreinstalled?.id??i.toString(),name:"Nombre de ventilateur installé",value:prodet.numberofFansPreinstalled.name??'zz'})
     i++
   }
 
-  if(prodet.type){
-    data.push({id:prodet.type?.id??i.toString(),name:"Type",value:prodet.type.name??'zz'})
+  if(prodet.rGBType){
+    data.push({id:prodet.rGBType?.id??i.toString(),name:"RGB",value:prodet.rGBType.name??'zz'})
     i++
   }
   return data 
