@@ -23,9 +23,9 @@ const Info: React.FC<InfoProps> = ({ data }) => {
     <div>
       <h1 className="text-3xl font-bold ">{data.name}</h1>
       <div className="mt-3 flex items-end justify-between">
-        <p className="text-2xl flex ">
-        {data?.dicountPrice>0?<><span className=" text-red-500 border-red-400 border-opacity-30 strikethrough"><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <Currency value={data?.price} /> 
-        </p>
+        <div className="text-2xl ">
+      <span className="line-through">  <Currency value={data?.dicountPrice} /> </span> <span><Currency value={data?.price} /> </span>
+        </div>
       </div>
       <hr className="my-4" />
       <div className="flex flex-col gap-y-6">

@@ -27,8 +27,8 @@ const Currency: React.FC<CurrencyProps> = ({
   }
   
   return ( 
-    <div className="font-semibold "><div className="px-2">
-    {formatter.format(Number(value)).replace("TND","")+" TND "} &nbsp; </div> 
+    <div className="font-semibold "><div className="mx-2">
+    {formatter.format(Number(value)).replace("TND","")+" TND"}  </div> 
     </div>
   );
 }

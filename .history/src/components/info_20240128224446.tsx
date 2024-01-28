@@ -21,10 +21,10 @@ const Info: React.FC<InfoProps> = ({ data }) => {
 
   return ( 
     <div>
-      <h1 className="text-3xl font-bold ">{data.name}</h1>
+      <h1 className="text-3xl font-bold text-amber-500">{data.name}</h1>
       <div className="mt-3 flex items-end justify-between">
         <p className="text-2xl flex ">
-        {data?.dicountPrice>0?<><span className=" text-red-500 border-red-400 border-opacity-30 strikethrough"><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <Currency value={data?.price} /> 
+        {data?.dicountPrice>0?<><span className="line-through text-red-500 "><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <Currency value={data?.price} /> 
         </p>
       </div>
       <hr className="my-4" />

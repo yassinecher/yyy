@@ -173,7 +173,7 @@ input[type="checkbox"]:focus-visible {
   left: 0;
   top: 50%;
   right: 0;
-  border-top: 3px solid !important;
+  border-top: 3px solid #dd0031!important;
   border-color: inherit;
 
   -webkit-transform:rotate(-5deg);
@@ -188,7 +188,7 @@ input[type="checkbox"]:focus-visible {
   left: 0;
   top: 50%;
   right: 0;
-  border-top: 3px solid !important;
+  border-top: 3px solid #dd0031!important;
   border-color: inherit;
 
   -webkit-transform:rotate(5deg);
