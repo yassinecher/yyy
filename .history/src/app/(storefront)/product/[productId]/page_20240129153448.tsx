@@ -316,7 +316,7 @@ if(prod.Mic.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Manufacturer){
-    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Marque",value:prodet.Manufacturer.name??'zz'})
+    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Mark",value:prodet.Manufacturer.name??'zz'})
     i++
   }
   if(prodet.MicInterfaceAvecOrdinateur){
@@ -349,7 +349,7 @@ if(prod.Mouse.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Manufacturer){
-    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Marque",value:prodet.Manufacturer.name??'zz'})
+    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Mark",value:prodet.Manufacturer.name??'zz'})
     i++
   }
   if(prodet.SensorType){
@@ -376,7 +376,7 @@ if(prod.Mousepad.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Manufacturer){
-    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Marque",value:prodet.Manufacturer.name??'zz'})
+    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Mark",value:prodet.Manufacturer.name??'zz'})
     i++
   }
   if(prodet.MousepadModel){
@@ -402,7 +402,7 @@ if(prod.cases.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.brand){
-    data.push({id:prodet.brand?.id??i.toString(),name:"Marque",value:prodet.brand.name??'zz'})
+    data.push({id:prodet.brand?.id??i.toString(),name:"Mark",value:prodet.brand.name??'zz'})
     i++
   }
   if(prodet.caseformat){
@@ -427,7 +427,7 @@ if(prod.cooling.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.CoolingMark){
-    data.push({id:prodet.CoolingMark?.id??i.toString(),name:"Marque",value:prodet.CoolingMark.name??'zz'})
+    data.push({id:prodet.CoolingMark?.id??i.toString(),name:"Mark",value:prodet.CoolingMark.name??'zz'})
     i++
   }
   if(prodet.CoolingType){
@@ -465,7 +465,7 @@ if(prod.gpus.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.gpuBrand){
-    data.push({id:prodet.gpuBrand?.id??i.toString(),name:"Marque",value:prodet.gpuBrand.name??'zz'})
+    data.push({id:prodet.gpuBrand?.id??i.toString(),name:"Mark",value:prodet.gpuBrand.name??'zz'})
     i++
   }
   if(prodet.gpuArchBrand){
@@ -486,11 +486,11 @@ if(prod.keyboard.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Manufacturer){
-    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Marque",value:prodet.Manufacturer.name??'zz'})
+    data.push({id:prodet.Manufacturer?.id??i.toString(),name:"Mark",value:prodet.Manufacturer.name??'zz'})
     i++
   }
   if(prodet.keyboarbrand){
-    data.push({id:prodet.keyboarbrand?.id??i.toString(),name:"Marque",value:prodet.keyboarbrand.name??'zz'})
+    data.push({id:prodet.keyboarbrand?.id??i.toString(),name:"Mark",value:prodet.keyboarbrand.name??'zz'})
     i++
   }
   if(prodet.keyboarButtonsNumber){
@@ -522,7 +522,7 @@ if(prod.memories.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.marque){
-    data.push({id:prodet.marque?.id??i.toString(),name:"Marque",value:prodet.marque.name??'zz'})
+    data.push({id:prodet.marque?.id??i.toString(),name:"Mark",value:prodet.marque.name??'zz'})
     i++
   }
   if(prodet.frequency){
@@ -552,7 +552,7 @@ if(prod.motherboard.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.manufacturer){
-    data.push({id:prodet.manufacturer?.id??i.toString(),name:"Marque",value:prodet.manufacturer.name??'zz'})
+    data.push({id:prodet.manufacturer?.id??i.toString(),name:"Mark",value:prodet.manufacturer.name??'zz'})
     i++
   }
   if(prodet.chipset){
@@ -582,7 +582,7 @@ if(prod.powersupplies.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Marque){
-    data.push({id:prodet.Marque?.id??i.toString(),name:"Marque",value:prodet.Marque.name??'zz'})
+    data.push({id:prodet.Marque?.id??i.toString(),name:"Mark",value:prodet.Marque.name??'zz'})
     i++
   }
   if(prodet.Power){
@@ -606,7 +606,7 @@ if(prod.screens.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.Mark){
-    data.push({id:prodet.Mark?.id??i.toString(),name:"Marque",value:prodet.Mark.name??'zz'})
+    data.push({id:prodet.Mark?.id??i.toString(),name:"Mark",value:prodet.Mark.name??'zz'})
     i++
   }
   if(prodet.Pouce){
@@ -631,7 +631,7 @@ if(prod.storages.length>0){
   const data:Field[]=[]
   let i=0
   if(prodet.brand){
-    data.push({id:prodet.brand?.id??i.toString(),name:"Marque",value:prodet.brand.name??'zz'})
+    data.push({id:prodet.brand?.id??i.toString(),name:"Mark",value:prodet.brand.name??'zz'})
     i++
   }
   if(prodet.Computerinterface){
