@@ -16,7 +16,7 @@ const Footer = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <a target='_blank'href="https://www.facebook.com/people/Gaming-Gear-TN/100093378131068/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+                        <a href="https://www.facebook.com/people/Gaming-Gear-TN/100093378131068/" className="mr-6 text-neutral-600 dark:text-neutral-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-4 w-4"
@@ -28,7 +28,7 @@ const Footer = () => {
                         </a>
         
              
-                        <a target='_blank'href="https://www.instagram.com/gaminggear.tn" className="mr-6 text-neutral-600 dark:text-neutral-200">
+                        <a href="https://www.instagram.com/gaminggear.tn" className="mr-6 text-neutral-600 dark:text-neutral-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-4 w-4"
@@ -68,7 +68,7 @@ const Footer = () => {
                         <div className="">
                             <h6
                                 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                                Liens Utiles
+                                &nbsp;
                             </h6>
                             <p className="mb-4">
                                 <a href="shop" className="text-neutral-600 dark:text-neutral-200"
@@ -92,7 +92,7 @@ const Footer = () => {
                                 Contact
                             </h6>
                             <p className="mb-4 flex items-center justify-center md:justify-start">
-                            <a target='_blank'href="https://www.facebook.com/people/Gaming-Gear-TN/100093378131068/" className="mr-6 flex items-center justify-center md:justify-start text-neutral-600 dark:text-neutral-200">
+                            <a href="https://www.facebook.com/people/Gaming-Gear-TN/100093378131068/" className="mr-6 flex items-center justify-center md:justify-start text-neutral-600 dark:text-neutral-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="mr-3 h-5 w-5"
@@ -105,7 +105,7 @@ const Footer = () => {
                         </a>
                             </p>
                             <p className="mb-4 flex items-center justify-center md:justify-start">
-                            <a target='_blank' href="https://www.instagram.com/gaminggear.tn" className="mr-6 flex items-center justify-center md:justify-start text-neutral-600 dark:text-neutral-200">
+                            <a href="https://www.instagram.com/gaminggear.tn" className="mr-6 flex items-center justify-center md:justify-start text-neutral-600 dark:text-neutral-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="mr-3 h-5 w-5"
@@ -152,9 +152,9 @@ const Footer = () => {
 
                 <div className="bg-neutral-200 p-6 text-center dark:bg-black border-t-2 border-gray-500">
                     <span>© 2023 Copyright: </span>
-                    <a 
+                    <a
                         className="font-semibold text-neutral-600 dark:text-neutral-400"
-                        href=""
+                        href="https://tw-elements.com/"
                     > Gaming Gear TN</a >
                 </div>
             </footer>
