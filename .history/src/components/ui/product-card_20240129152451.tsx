@@ -44,8 +44,8 @@ const ProductCard: React.FC<ProductCard> = ({
 
     {data.dicountPrice>0?<>
     <div className=" w-full flex justify-end  ">
-    <Image src={'/images/remise.png'} className="dark:invisible absolute  z-20 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
-    <Image src={'/images/remise-dark.png'} className="invisible dark:visible absolute  z-20 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
+    <Image src={'/images/remise.png'} className="dark:invisible absolute  z-50 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
+    <Image src={'/images/remise-dark.png'} className="dark:visible absolute  z-50 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
   
     </div>
      </>:<></>}

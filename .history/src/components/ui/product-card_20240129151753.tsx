@@ -44,8 +44,8 @@ const ProductCard: React.FC<ProductCard> = ({
 
     {data.dicountPrice>0?<>
     <div className=" w-full flex justify-end  ">
-    <Image src={'/images/remise.png'} className="dark:invisible absolute  z-20 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
-    <Image src={'/images/remise-dark.png'} className="invisible dark:visible absolute  z-20 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
+    <Image src={'/images/remise.png'} className="dark:invisible absolute  z-50 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
+    <Image src={'/images/remise-dark.png'} className="dark:visible absolute  z-50 -mr-3 -mt-3 rotate-[25deg] ml-auto" alt="" width={70} height={70} />
   
     </div>
      </>:<></>}
@@ -74,13 +74,13 @@ const ProductCard: React.FC<ProductCard> = ({
       <div>
         <p className="font-semibold text-lg">{data.name}</p>
         <p className="text-sm text-gray-500">{data.category?.name}</p>
-      </div> 
+      </div>
       {/* Price & Reiew */}
-      <div className="flex  space-y-0 text-sm h-7">
-      {data?.dicountPrice>0?<><span className=" text-red-500 h-4 border-red-400 border-opacity-30 strikethrough"><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <Currency value={data?.price} /> 
-       </div>
+      <div className="flex items-center justify-between">
+        <Currency value={data?.price} />
+      </div>
 </div>
-  
+ 
     </div>
   );
 }

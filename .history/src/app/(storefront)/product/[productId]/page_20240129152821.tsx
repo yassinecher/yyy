@@ -9,7 +9,6 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DataTable } from '@/components/ui/Prosuct-data-table';
 import PCInfos from '@/components/front/PCInfos';
 import { DataTableDetails } from '@/components/front/Prod-data-table';
-import Image from 'next/image';
 
 export const revalidate = 0;
 
@@ -660,20 +659,10 @@ if(prod.storages.length>0){
   return (
     <div className="bg-[#ffffffe6]  dark:bg-[#000000e6] lg:rounded-lg  container sm:rounded-none my-10">
       <Container>
+        
         <div className="px-4 py-10 sm:px-6 lg:px-8">
-      
           <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
-            <div>
-            {parseInt(product.dicountPrice.toString())>0?<>
-    <div className=" w-full flex justify-end  ">
-    <Image src={'/images/remise.png'} className="dark:invisible absolute  z-20 -mr-6 rotate-[25deg] ml-auto" alt="" width={100} height={100} />
-    <Image src={'/images/remise-dark.png'} className="invisible dark:visible absolute  z-20 -mr-6 rotate-[25deg] ml-auto" alt="" width={100} height={100} />
-  
-    </div>
-     </>:<></>}
-                <Gallery images={product.images} />
-            </div>
-          
+            <Gallery images={product.images} />
             <div className="mt-10 md:mx-0 sm:mx-0 lg:mx-20 col-span-2 sm:mt-16 sm:px-0 lg:mt-0">
               <Info data={formattedproduct} />
             </div>
