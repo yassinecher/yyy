@@ -33,8 +33,7 @@ export default async function Home() {
   }));
   const featured = await prismadb.product.findMany({ 
    where :{
-    isFeatured:true,
-    isArchived:false,
+    isFeatured:true
    },
    include:{
      images:true,

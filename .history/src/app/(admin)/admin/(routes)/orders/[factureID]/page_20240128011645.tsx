@@ -110,7 +110,6 @@ interface ProductPageProps {
                 description,
                 price:parseInt(price.toString()),
                 stock:parseInt(stock.toString()),
-                dicountPrice:parseInt(dicountPrice.toString()),
                 number:1,
       category,
       images
@@ -125,7 +124,6 @@ interface ProductPageProps {
               additionalDetails,
                 description,
                 price:parseInt(price.toString()),
-                dicountPrice:parseInt(dicountPrice.toString()),
                 stock:parseInt(stock.toString()),
                 number:parseInt(e.number),
       category,
@@ -307,16 +305,16 @@ interface ProductPageProps {
             return {
                 idd:e.id,
                 price:parseInt(e.price.toString()),
-                motherboard:{...motherboard,dicountPrice:parseInt(motherboard.dicountPrice.toString()),price:parseInt(motherboard.price.toString()),stock:parseInt(motherboard.stock.toString())},
-                processor:{...processor,dicountPrice:parseInt(processor.dicountPrice.toString()),price:parseInt(processor.price.toString()),stock:parseInt(processor.stock.toString())},
-                gpu:{...gpu,dicountPrice:parseInt(gpu.dicountPrice.toString()),price:parseInt(gpu.price.toString()),stock:parseInt(gpu.stock.toString())},
-                ram:ram.map((e)=>({...e,dicountPrice:parseInt(e.dicountPrice.toString()),price:parseInt(e.price.toString()),stock:parseInt(e.stock.toString())})),
-                disk:{...disk,dicountPrice:parseInt(disk.dicountPrice.toString()),price:parseInt(disk.price.toString()),stock:parseInt(disk.stock.toString())},
-                disk2:disk2?{...disk2,dicountPrice:parseInt(disk2.dicountPrice.toString()),price:parseInt(disk2.price.toString()),stock:parseInt(disk2.stock.toString())}:undefined,
-                power:{...power,dicountPrice:parseInt(power.dicountPrice.toString()),price:parseInt(power.price.toString()),stock:parseInt(power.stock.toString())},
-                case:{...casee,dicountPrice:parseInt(casee.dicountPrice.toString()),price:parseInt(casee.price.toString()),stock:parseInt(casee.stock.toString())},
-                screen:screen?{...screen,dicountPrice:parseInt(screen.dicountPrice.toString()),price:parseInt(screen.price.toString()),stock:parseInt(screen.stock.toString())}:undefined,
-                cooling:cooling?{...cooling,dicountPrice:parseInt(cooling.dicountPrice.toString()),price:parseInt(cooling.price.toString()),stock:parseInt(cooling.stock.toString())}:undefined,
+                motherboard:{...motherboard,price:parseInt(motherboard.price.toString()),stock:parseInt(motherboard.stock.toString())},
+                processor:{...processor,price:parseInt(processor.price.toString()),stock:parseInt(processor.stock.toString())},
+                gpu:{...gpu,price:parseInt(gpu.price.toString()),stock:parseInt(gpu.stock.toString())},
+                ram:ram.map((e)=>({...e,price:parseInt(e.price.toString()),stock:parseInt(e.stock.toString())})),
+                disk:{...disk,price:parseInt(disk.price.toString()),stock:parseInt(disk.stock.toString())},
+                disk2:disk2?{...disk2,price:parseInt(disk2.price.toString()),stock:parseInt(disk2.stock.toString())}:undefined,
+                power:{...power,price:parseInt(power.price.toString()),stock:parseInt(power.stock.toString())},
+                case:{...casee,price:parseInt(casee.price.toString()),stock:parseInt(casee.stock.toString())},
+                screen:screen?{...screen,price:parseInt(screen.price.toString()),stock:parseInt(screen.stock.toString())}:undefined,
+                cooling:cooling?{...cooling,price:parseInt(cooling.price.toString()),stock:parseInt(cooling.stock.toString())}:undefined,
                 number:1
             }
             

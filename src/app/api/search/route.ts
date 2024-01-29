@@ -28,7 +28,9 @@ console.log(query)
        * Search posts
        */
       const posts: Array<Product> = await prismadb.product.findMany({
+     
         where: {
+          isArchived:false ,
           OR: [
             {
               name: {

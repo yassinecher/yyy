@@ -12,7 +12,9 @@ export async function GET(
     try {
         const { searchParams } = new URL(req.url)
         const query = searchParams.get('q') || "";
-        if (query=== "") {
+
+
+        if (query== "") {
             return  NextResponse.json([]);
         }
         const isFeatured = searchParams.get('isFeatured');
@@ -26,7 +28,9 @@ console.log(query)
        * Search posts
        */
       const posts: Array<Product> = await prismadb.product.findMany({
+     
         where: {
+          isArchived:false ,
           OR: [
             {
               name: {

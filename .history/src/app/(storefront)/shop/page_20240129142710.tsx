@@ -32,7 +32,7 @@ const Home = async ({
   searchParams: { [key: string]: string | string[] | undefined }
 }) => {
   const whereClause: Record<string, any> = {
- isArchived:false 
+    where:{ isArchived:false}
   };
 
   const page = searchParams['page'] ?? '1'
