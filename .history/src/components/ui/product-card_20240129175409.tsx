@@ -76,7 +76,7 @@ const ProductCard: React.FC<ProductCard> = ({
         <p className="text-sm text-gray-500">{data.category?.name}</p>
       </div> 
       {/* Price & Reiew */}
-      <div className="flex  space-y-0 text-sm h-7 text-[#f59e0b]">
+      <div className="flex  space-y-0 text-sm h-7 text-[#4cc73c]">
       {data?.dicountPrice>0?<><span className=" text-red-800 h-4 border-red-400 border-opacity-30 strikethrough"><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <b><Currency value={data?.price} /> </b>
        </div>
 </div>

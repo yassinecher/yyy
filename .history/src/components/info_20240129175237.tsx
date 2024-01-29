@@ -23,7 +23,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
     <div>
       <h1 className="text-3xl font-bold ">{data.name}</h1>
       <div className="mt-3 flex items-end justify-between">
-        <p className="text-2xl flex dark:text-[#f59e0b] text-[#e59100]">
+        <p className="text-2xl flex text-[#ff3d00]">
         {data?.dicountPrice>0?<><span className=" text-red-800 border-red-400 border-opacity-30 strikethrough"><Currency value={data?.dicountPrice} /> </span>  </>:<></>} <b><Currency value={data?.price} /></b> 
         </p> 
       </div>
