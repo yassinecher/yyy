@@ -18,7 +18,6 @@ export const metadata:Metadata={
     index:false,
     nocache:true
   }
-  
 }
 export default async function RootLayout({
   children,
