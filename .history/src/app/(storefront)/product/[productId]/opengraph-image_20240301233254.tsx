@@ -18,7 +18,6 @@ export async function og({params}:Props) {
     },include:{
         images:true
     }})
-    
 
     return new ImageResponse((
     <div tw="relative flex item-center justify-center">

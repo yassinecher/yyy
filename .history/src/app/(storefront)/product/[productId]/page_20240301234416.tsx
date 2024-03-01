@@ -33,7 +33,6 @@ export async function generateMetadata({params}:Props):Promise<Metadata> {
   }
 }
 
-
 export const revalidate = 0;
 
 interface ProductPageProps {
