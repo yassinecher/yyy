@@ -20,8 +20,91 @@ type SlidesColumn = {
   descriptionColor:string;
   titleColor:string;
 }
+const keywords = [
+  // Arabic
+ 
+  "computers",
+  "laptops",
+  "desktops",
+  "accessories",
+  "displays",
+  "devices",
+  "high-performance",
+  "customization",
+  "components",
+  "graphics cards",
+  "keyboards",
+  "mice",
+  "headsets",
+  "chairs",
+  "controllers",
+  "equipment",
+  "upgrades",
+  "esports equipment",
+  "settings",
+  "performance improvement",
+  "competitive equipment",
+  "broadcasting equipment",
+  "building",
+  "maintenance",
+  "upgrading",
+  "computer accessories",
+  "computer devices",
+  "computer components",
+  "computer software",
+  "computer performance improvement",
+  "offers",
+  "sales",
+  "special offers",
+  "discounts",
+  "bundles",
+  "configurations",
 
+  // French
+  "ordinateurs",
+  "portables",
+  "bureaux",
+  "accessoires",
+  "affichages",
+  "appareils",
+  "haute performance",
+  "personnalisation",
+  "composants",
+  "cartes graphiques",
+  "claviers",
+  "souris",
+  "écouteurs",
+  "chaises",
+  "contrôleurs",
+  "équipement",
+  "mises à niveau",
+  "matériel esports",
+  "paramètres",
+  "amélioration des performances",
+  "équipement compétitif",
+  "équipement de diffusion",
+  "construction",
+  "maintenance",
+  "mise à niveau",
+  "accessoires informatiques",
+  "appareils informatiques",
+  "composants informatiques",
+  "logiciels informatiques",
+  "amélioration des performances informatiques",
+  "offres",
+  "ventes",
+  "offres spéciales",
+  "réductions",
+  "bundles",
+  "configurations"
+];
 
+export const Mestadata:Metadata= {
+ 
+    title:"Gaming Gear TN ",
+    description:"Votre escale exclusive pour des PC et périphériques haut de gamme, rehaussant votre expérience informatique avec élégance et performance incomparables.",
+    
+  }
   
 export default async function Home() {
   const slides = await prismadb.slide.findMany({

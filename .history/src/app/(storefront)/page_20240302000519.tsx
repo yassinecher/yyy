@@ -22,6 +22,12 @@ type SlidesColumn = {
 }
 
 
+export const Mestadata:Metadata= {
+ 
+    title:"Gaming Gear TN ",
+    description:"Votre escale exclusive pour des PC et périphériques haut de gamme, rehaussant votre expérience informatique avec élégance et performance incomparables.",
+    
+  }
   
 export default async function Home() {
   const slides = await prismadb.slide.findMany({
