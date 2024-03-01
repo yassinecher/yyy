@@ -8,7 +8,7 @@ export const PreBuiltPcmodelFilters = async () => {
 }
 
 export const LaptopFilters = async () => {
-   
+
     const LapSystemm = await prismadb.lapSystem.findMany({
         where: {
             laptops: {
@@ -16,7 +16,7 @@ export const LaptopFilters = async () => {
                     product: { some: {} }
                 }
             }
-        }
+        } 
         , include: {
             _count: {
 
@@ -441,15 +441,14 @@ export const LaptopFilters = async () => {
     };
 
     return {
-        title:"",
-        data:{
-            manufacturer,LapSystem,LapProcesseur,LapGraphiccard,LapScreenSize,LapScreenType,LapHardisk,Lapmemory,
-            Lapnetwork,LapSound,LapCamera,LapRefreshRate
-      
-        }
-        }
-}
+        title: "laptop",
+        data: {
+            manufacturer, LapSystem, LapProcesseur, LapGraphiccard, LapScreenSize, LapScreenType, LapHardisk, Lapmemory,
+            Lapnetwork, LapSound, LapCamera, LapRefreshRate
 
+        }
+    }
+}
 export const HeadsetFilters = async () => {
     const headsetModell = await prismadb.headsetModel.findMany({
         where: {
@@ -585,48 +584,15 @@ export const HeadsetFilters = async () => {
     };
 
     return {
-        title:"",
-        data:{
-            manufacturer, headsetModel, headsetSonSurround, headsetInterfaceAvecOrdinateur
-   
+        title: "casque",
+        data: {
+            manufacturer, headsetSonSurround, headsetInterfaceAvecOrdinateur
+
         }
-       }
+    }
 }
-
 export const keyboardFilters = async () => {
-    const keyboarbrandd = await prismadb.keyboarbrand.findMany({
-        where: {
-            keyboards: {
-                some: {
-                    product: { some: {} }
-                }
-            }
-        }
-        , include: {
-            _count: {
-
-                select: {
-                    keyboards: {
-                        where: {
-                            product: { some: {} }
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    const keyboarbrand: Filter = {
-        title: "Marque de clavier",
-        list: keyboarbrandd.map((manufacturer) => {
-            return {
-                name: manufacturer.name,
-                number: manufacturer._count?.keyboards ?? 0,
-
-            }
-
-        }),
-    };
+   
     const keyboarFormatt = await prismadb.keyboarFormat.findMany({
         where: {
             keyboards: {
@@ -764,17 +730,13 @@ export const keyboardFilters = async () => {
 
     return {
 
-        title:"",
-        data:{
-            manufacturer, keyboarbrand, keyboarFormat, keyboarButtonsNumber, keyboarTouchType
-  
+        title: "keyboard",
+        data: {
+            manufacturer, keyboarFormat, keyboarTouchType
+
         }
-         }
+    }
 }
-
-
-
-
 export const MicFilters = async () => {
     const micInterfaceAvecOrdinateurr = await prismadb.micInterfaceAvecOrdinateur.findMany({
         where: {
@@ -910,15 +872,14 @@ export const MicFilters = async () => {
     };
 
     return {
-                 
-        title:"",
-        data:{
-            manufacturer, micModel, micInterfaceAvecOrdinateur, micSonSurround
- 
-        }
-         }
-}
 
+        title: "mic",
+        data: {
+            manufacturer, micModel, micInterfaceAvecOrdinateur
+
+        }
+    }
+}
 export const MouseFilters = async () => {
 
     const SensorTypee = await prismadb.sensorType.findMany({
@@ -990,16 +951,15 @@ export const MouseFilters = async () => {
     };
 
     return {
-      
-            
-        title:"",
-        data:{
+
+
+        title: "mouse",
+        data: {
             manufacturer,
-        SensorType
+            SensorType
         }
     }
 }
-
 export const MousepadFilters = async () => {
     const mousepadSizee = await prismadb.mousepadSize.findMany({
         where: {
@@ -1104,17 +1064,15 @@ export const MousepadFilters = async () => {
 
     return {
 
-        
-        title:"",
-        data:{
+
+        title: "mousePad",
+        data: {
             manufacturer,
             mousepadModel,
             mousepadSize
         }
     }
 }
-
-
 export const screensFilters = async () => {
     const markk = await prismadb.mark.findMany({
         where: {
@@ -1246,9 +1204,9 @@ export const screensFilters = async () => {
         }),
     };
     return {
-    
-        title:"",
-        data:{
+
+        title: "screen",
+        data: {
             mark,
             pouce,
             refreshRate,
@@ -1256,9 +1214,6 @@ export const screensFilters = async () => {
         }
     }
 }
-
-
-
 export const gpusFilters = async () => {
     const graphiccardNamee = await prismadb.graphiccardName.findMany({
         where: {
@@ -1357,12 +1312,12 @@ export const gpusFilters = async () => {
         }),
     };
     return {
-       
-        title:"",
-        data:{
+
+        title: "gpu",
+        data: {
             gpuArchBrand,
-        gpuBrand,
-        graphiccardName,
+            gpuBrand,
+            graphiccardName,
         }
     }
 }
@@ -1472,9 +1427,9 @@ export const coolingFilters = async () => {
         }),
     };
     return {
-       
-        title:"",
-        data:{
+
+        title: "cooling",
+        data: {
             coolingMark,
             coolingType,
             coolingcPUSupport,
@@ -1588,18 +1543,16 @@ export const casesFilters = async () => {
         }),
     };
     return {
-        title:"",
-        data:{
+        title: "case",
+        data: {
             pCcaseBrand,
             pCcaseCaseformat,
             pCcaseNumberofFansPreinstalled,
             pCcaseRGBType,
         }
-      
+
     }
 }
-
-
 export const powersuppliesFilters = async () => {
     const psCertificationn = await prismadb.psCertification.findMany({
         where: {
@@ -1620,7 +1573,7 @@ export const powersuppliesFilters = async () => {
         title: "Certification",
         list: psCertificationn.map((manufacturer) => {
             return {
-                
+
                 name: manufacturer.name,
                 number: manufacturer._count?.powersupplies ?? 0,
 
@@ -1655,11 +1608,11 @@ export const powersuppliesFilters = async () => {
         }),
     };
     return {
-        
-        title:"",
-        data:{
+
+        title: "power",
+        data: {
             powersupplyMarque,
-        psCertification
+            psCertification
         }
     }
 
@@ -1773,18 +1726,17 @@ export const storagesFilters = async () => {
         }),
     };
     return {
-        title:"",
-        data:{
+        title: "hardDisk",
+        data: {
             harddiskBrand,
             harddiskCapacity,
             harddiskComputerinterface,
             harddiskType,
         }
-      
-        
+
+
     }
 }
-
 export const cpusFilters = async () => {
 
     const processorModell = await prismadb.processorModel.findMany({
@@ -1832,6 +1784,7 @@ export const cpusFilters = async () => {
         title: "Processeur support",
         list: cPUSupportt.map((manufacturer) => {
             return {
+
                 name: manufacturer.name,
                 number: manufacturer._count?.processor ?? 0,
 
@@ -1840,8 +1793,12 @@ export const cpusFilters = async () => {
         }),
     };
     return {
-        cPUSupport,
-        processorModel
+
+        title: "cpu",
+        data: {
+            cPUSupport,
+            processorModel
+        }
     }
 }
 export const memoriesFilters = async () => {
@@ -1948,9 +1905,9 @@ export const memoriesFilters = async () => {
     };
 
     return {
-     
-        title:"",
-        data:{
+
+        title: "ram",
+        data: {
             memoryFrequency,
             memoryMarque,
             memoryNumber,
@@ -2086,15 +2043,15 @@ export const motherboardFilters = async () => {
 
     return {
 
-        title:"Carte Mére",
-        data:{
+        title: "Carte Mére",
+        data: {
             motherboardchipset,
             motherboardcpusupport,
             motherboardformat,
             motherboardramslots,
             motherboardmanufacturer,
         }
-       
+
     }
 
 } 

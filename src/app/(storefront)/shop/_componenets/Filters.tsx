@@ -16,7 +16,7 @@ export const LaptopFilters = async () => {
                     product: { some: {} }
                 }
             }
-        }
+        } 
         , include: {
             _count: {
 

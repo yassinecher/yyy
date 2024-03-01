@@ -19,7 +19,7 @@ const Loading = () => {
           <Skeleton className="aspect-square rounded-xl" />
           <Skeleton className="aspect-square rounded-xl" />
           <Skeleton className="aspect-square rounded-xl" />
-        </div>
+        </div> 
       </div>
     </div>
   </Container>

@@ -13,7 +13,7 @@ export const addmotherboardFitlters=(decodedFilterList:FilterList)=>{
         },
       };
 
-      const motherboardFilters = [];
+      const motherboardFilters = []; 
     
       const chipsetFilter = decodedFilterList.motherboardchipset;
       if (chipsetFilter && chipsetFilter.length > 0) {

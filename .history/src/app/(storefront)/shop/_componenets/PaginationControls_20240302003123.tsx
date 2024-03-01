@@ -15,7 +15,7 @@ interface PaginationControlsProps {
 
 const PaginationControls: FC<PaginationControlsProps> = (
   {
-    hasNextPage,
+    hasNextPage, 
     hasPrevPage,
     pagetotal,
     perpage,

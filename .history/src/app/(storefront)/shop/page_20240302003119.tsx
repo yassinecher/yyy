@@ -11,11 +11,11 @@ import { HeadsetFilters, LaptopFilters, MicFilters, MouseFilters, MousepadFilter
 import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addHeadsetFitlters, addKeyboardFitlters, addLaptopFitlters, addMicFitlters, addMouseFitlters, addMousepadFitlters, addPowerFitlters, addRamFitlters, addScreenFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
 import { Metadata } from 'next'
 
-
-interface Props{
+export const generateMetadata = ({
+  searchParams,
+}: {
   searchParams: { [key: string]: string  | undefined }
-}
-export async function generateMetadata({searchParams}:Props):Promise< Metadata> {
+}): Metadata => {
   // Extract parameters and generate metadata dynamically
   const search = searchParams['search'] ?? ''
   const categoryy = searchParams['categorie'] ?? ''

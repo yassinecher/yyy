@@ -30,6 +30,7 @@ export async function generateMetadata({searchParams}:Props):Promise< Metadata> 
   };
   return {
     title: '',
+    description:''
   };
 };
 export type HomeFilter = {
