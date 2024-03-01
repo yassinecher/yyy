@@ -14,13 +14,13 @@ import { Metadata } from 'next'
 export const generateMetadata = ({
   searchParams,
 }: {
-  searchParams: { [key: string]: string  | undefined }
+  searchParams: { [key: string]: string | string[] | undefined }
 }): Metadata => {
   // Extract parameters and generate metadata dynamically
   const { title, description } = searchParams;
   const search = searchParams['search'] ?? ''
   return {
-    title: search,
+    title: search[0] ,
   };
 };
 export type HomeFilter = {

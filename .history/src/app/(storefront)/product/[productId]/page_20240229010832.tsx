@@ -11,27 +11,6 @@ import PCInfos from '@/components/front/PCInfos';
 import { DataTableDetails } from '@/components/front/Prod-data-table';
 import Image from 'next/image';
 import CustomPcTemplate from './_components/customPcTemplate';
-import { Metadata } from 'next';
-interface Props{
-  params:{
-    productId:string
-  }
-}
-export async function generateMetadata({params}:Props):Promise<Metadata> {
-  const product=await prismadb.product.findFirst({
-    where:{
-      id:params.productId
-    }
-  })
-  if(!product)return{
-    title:"Not Found",
-    description:"The page is not found"
-  }
-  return{
-    title: product.name,
-    description:product.description
-  }
-}
 
 export const revalidate = 0;
 

@@ -5,7 +5,7 @@ import { BuildForm } from './_componenets/BuildForm';
 import { Product } from '@prisma/client';
 import { Metadata } from 'next';
 
-export async function generateMetadata():Promise<Metadata> {
+export async function metadata():Promise<Metadata> {
 return {
   title:"Build Pc",
   description:"Votre escale exclusive pour des PC et périphériques haut de gamme, rehaussant votre expérience informatique avec élégance et performance incomparables."
