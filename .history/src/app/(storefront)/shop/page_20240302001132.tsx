@@ -18,17 +18,8 @@ export const generateMetadata = ({
 }): Metadata => {
   // Extract parameters and generate metadata dynamically
   const search = searchParams['search'] ?? ''
-  const categoryy = searchParams['categorie'] ?? ''
-  if(search.length>0)
   return {
     title: search,
-  };
-  if(categoryy.length>0)
-  return {
-    title: categoryy,
-  };
-  return {
-    title: '',
   };
 };
 export type HomeFilter = {
