@@ -15,7 +15,20 @@ export async function POST(
 
    
 
+    if (!title) {
+      return new NextResponse("title is required", { status: 400 });
+    }
+
  
+
+    if (!description) {
+      return new NextResponse("description is required", { status: 400 });
+    }
+
+    if (!title) {
+      return new NextResponse("title is required", { status: 400 });
+    }
+
    
     const billboard = await prismadb.slide.create({
       data: {

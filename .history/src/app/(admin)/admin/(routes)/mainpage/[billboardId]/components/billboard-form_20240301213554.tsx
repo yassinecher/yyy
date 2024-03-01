@@ -103,7 +103,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error('Something went wrong.');
-      console.log(error)
     } finally {
       setLoading(false);
     }

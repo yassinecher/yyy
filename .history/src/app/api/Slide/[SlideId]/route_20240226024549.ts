@@ -62,6 +62,13 @@ export async function PATCH(
     const { title,description, imageUrl,mobilebgURl,bgUrl ,        titleColor,
       descriptionColor,url } = body;
     
+  
+
+   
+
+    if (!imageUrl) {
+      return new NextResponse("Image URL is required", { status: 400 });
+    }
 
     if (!params.SlideId) {
       return new NextResponse("SlideId id is required", { status: 400 });
@@ -76,7 +83,7 @@ export async function PATCH(
       },
       data: {
         title,
-        imageUrl:imageUrl??"",
+        imageUrl,
         description,
         url,
         mobilebgURl:mobilebgURl??"",

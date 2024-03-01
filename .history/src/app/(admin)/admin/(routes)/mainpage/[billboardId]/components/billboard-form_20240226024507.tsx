@@ -44,8 +44,8 @@ const formSchema = z.object({
   imageUrl: z.string().min(0),
   description:  z.string().min(0),
   url:  z.string().min(0),
-  bgUrl:  z.string().optional(),
-  mobilebgURl:  z.string().optional(),
+  bgUrl:  z.string(),
+  mobilebgURl:  z.string(),
   titleColor: z.string().optional(),
   descriptionColor: z.string().optional(),
   discount: z.number().refine((value) => value >= 0, {
@@ -103,7 +103,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error('Something went wrong.');
-      console.log(error)
     } finally {
       setLoading(false);
     }
