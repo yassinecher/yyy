@@ -908,7 +908,7 @@ if(prod.storages.length>0){
     )
   }else{
     return (
-      <div className="bg-[#ffffffad]  dark:bg-[#26143aad] lg:rounded-lg  container sm:rounded-none my-10">
+      <div className="bg-[#ffffffe6]  dark:bg-[#26143aad] lg:rounded-lg  container sm:rounded-none my-10">
         <Container>
           <div className="px-4 py-10 sm:px-6 lg:px-8">
         
