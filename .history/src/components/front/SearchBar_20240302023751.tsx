@@ -73,17 +73,17 @@ const SearchBar: React.FC<PriceFilterProps>  = ({cats}) => {
                     {
                         isLoading == true ?
                             <CommandEmpty><div className='flex items-center align-middle w-full '><LoaderIcon className='mx-auto' /></div></CommandEmpty>
-                            : <></>
+                            : <><>
+                            <CommandItem  ><div onClick={()=>{router.push('/shop?search='+searchQuery);setOpen(false);setSearchQuery('')} } className='flex justify-between w-full items-center'>
+                                Voir Tous
+                            </div>
+                       </CommandItem>
+                        </></>
                     }
 
                     {
                         data&&data?.length>0 ? <CommandGroup heading="Results">
-<>
-                            <CommandItem value={searchQuery} ><div onClick={()=>{router.push('/shop?search='+searchQuery);setOpen(false);setSearchQuery('')} } className='flex justify-between w-full items-center'>
-                                Voir Tous
-                            </div>
-                       </CommandItem>
-                        </>
+
                             {
                                 data?.map((p) => {
                                     return (<>

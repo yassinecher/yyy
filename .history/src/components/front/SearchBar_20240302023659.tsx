@@ -79,11 +79,11 @@ const SearchBar: React.FC<PriceFilterProps>  = ({cats}) => {
                     {
                         data&&data?.length>0 ? <CommandGroup heading="Results">
 <>
-                            <CommandItem value={searchQuery} ><div onClick={()=>{router.push('/shop?search='+searchQuery);setOpen(false);setSearchQuery('')} } className='flex justify-between w-full items-center'>
-                                Voir Tous
-                            </div>
-                       </CommandItem>
-                        </>
+                                        <CommandItem  ><div onClick={()=>{router.push('/shop?search='+searchQuery);setOpen(false);setSearchQuery('')} } className='flex justify-between w-full items-center'>
+                                            Voir Tous
+                                        </div>
+                                   </CommandItem>
+                                    </>
                             {
                                 data?.map((p) => {
                                     return (<>
