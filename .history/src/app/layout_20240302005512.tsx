@@ -14,13 +14,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 
 
-export const metadata:Metadata= {
- 
-  title:{default:"Gaming Gear TN",template:`%s | Gaming Gear TN`},
-  description:"Votre escale exclusive pour des PC et périphériques haut de gamme, rehaussant votre expérience informatique avec élégance et performance incomparables.",
-
-}
-
 
 export default async function RootLayout({
   children,

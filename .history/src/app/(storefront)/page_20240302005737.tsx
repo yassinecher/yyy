@@ -136,11 +136,7 @@ const keywords = [
   "bundles",
   "configurations"
 ];
-export const metadata:Metadata= {
- 
-keywords
-}
-
+  
 export default async function Home() {
   const slides = await prismadb.slide.findMany({
   });

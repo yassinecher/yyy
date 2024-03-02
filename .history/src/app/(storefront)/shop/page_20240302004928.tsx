@@ -13,32 +13,24 @@ import { Metadata } from 'next'
 
 
 interface Props{
-  searchParams: {  [key: string]: string | string[] | undefined  }
+  searchParams: { [key: string]: string  | undefined }
 }
-export async function generateMetadata({searchParams}:Props):Promise< Metadata> {
-  try {
-    // Extract parameters and generate metadata dynamically
+export async function metadata({searchParams}:Props):Promise< Metadata> {
+  // Extract parameters and generate metadata dynamically
   const search = searchParams['search'] ?? ''
   const categoryy = searchParams['categorie'] ?? ''
   if(search.length>0)
   return {
-    title: search.toString(),
+    title: search,
     description:""
   };
   if(categoryy.length>0)
   return {
-    title: categoryy.toString(),
+    title: categoryy,
   };
   return {
     title: '',
   };
-  } catch (error) {
-    return {
-      title: '',
-    };
-  }
-  
-
 };
 export type HomeFilter = {
   title: String

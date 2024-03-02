@@ -18,27 +18,19 @@ interface Props{
   }
 }
 export async function generateMetadata({params}:Props):Promise<Metadata> {
-  try {
-    const product=await prismadb.product.findFirst({
-      where:{
-        id:params.productId
-      }
-    })
-    if(!product)return{
-      title:"Not Found",
-      description:"The page is not found"
+  const product=await prismadb.product.findFirst({
+    where:{
+      id:params.productId
     }
-    return{
-      title: product.name,
-      description:product.description
-    }
-  } catch (error) {
-    return{
-      title: '',
-      description:''
-    }
+  })
+  if(!product)return{
+    title:"Not Found",
+    description:"The page is not found"
   }
- 
+  return{
+    title: product.name,
+    description:product.description
+  }
 }
 
 

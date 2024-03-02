@@ -16,8 +16,7 @@ interface Props{
   searchParams: {  [key: string]: string | string[] | undefined  }
 }
 export async function generateMetadata({searchParams}:Props):Promise< Metadata> {
-  try {
-    // Extract parameters and generate metadata dynamically
+  // Extract parameters and generate metadata dynamically
   const search = searchParams['search'] ?? ''
   const categoryy = searchParams['categorie'] ?? ''
   if(search.length>0)
@@ -32,13 +31,6 @@ export async function generateMetadata({searchParams}:Props):Promise< Metadata> 
   return {
     title: '',
   };
-  } catch (error) {
-    return {
-      title: '',
-    };
-  }
-  
-
 };
 export type HomeFilter = {
   title: String
