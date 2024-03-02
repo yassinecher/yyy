@@ -14,47 +14,12 @@ import { useState } from "react"
 import { LocalCathegoryCollection } from "@/app/(admin)/admin/(routes)/mainpage/page"
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import './headerNav.css'
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-]
+
 interface HeaderProps {
   cathegories?: Category[] | null
   noscategy:LocalCathegoryCollection[]
   links:navitem[]
+  
 }
 
  const HeaderNavigation: React.FC<HeaderProps>=({noscategy ,cathegories,links})=> {
@@ -99,7 +64,7 @@ interface HeaderProps {
 
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className=" NavigationMenuContent ">
-            <ul className={`  dark:border-black   gap-0  grid grid-cols-3 custom-nav w-[800px]`}>
+            <ul className={` w-full dark:border-black   gap-0   ${catstodisplay.length>0?' grid lg:grid-cols-3 custom-nav lg:w-[800px]':'grid lg:grid-cols-3 custom-nav lg:w-[800px]'} `}>
               <li className=" p-3  pt-0  pr-0 dark:text-white dark:bg-violet-950 row-span-1 h-full flex flex-col bg-white ">
                  {
                   noscategy.map((item,key)=>(<>

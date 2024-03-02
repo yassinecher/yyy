@@ -99,7 +99,7 @@ interface HeaderProps {
 
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className=" NavigationMenuContent ">
-            <ul className={`  dark:border-black   gap-0  grid grid-cols-3 custom-nav w-[800px]`}>
+            <ul className={` w-max dark:border-black   gap-0   ${catstodisplay.length>0?' grid lg:grid-cols-3 custom-nav lg:w-[800px]':' grid lg:grid-cols-1  h-full'} `}>
               <li className=" p-3  pt-0  pr-0 dark:text-white dark:bg-violet-950 row-span-1 h-full flex flex-col bg-white ">
                  {
                   noscategy.map((item,key)=>(<>
