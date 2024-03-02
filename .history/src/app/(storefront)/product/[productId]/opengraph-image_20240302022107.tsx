@@ -25,8 +25,8 @@ export default async function og({ params }: Props) {
   return new ImageResponse(
     (
       <div tw="bg-violet-900 relative flex items-center justify-center">
-        <div tw="w-[380px] ml-5 h-[450px] flex items-center ">
-        <img tw="w-[380px]" src={prod?.images[0].url} alt={prod?.name}  />
+        <div tw="w-[400px] h-[450px] flex items-center ">
+        <img tw="w-[400px]" src={prod?.images[0].url} alt={prod?.name}  />
         </div>
        
         <div  tw=" flex flex-col w-[500px]  ">
