@@ -1,6 +1,5 @@
 import prismadb from "@/lib/prismadb"
-import { ImageResponse } from "next/dist/compiled/@vercel/og"
-
+import { ImageResponse } from "next/server"
 
 export const size={
     with:900,
@@ -19,7 +18,7 @@ export async function og({params}:Props) {
     },include:{
         images:true
     }})
-
+    
 
     return new ImageResponse((
     <div tw="relative flex item-center justify-center">
