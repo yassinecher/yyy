@@ -486,6 +486,11 @@ model Slide {
   titleColor       String @default("")
   description String
   descriptionColor String @default("")
+  Price String @default("")
+  PriceColor String @default("")
+  DeletedPrice String @default("")
+  DeletedPriceColor String @default("")
+
   imageUrl    String
   url         String
   bgUrl       String   @default("")

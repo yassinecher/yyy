@@ -60,10 +60,7 @@ export async function PATCH(
     const body = await req.json();
     
     const { title,description, imageUrl,mobilebgURl,bgUrl ,        titleColor,
-      descriptionColor,url ,Price,
-      PriceColor,
-      DeletedPrice,
-      DeletedPriceColor,} = body;
+      descriptionColor,url } = body;
     
 
     if (!params.SlideId) {
@@ -78,10 +75,6 @@ export async function PATCH(
         id: params.SlideId,
       },
       data: {
-        Price,
-  PriceColor,
-  DeletedPrice,
-  DeletedPriceColor,
         title,
         imageUrl:imageUrl??"",
         description,

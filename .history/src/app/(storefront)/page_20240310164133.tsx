@@ -159,11 +159,7 @@ export default async function Home() {
     descriptionColor:item.descriptionColor,
     titleColor:item.titleColor,
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
-    discount:item.discount,
-    Price:item.Price,
-    PriceColor:item.PriceColor,
-    DeletedPrice:item.DeletedPrice,
-    DeletedPriceColor:item.DeletedPriceColor,
+    discount:item.discount
   }));
   const featured = await prismadb.product.findMany({ 
    where :{

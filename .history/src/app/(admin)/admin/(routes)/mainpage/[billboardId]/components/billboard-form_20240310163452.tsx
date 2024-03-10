@@ -364,7 +364,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
 
                   onChange={(v) => {
-                    setPriceColor(v);
+                    setColor(v);
                     form.setValue("PriceColor", v.hex)
 
                   }} />
@@ -372,58 +372,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                   <Button className="w-auto" onClick={() => {
                     setPriceColor({ ...Pricecolor, hex: '', hsv: { a: 1, h: 0, s: 0, v: 0 }, rgb: { a: 1, b: 0, g: 0, r: 0 } })
                     form.setValue("PriceColor", '')
-                  }}>Remove Color</Button>
-
-                  <DrawerClose>
-                    <Button >Close</Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
-
-          </div>
-          <div className="md:grid-cols-3 gap-8">
-            <FormField
-              control={form.control}
-              name="DeletedPrice"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>DeletedPrice</FormLabel>
-                  <FormControl><div className="flex">
-                    <Input disabled={loading} placeholder="Price"
-
-
-                      {...field}  // Spread other field-related props here
-                    />
-                  </div>
-
-
-                  </FormControl>
-                  <FormMessage />
-
-                </FormItem>
-              )}
-            />
-            <div style={{ 'color': DeletedPricecolor.hex ?? '' }} className={`text-[${DeletedPricecolor.hex}] font-bold ml-2`}>{form.getValues('DeletedPrice')} </div>
-
-            <Drawer>
-              <DrawerTrigger className="w-auto" ><br /><Button type="button" className="w-auto">Color Picker</Button></DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>Pick the Deleted Price color: <div style={{ 'color': DeletedPricecolor.hex ?? '' }} className={`text-[${DeletedPricecolor.hex}] `}>{form.getValues('DeletedPrice')} </div> </DrawerTitle>
-                </DrawerHeader>
-                <ColorPicker height={228} color={DeletedPricecolor}
-
-
-                  onChange={(v) => {
-                    setDeletedPriceColor(v);
-                    form.setValue("DeletedPriceColor", v.hex)
-
-                  }} />
-                <DrawerFooter>
-                  <Button className="w-auto" onClick={() => {
-                    setDeletedPriceColor({ ...DeletedPricecolor, hex: '', hsv: { a: 1, h: 0, s: 0, v: 0 }, rgb: { a: 1, b: 0, g: 0, r: 0 } })
-                    form.setValue("DeletedPriceColor", '')
                   }}>Remove Color</Button>
 
                   <DrawerClose>

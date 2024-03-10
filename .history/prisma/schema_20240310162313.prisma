@@ -48,7 +48,7 @@ model Product {
   screens           Screen[]      @relation("ProductToScreen")
   additionalDetails Field[]
   cooling           Cooling[]     @relation("ProductToCooling")
-
+  Manette            Manette[] @relation("ProductToManette")
   Laptop          Laptop[]         @relation("ProductToLaptop")
   keyboard        keyboard[]       @relation("ProductTokeyboard")
   Headset         Headset[]        @relation("ProductToHeadset")
@@ -483,7 +483,14 @@ model FansNumber {
 model Slide {
   id          String   @id @default(uuid())
   title       String
+  titleColor       String @default("")
   description String
+  descriptionColor String @default("")
+  Price String @default("")
+  PriceColor String @default("")
+  DeletedPrice String @default("")
+  DeletedPriceColor String @default("")
+
   imageUrl    String
   url         String
   bgUrl       String   @default("")
@@ -551,6 +558,7 @@ model ComponentOnPcGroupe {
 
 model navitem {
   id                  String                @id @default(uuid())
+  interface String @default("Desktop")
   label               String
   link                String
   createdAt           DateTime              @default(now())
@@ -560,6 +568,7 @@ model navitem {
 
 model CathegoryCollection {
   id        String         @id @default(uuid())
+   interface String @default("Desktop")
   Label     String
   index     Decimal
   navitemId String
@@ -569,6 +578,7 @@ model CathegoryCollection {
 
 model Cathegorilab {
   id                    String              @id @default(uuid())
+  interface String @default("Desktop")
   index                 Decimal
   catId                 String
   Label                 String
@@ -843,15 +853,43 @@ model SensorType {
 
 model pcTemplate {
   id            String @id @default(uuid())
-  motherBoardId String
-  processorId   String
-  graphicCardId String
-  powerSupplyId String
-  caseId        String
-
-  ramIdArray      String[]
-  hardDiskArray   String[]
+  motherBoardId   EntityProfile[]       @relation("MotherboardsZ")
+  processorId   EntityProfile[]       @relation("CPUsZ")
+  graphicCardId EntityProfile[]       @relation("GPUsZ")
+  ramIdArray ComponentOnPcGroupeEntityProfile[] @relation("RamsZ")
+  hardDiskArray      ComponentOnPcGroupeEntityProfile [] @relation("DisksZ")
+  caseId  EntityProfile   []       @relation("CasesZ")
+  powerSupplyId EntityProfile[]       @relation("PowerSuppliesZ") 
+  cooling        EntityProfile[]       @relation("coolingsZ")
+  defaultmotherBoardId String
+  defaultprocessorId   String
+  defaultgraphicCardId String
+  defaultpowerSupplyId String
+  defaultcaseId        String
+  defaultcooling        String  @default("")
+  defaultramIdArray    String[]
+  defaulthardDiskArray String[]
+  discountOnPc  Decimal @default(0)
   PreBuiltPcmodel PreBuiltPcmodel[]
+}
+model ComponentOnPcGroupeEntityProfile {
+  id         String                @id @default(uuid())
+  Components EntityProfile[]
+  defaultId  String @default("")
+  rams       pcTemplate[] @relation("RamsZ")
+  disks      pcTemplate[] @relation("DisksZ")
+}
+model EntityProfile {
+  id                    String                @id @default(uuid())
+  productId             String
+  coolings              pcTemplate[] @relation("coolingsZ")
+  CPmotherboards        pcTemplate[] @relation("MotherboardsZ")
+  CPCPUs                pcTemplate[] @relation("CPUsZ")
+  CPGPUs                pcTemplate[] @relation("GPUsZ")
+  CPcases               pcTemplate[] @relation("CasesZ")
+  CPpowersupplys        pcTemplate[] @relation("PowerSuppliesZ")
+  ComponentOnPcGroupe   ComponentOnPcGroupeEntityProfile?  @relation(fields: [ComponentOnPcGroupeEntityProfile], references: [id])
+  ComponentOnPcGroupeEntityProfile String?
 }
 
 model PreBuiltPcmodel {
@@ -861,7 +899,7 @@ model PreBuiltPcmodel {
   productId    String     @unique
   pcTemplateId String
 }
-
+ 
 model Camera {
   id              String        @id @default(uuid())
   product         Product[]     @relation("ProductToCamera")
@@ -919,6 +957,8 @@ model Manette {
   RgbTypeId      String?
   Connectivite        Connectivite?      @relation(fields: [Connectiviteid], references: [id])
   Connectiviteid      String?
+  product        Product[]     @relation("ProductToManette")
+ 
 }
 model Connectivite {
   id          String        @id @default(uuid())

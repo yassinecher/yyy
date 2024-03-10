@@ -84,15 +84,10 @@ style={{color:` ${each.titleColor.length>0?`${each.titleColor}`:''}`}}
 ) : null}
 
 {each.DeletedPrice.length > 0 ? (
-  <p className='pt-2 line-through font-semibold ' style={{ color: each.DeletedPriceColor.length > 0 ? each.DeletedPriceColor : 'text-gray-400 dark:text-gray-400' }}>
+  <p className='py-7' style={{ color: each.DeletedPriceColor.length > 0 ? each.DeletedPriceColor : '' }}>
     {each.DeletedPrice} TND
   </p>
 ) : null}
-{each.Price.length > 0 ? (
-  <p className='pb-2 font-semibold' style={{ color: each.PriceColor.length > 0 ? each.PriceColor : '' }}>
-    {each.Price} TND
-  </p>
-) : null} 
     
                     {
                       each.url.length>0?<>

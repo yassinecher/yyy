@@ -92,7 +92,6 @@ const [SlotList,setSlotList]=useState< (RAM|undefined)[] >([])
 const [errorList,setErrorList]=useState<string[]>([])
 const [StockagePrimair,setStockagePrimair]=useState< Prod|undefined >(diks.find((e)=>e.product[0].id===PcObject.PreBuiltPcmodel?.pcTemplate?.defaulthardDiskArray[0])?.product[0])
 const [StockageSecondaire,setStockageSecondaire]=useState< Prod|undefined >(diks.find((e)=>e.product[0].id===PcObject.PreBuiltPcmodel?.pcTemplate?.defaulthardDiskArray[1])?.product[0])
-const [Total,setTotal]=useState(0)
 const setSlot = (entity: RAM | undefined, key: number) => {
     const newArray = [...SlotList]; // Copying SlotList array
     newArray[key] = entity; // Updating the value at the specified index with entity
@@ -136,30 +135,6 @@ useEffect(() => {
     setRamConditon(cond);
     setSlotList(array2)
 }, []);
-useEffect(()=>{
-var to=0
-if(mb)
-to+=parseInt(mb?.price.toString());
-if(cpu)
-to+=parseInt(cpu.price.toString());
-if(gpu)
-to+=parseInt(gpu.price.toString());
-if(cas)
-to+=parseInt(cas.price.toString());
-if(power)
-to+=parseInt(power.price.toString());
-if(cool)
-to+=parseInt(cool.price.toString());
-if(StockagePrimair)
-to+=parseInt(StockagePrimair.price.toString());
-if(StockageSecondaire)
-to+=parseInt(StockageSecondaire.price.toString());
-console.log(to)
-if(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc)
-to=to-parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString())
-console.log(to)
-setTotal(to)
-},[mb,cpu,gpu,cas,power,cool,SlotList,StockagePrimair,StockageSecondaire])
 useEffect(() => {
         let list: TableData[] = []
         const mb = motherboards.find((e) => e.products[0].id === PcObject.PreBuiltPcmodel?.pcTemplate?.defaultmotherBoardId);
@@ -293,17 +268,11 @@ useEffect(() => {
                         </TableBody>
 
                     </Table>
-                    
                     <div className="mt-3 flex items-end justify-between">
-                        <div className="flex items-center flex-col text-center  space-y-0 text-2xl  mt-auto  text-[#673ab6] dark:text-[#ad7dff]">
-                            {formattedproduct?.dicountPrice > 0 ? <><span className=" line-through mt-3 text-gray-400 dark:text-gray-400 border-red-400 border-opacity-30 "><Currency value={formattedproduct?.dicountPrice} /> </span>  </> : <></>} <b className="mt-2"><Currency value={Total} /> </b>
+                        <div className="flex items-center flex-col text-center  space-y-0 text-2xl my-2 mt-auto  text-[#673ab6] dark:text-[#ad7dff]">
+                            {formattedproduct?.dicountPrice > 0 ? <><span className=" line-through mt-3 text-gray-400 dark:text-gray-400 border-red-400 border-opacity-30 "><Currency value={formattedproduct?.dicountPrice} /> </span>  </> : <></>} <b className="my-2"><Currency value={formattedproduct?.price} /> </b>
                         </div>
                     </div>
-                    {
-                       PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc&& parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString())?<>
-                       <div className='text-xs mb-2'>Cette prix est sous une réduction </div>
-                       </>:<></>
-                    }
                     <div className=" mb-7 flex items-center gap-x-3">
                         <Button variant={"default"}   onClick={onAddToCart} className="flex items-center bg-purple-500 text-white hover:bg-purple-500 focus:bg-purple-500  gap-x-2">
                            Ajouter au panier

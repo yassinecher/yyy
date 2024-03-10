@@ -71,7 +71,6 @@ interface ProductFormProps {
     PreBuiltPcmodel:{
       
       pcTemplate:pcTemplate&{
-        
       caseId: EntityProfile[],
       processorId:EntityProfile[],
       cooling:EntityProfile[],
@@ -128,7 +127,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     price: parseFloat(String(initialData?.price)),
     dicountPrice: parseFloat(String(initialData?.price)),
     stock: parseInt(String(initialData?.price)),
-    discountOnPc:parseInt(String(initialData.PreBuiltPcmodel?.pcTemplate.discountOnPc)),
     additionalDetails: (initialData?.additionalDetails || []).map((item) => ({
       name: item.name,
       value: item.value
@@ -152,8 +150,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     stock: 0,
     isFeatured: false,
     isArchived: false,
-    additionalDetails: [],
-    discountOnPc:0
+    additionalDetails: []
   }
 
   const form = useForm<ProductFormValues>({

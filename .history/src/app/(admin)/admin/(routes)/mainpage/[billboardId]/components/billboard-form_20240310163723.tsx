@@ -364,7 +364,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
 
                   onChange={(v) => {
-                    setPriceColor(v);
+                    setColor(v);
                     form.setValue("PriceColor", v.hex)
 
                   }} />
@@ -412,11 +412,11 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 <DrawerHeader>
                   <DrawerTitle>Pick the Deleted Price color: <div style={{ 'color': DeletedPricecolor.hex ?? '' }} className={`text-[${DeletedPricecolor.hex}] `}>{form.getValues('DeletedPrice')} </div> </DrawerTitle>
                 </DrawerHeader>
-                <ColorPicker height={228} color={DeletedPricecolor}
+                <ColorPicker height={228} color={Pricecolor}
 
 
                   onChange={(v) => {
-                    setDeletedPriceColor(v);
+                    setColor(v);
                     form.setValue("DeletedPriceColor", v.hex)
 
                   }} />

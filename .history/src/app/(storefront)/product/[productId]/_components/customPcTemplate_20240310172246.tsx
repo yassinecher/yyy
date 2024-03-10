@@ -301,7 +301,7 @@ useEffect(() => {
                     </div>
                     {
                        PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc&& parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString())?<>
-                       <div className='text-xs mb-2'>Cette prix est sous une réduction </div>
+                       <div className='text-xs'>Cette prix est sous une réduction </div>
                        </>:<></>
                     }
                     <div className=" mb-7 flex items-center gap-x-3">

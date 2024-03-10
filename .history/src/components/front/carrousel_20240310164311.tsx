@@ -83,17 +83,7 @@ style={{color:` ${each.titleColor.length>0?`${each.titleColor}`:''}`}}
   </p>
 ) : null}
 
-{each.DeletedPrice.length > 0 ? (
-  <p className='pt-2 line-through font-semibold ' style={{ color: each.DeletedPriceColor.length > 0 ? each.DeletedPriceColor : 'text-gray-400 dark:text-gray-400' }}>
-    {each.DeletedPrice} TND
-  </p>
-) : null}
-{each.Price.length > 0 ? (
-  <p className='pb-2 font-semibold' style={{ color: each.PriceColor.length > 0 ? each.PriceColor : '' }}>
-    {each.Price} TND
-  </p>
-) : null} 
-    
+                    
                     {
                       each.url.length>0?<>
                       <div className='flex items-center'><Link  className='max-sm:w-full'    href={each.url}><Button  className='max-sm:w-full' variant={"default"} >Shop</Button></Link> <Label className='pl-5'>{each.discount>0? <>{each.discount}</>:<></>} </Label></div> 
