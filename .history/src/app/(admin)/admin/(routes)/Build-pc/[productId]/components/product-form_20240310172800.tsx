@@ -218,8 +218,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     }else{
       try {
         setLoading(true);
-        if(total)
-        data.price=parseInt(total.toString())
+
         const pct = {
           motherBoardId: [...mbs.map((val)=>val.id)],
           processorId:[...cpu.map((val)=>val.id)],

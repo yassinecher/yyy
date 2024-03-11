@@ -81,7 +81,7 @@ export async function PATCH(
         Price,
   PriceColor,
   DeletedPrice,
-  DeletedPriceColor, 
+  DeletedPriceColor,
         title,
         imageUrl:imageUrl??"",
         description,
