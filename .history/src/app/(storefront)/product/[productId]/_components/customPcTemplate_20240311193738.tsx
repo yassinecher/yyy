@@ -139,7 +139,7 @@ useEffect(() => {
 useEffect(()=>{
 var to=0
 if(mb)
-to+=parseInt(mb.price.toString());
+to+=parseInt(mb?.price.toString());
 if(cpu)
 to+=parseInt(cpu.price.toString());
 if(gpu)
@@ -157,10 +157,9 @@ to+=parseInt(StockageSecondaire.price.toString());
 console.log(to)
 if(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc)
 to=to-parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString())
-SlotList.map((e)=>{
-    if(e){
-        to+=parseInt(e.products[0].price.toString()); 
-    }
+SlotList.every((e)=>{
+    if(e)
+    to+=parseInt(e.products[0].price.toString());
 })
 console.log(to)
 setTotal(to)
