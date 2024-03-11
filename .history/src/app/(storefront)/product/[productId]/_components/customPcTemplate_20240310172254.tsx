@@ -157,10 +157,6 @@ to+=parseInt(StockageSecondaire.price.toString());
 console.log(to)
 if(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc)
 to=to-parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString())
-SlotList.every((e)=>{
-    if(e)
-    to+=parseInt(e.products[0].price.toString());
-})
 console.log(to)
 setTotal(to)
 },[mb,cpu,gpu,cas,power,cool,SlotList,StockagePrimair,StockageSecondaire])
