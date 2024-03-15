@@ -147,7 +147,7 @@ export async function POST(
       const mailOptions = {
         from: 'support@gaminggear.tn',
         to: email,
-        subject: "Votre commande est complète!",
+        subject: "CommandeVotre commande est complète!",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email

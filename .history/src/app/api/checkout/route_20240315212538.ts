@@ -147,19 +147,12 @@ export async function POST(
       const mailOptions = {
         from: 'support@gaminggear.tn',
         to: email,
-        subject: "Votre commande est complète!",
+        subject: "Commande",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email
     const info = await transporter.sendMail(mailOptions);
- const mailOptions2 = {
-        from: 'support@gaminggear.tn',
-        to: 'GamingGear.tn@gmail.com',
-        subject: "Vous avez une nouvelle Commande!",
-        html: emailBody, // Use HTML for a more structured email body
-      };
-    // Send the email
-    const info3 = await transporter.sendMail(mailOptions2);
+
     console.log('Email sent:', info.response);
     return NextResponse.json({ order }, { headers: corsHeaders });
   } catch (error) {

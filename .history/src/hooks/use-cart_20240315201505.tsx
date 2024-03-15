@@ -9,7 +9,6 @@ export type PCCustom = {
   idd:string
   Title:string
   price:number
-  reduction:number
   motherboard: Product;
   processor: Product;
   gpu: Product;

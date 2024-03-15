@@ -306,10 +306,7 @@ interface ProductPageProps {
             console.log(e)
             return {
                 idd:e.id,
-                Title:e.Title,
                 price:parseInt(e.price.toString()),
-                reduction:parseInt(e.reduction.toString()),
-                
                 motherboard:{...motherboard, dicountPrice:parseInt(motherboard.dicountPrice.toString()),price:parseInt(motherboard.price.toString()),stock:parseInt(motherboard.stock.toString())},
                 processor:{...processor, dicountPrice:parseInt(processor.dicountPrice.toString()),price:parseInt(processor.price.toString()),stock:parseInt(processor.stock.toString())},
                 gpu:{...gpu,dicountPrice:parseInt(gpu.dicountPrice.toString()),price:parseInt(gpu.price.toString()),stock:parseInt(gpu.stock.toString())},

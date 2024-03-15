@@ -15,7 +15,7 @@ import {
 
 import Image from 'next/image';
 
-import useCart, { CartItem } from "@/hooks/use-cart";
+import useCart from "@/hooks/use-cart";
 import React, { useEffect, useState } from 'react'
 import { ShoppingCart } from 'lucide-react';
 import Currency from '@/components/ui/currency';
@@ -251,42 +251,10 @@ useEffect(() => {
         return count;
     }
     const cart = useCart();
-    function generateHashId() {
-        const timestamp = new Date().getTime().toString(16); // Convert timestamp to hexadecimal
-        const random = Math.random().toString(16).substring(2); // Generate random hexadecimal string
 
-        return `${timestamp}-${random}`;
-    }
     const onAddToCart = () => {
-        var stockArray: Product[]=[]
-        if(StockagePrimair){
-            stockArray=[...stockArray,StockagePrimair as unknown as Product]
-        }
-        if(StockageSecondaire){
-            stockArray=[...stockArray,StockageSecondaire as unknown as Product]
-        }
-        if(mb&&PcObject.PreBuiltPcmodel?.pcTemplate&& cpu){
-            const uniqueId = generateHashId();
-            const pc: CartItem = {
-                idd: uniqueId,
-                Title:"PC Personalisé",
-                reduction:parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString()),
-                motherboard: mb as unknown as Product,
-                processor: cpu as unknown as Product,
-                gpu: gpu as unknown as Product,
-                case: cas as unknown as Product,
-                power: power as unknown as Product,
-                ram: SlotList.filter((e) => e != undefined).map((e)=>{return e?.products[0]}) as unknown as Product[],
-                disk: StockagePrimair as unknown as Product,
-                cooling:cool as unknown as Product,
-                price: Total,
-                number: 1
-            }
-            console.log(pc.ram)
-            cart.addItem(pc)
 
-        }
-       
+        cart.addItem({ ...formattedproduct, number: 1 });
     }
 
     return (

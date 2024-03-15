@@ -72,7 +72,6 @@ const Details = (props: {
                 const uniqueId = generateHashId();
                 const pc: CartItem = {
                     idd: uniqueId,
-                    Title:"PC sur mesure",
                     motherboard: props.motherboardId,
                     processor: props.processorId,
                     gpu: props.gpuId,
@@ -81,7 +80,6 @@ const Details = (props: {
                     ram: props.ramId.filter((e)=>e!=null) as Product[],
                     disk: props.hardDiskPrimaireId,
                     price: props.prix,
-                    reduction:0,
                     number: 1
                 }
                 cart.addItem(pc)
@@ -111,7 +109,6 @@ const Details = (props: {
                 // Example usage:
                 const uniqueId = generateHashId();
                 const pc: CartItem = {
-                    reduction:0,
                     idd: uniqueId,
                     Title:"PC sur mesure",
                     motherboard: props.motherboardId,

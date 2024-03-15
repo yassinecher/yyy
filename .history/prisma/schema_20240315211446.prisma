@@ -103,8 +103,7 @@ model Order {
 
 model pcOrder {
   id              String      @id @default(uuid())
-  Title       String    @default("")
-  reduction       Decimal @default(0)
+   Title       String    @default("")
   price           String      @default("")
   motherboard     OrderItem[] @relation(name: "motherboard_pcOrder")
   processor       OrderItem[] @relation(name: "processor_pcOrder")

@@ -273,12 +273,11 @@ useEffect(() => {
                 reduction:parseInt(PcObject.PreBuiltPcmodel?.pcTemplate?.discountOnPc.toString()),
                 motherboard: mb as unknown as Product,
                 processor: cpu as unknown as Product,
-                gpu: gpu as unknown as Product,
-                case: cas as unknown as Product,
-                power: power as unknown as Product,
+                gpu: mb as unknown as Product,
+                case: mb as unknown as Product,
+                power: mb as unknown as Product,
                 ram: SlotList.filter((e) => e != undefined).map((e)=>{return e?.products[0]}) as unknown as Product[],
                 disk: StockagePrimair as unknown as Product,
-                cooling:cool as unknown as Product,
                 price: Total,
                 number: 1
             }

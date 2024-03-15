@@ -181,11 +181,7 @@ const Invoice = (props: { invoiceData: CartItem[] ,order:Order|null}) => {
                         </tr>
                       </> : <></>
                     }
-                <tr className='bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
-                     <td className='px-6 py-4 font-extrabold'></td>
-                      <td className='px-6 py-4'></td>
-                     <td className='px-6 py-4'>-{item.reduction}</td>
-                     <td className='px-6 py-4'></td></tr>
+                
                   </> : <>
                   <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
                     
