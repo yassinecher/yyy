@@ -69,7 +69,7 @@ const Home = async ({
   const categoryy = searchParams['categorie'] ?? ''
   const search = searchParams['search'] ?? ''
 
-  const sort = searchParams['sort'] ?? 'Les plus populaires';
+  const sort = searchParams['sort'] ?? 'Prix : Croissant';
   const maxDt = searchParams['maxDt'] ?? '';
   const minDt = searchParams['minDt'] ?? '';
   const filterListParam = searchParams['filterList'] ?? '';

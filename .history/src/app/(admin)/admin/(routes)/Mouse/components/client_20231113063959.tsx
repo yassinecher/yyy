@@ -24,8 +24,8 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({
   return (
     <> 
       <div className="flex items-center justify-between">
-        <Heading title={`Mouse (${data.length})`} description="Manage products for your store" />
-        <Button onClick={() => router.push(`/admin/Mouse/new`)}>
+        <Heading title={`Mousepad (${data.length})`} description="Manage products for your store" />
+        <Button onClick={() => router.push(`/admin/Mousepad/new`)}>
           <Plus className="mr-2 h-4 w-4" /> Add New
         </Button>
       </div>

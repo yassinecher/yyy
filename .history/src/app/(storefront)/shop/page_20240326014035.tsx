@@ -9,7 +9,37 @@ import { Pagination } from "@nextui-org/pagination";
 import Sidebar from './_componenets/sideBar'
 import { HeadsetFilters, LaptopFilters, MicFilters, MouseFilters, MousepadFilters, casesFilters, coolingFilters, cpusFilters, gpusFilters, keyboardFilters, memoriesFilters, motherboardFilters, powersuppliesFilters, screensFilters, storagesFilters } from './_componenets/Filters'
 import { addCaseFitlters, addCoolingFitlters, addHardDiskFitlters, addHeadsetFitlters, addKeyboardFitlters, addLaptopFitlters, addMicFitlters, addMouseFitlters, addMousepadFitlters, addPowerFitlters, addRamFitlters, addScreenFitlters, addcpuFitlters, addgpuitlters, addmotherboardFitlters } from './_componenets/FilterFunctions'
+import { Metadata } from 'next'
 
+
+interface Props{
+  searchParams: {  [key: string]: string | string[] | undefined  }
+}
+export async function generateMetadata({searchParams}:Props):Promise< Metadata> {
+  try {
+    // Extract parameters and generate metadata dynamically
+  const search = searchParams['search'] ?? ''
+  const categoryy = searchParams['categorie'] ?? ''
+  if(search.length>0)
+  return {
+    title: search.toString(),
+    description:""
+  };
+  if(categoryy.length>0)
+  return {
+    title: categoryy.toString(),
+  };
+  return {
+    title: '',
+  };
+  } catch (error) {
+    return {
+      title: '',
+    };
+  }
+  
+
+};
 export type HomeFilter = {
   title: String
   data: any[]
@@ -39,7 +69,7 @@ const Home = async ({
   const categoryy = searchParams['categorie'] ?? ''
   const search = searchParams['search'] ?? ''
 
-  const sort = searchParams['sort'] ?? 'Les plus populaires';
+  const sort = searchParams['sort'] ?? 'Prix : Croissant';
   const maxDt = searchParams['maxDt'] ?? '';
   const minDt = searchParams['minDt'] ?? '';
   const filterListParam = searchParams['filterList'] ?? '';
@@ -106,7 +136,7 @@ const Home = async ({
       if (typee == "keyboard") {
        whereClause.keyboard = addKeyboardFitlters(fList).data
    
-      }
+      } 
       if (typee == "mic") {
         whereClause.Mic = addMicFitlters(fList).data
    

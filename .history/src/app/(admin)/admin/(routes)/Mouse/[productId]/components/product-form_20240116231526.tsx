@@ -133,12 +133,12 @@ console.log(initialData)
     
   
       if (initialData) {
-        await axios.patch(`/api/Mouse/component/${params.productId}`, data);
+        await axios.patch(`/api/Mousepad/component/${params.productId}`, data);
       } else {
-        await axios.post(`/api/Mouse/component`, data);
+        await axios.post(`/api/Mousepad/component`, data);
       }
       router.refresh();
-      router.push(`/admin/Mouse`);
+      router.push(`/admin/Mousepad`);
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error('Something went wrong.');
@@ -152,7 +152,7 @@ console.log(initialData)
       setLoading(true);
       await axios.delete(`/api/products/${params.productId}`);
       router.refresh();
-      router.push(`/admin/Mouse`);
+      router.push(`/admin/Mousepad`);
       toast.success('Product deleted.');
     } catch (error: any) {
       toast.error('Something went wrong.');
