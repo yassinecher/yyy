@@ -19,7 +19,7 @@ import SearchComponent from '@/components/search-filters/motherboard/motherboard
 import PriceFilter from '@/components/search-filters/price-filter'
 import PaginationControls from './PaginationControls'
 import { Button } from '@/components/ui/button'
-
+  
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -268,7 +268,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
 
   
 
-      <Button disabled={isLoading} className='w-full my-3' onClick={()=>{
+      <Button disabled={isLoading} className='w-full my-3 bg-violet-500' onClick={()=>{
            setIsloading(true);
            fetchData();
       }}>Filtrer</Button>
@@ -399,7 +399,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="cursor-pointer absolute right-0 z-10 mt-2 w-44 dark:border origin-top-right rounded-md bg-white dark:bg-black  shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="cursor-pointer absolute right-0 z-10 mt-2 w-44 dark:border origin-top-right rounded-md bg-white dark:bg-violet-700  shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1 px-1">
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}
@@ -481,7 +481,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
 
   
 
-      <Button disabled={isLoading} className='w-full my-3' onClick={()=>{
+      <Button disabled={isLoading} className='w-full my-3  bg-violet-500' onClick={()=>{
            setIsloading(true);
            fetchData();
       }}>Filtrer</Button>
@@ -596,7 +596,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
 
                 </> : <>
                   {items.length === 0 && <NoResults />}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {items.map((item) => (
                       <ProductCard key={item.id} data={item} />
                     ))}
@@ -641,7 +641,7 @@ const CheckboxGroup = (props: {
       {props.items.map((item) => (
         <div key={item.name}>
           <div className='flex items-center appearance-none'>
-            <Input type='checkbox' className='appearance-none forced-colors checked:bg-violet-700 border-violet-500 focus:border-violet-500 hover:!bg-violet-600   focus:outline-none focus-visible:outline-none w-3 h-3 m-2 outline-none'
+            <Input type='checkbox' className='appearance-none  checked:bg-violet-700 border-violet-500 focus:!border-violet-500 focus:!ring-violet-500 focus:!bg-violet-500 hover:!bg-violet-600 hover:!ring-violet-500   focus:outline-none focus-visible:outline-none w-3 h-3 m-2 outline-none'
               value={item.name}
               checked={props.selectedItems[props.keyto]&&props.selectedItems[props.keyto].findIndex((e)=>e.searchKey===item.name)!=-1}
               onChange={() => props.onChange(item.name)}

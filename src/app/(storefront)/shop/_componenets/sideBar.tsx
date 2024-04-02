@@ -268,7 +268,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
 
   
 
-      <Button disabled={isLoading} className='w-full my-3' onClick={()=>{
+      <Button disabled={isLoading} className='w-full my-3 bg-violet-500' onClick={()=>{
            setIsloading(true);
            fetchData();
       }}>Filtrer</Button>
@@ -481,7 +481,7 @@ const [filterList, setFilterList] = useState<FilterList>(selectfilterList||{})
 
   
 
-      <Button disabled={isLoading} className='w-full my-3' onClick={()=>{
+      <Button disabled={isLoading} className='w-full my-3  bg-violet-500' onClick={()=>{
            setIsloading(true);
            fetchData();
       }}>Filtrer</Button>
