@@ -80,7 +80,7 @@ const buildPc = async () => {
      const mark: Filter = {
       title: "Mark",
       list: markk.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.screens ?? 0,
       
@@ -110,7 +110,7 @@ const buildPc = async () => {
      const pouce: Filter = {
       title: "Pouce",
       list: poucee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.screens ?? 0,
       
@@ -140,7 +140,7 @@ const buildPc = async () => {
      const refreshRate: Filter = {
       title: "Refresh Rate",
       list: refreshRatee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.screens ?? 0,
       
@@ -170,7 +170,7 @@ const buildPc = async () => {
      const resolution: Filter = {
       title: "Resolution",
       list: resolutionn.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.screens ?? 0,
       
@@ -200,7 +200,7 @@ const buildPc = async () => {
      const graphiccardName: Filter = {
       title: "Carte graphique",
       list: graphiccardNamee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.motherboards ?? 0,
       
@@ -228,7 +228,7 @@ const buildPc = async () => {
      const gpuArchBrand: Filter = {
       title: "Marque d'achitecture",
       list: gpuArchBrandd.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.motherboards ?? 0,
       
@@ -256,7 +256,7 @@ const buildPc = async () => {
      const gpuBrand: Filter = {
       title: "Marque",
       list: gpuBrandd.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.motherboards ?? 0,
       
@@ -284,7 +284,7 @@ const buildPc = async () => {
      const coolingcPUSupport: Filter = {
       title: "Support du processeur",
       list: coolingcPUSupportt.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.cooling ?? 0,
       
@@ -314,7 +314,7 @@ const buildPc = async () => {
         title: "Nombre de Ventilateurs Pré-installés",
         list: fansNumberr.map((manufacturer) => {
         return {  
-                
+                  id:manufacturer.id,  
           name:manufacturer.number.toString(),
           number: manufacturer._count?.cooling ?? 0,
         
@@ -342,7 +342,7 @@ const buildPc = async () => {
          const coolingType: Filter = {
           title: "Type",
           list: coolingTypee.map((manufacturer) => {
-          return {        
+          return {          id:manufacturer.id,  
         name:manufacturer.name,
             number: manufacturer._count?.cooling ?? 0,
           
@@ -370,7 +370,7 @@ const buildPc = async () => {
      const coolingMark: Filter = {
       title: "Marque",
       list: coolingMarkk.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.cooling ?? 0,
       
@@ -398,7 +398,7 @@ const buildPc = async () => {
      const pCcaseRGBType: Filter = {
       title: "RGB",
       list: pCcaseRGBTypee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.pccase ?? 0,
       
@@ -426,7 +426,7 @@ const buildPc = async () => {
        const pCcaseNumberofFansPreinstalled: Filter = {
         title: "Nombre de Ventilateurs Pré-installés",
         list: pCcaseNumberofFansPreinstalledd.map((manufacturer) => {
-        return {        
+        return {          id:manufacturer.id,  
         name:manufacturer.name,
           number: manufacturer._count?.pccase ?? 0,
         
@@ -454,7 +454,7 @@ const buildPc = async () => {
      const pCcaseCaseformat: Filter = {
       title: "Format du boitier",
       list: pCcaseCaseformatt.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.pccase ?? 0,
       
@@ -482,7 +482,7 @@ const buildPc = async () => {
      const pCcaseBrand: Filter = {
       title: "Marque",
       list: pCcaseBrandd.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.pccase ?? 0,
       
@@ -510,7 +510,7 @@ const buildPc = async () => {
      const psCertification: Filter = {
       title: "Certification",
       list: psCertificationn.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.powersupplies ?? 0,
       
@@ -540,7 +540,7 @@ const buildPc = async () => {
      const powersupplyMarque: Filter = {
       title: "Certification 80+",
       list: powersupplyMarquee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.powersupplies ?? 0,
       
@@ -572,7 +572,7 @@ const buildPc = async () => {
      const harddiskType: Filter = {
       title: "Type",
       list: harddiskTypee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.harddisk ?? 0,
       
@@ -600,7 +600,7 @@ const buildPc = async () => {
      const harddiskComputerinterface: Filter = {
       title: "Interface",
       list: harddiskComputerinterfacee.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.harddisk ?? 0,
       
@@ -629,7 +629,7 @@ const buildPc = async () => {
      const harddiskCapacity: Filter = {
       title: "Capacité",
       list: harddiskCapacityy.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.harddisk ?? 0,
       
@@ -658,7 +658,7 @@ const buildPc = async () => {
      const harddiskBrand: Filter = {
       title: "Marque",
       list: harddiskBrandd.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.harddisk ?? 0,
       
@@ -686,7 +686,7 @@ const buildPc = async () => {
      const processorModel: Filter = {
       title: "Processeur support",
       list: processorModell.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.processor ?? 0,
       
@@ -714,7 +714,7 @@ const buildPc = async () => {
      const cPUSupport: Filter = {
       title: "Processeur support",
       list: cPUSupportt.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.processor ?? 0,
       
@@ -742,7 +742,7 @@ const buildPc = async () => {
      const memoryFrequency: Filter = {
       title: "Frequence",
       list: memoryFrequencyy.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.memoryboards ?? 0,
       
@@ -769,7 +769,7 @@ const buildPc = async () => {
        const memoryMarque: Filter = {
         title: "Marque",
         list: memoryMarquee.map((manufacturer) => {
-        return {        
+        return {          id:manufacturer.id,  
         name:manufacturer.name,
           number: manufacturer._count?.memoryboards ?? 0,
         
@@ -797,7 +797,7 @@ const buildPc = async () => {
           title: "Capacity",
           list: memoryNumberr.map((manufacturer) => {
           return { 
-           
+            id:manufacturer.id,   
             name:manufacturer.number.toString()+" Gb",
             number: manufacturer._count?.memoryboards ?? 0,
           
@@ -824,7 +824,7 @@ const buildPc = async () => {
            const memoryType: Filter = {
             title: "Type",
             list: memoryTypee.map((manufacturer) => {
-            return {        
+            return {          id:manufacturer.id,  
         name:manufacturer.name,
               number: manufacturer._count?.memoryboards ?? 0,
             
@@ -852,7 +852,7 @@ const buildPc = async () => {
    const motherboardmanufacturer: Filter = {
     title: "Marque",
     list: motherboardmanufacturerr.map((manufacturer) => {
-    return {        
+    return {          id:manufacturer.id,  
         name:manufacturer.name,
       number: manufacturer._count?.motherboards ?? 0,
     
@@ -879,7 +879,7 @@ const buildPc = async () => {
    const motherboardramslots: Filter = {
     title: "Nombre de barrettes RAM",
     list: motherboardramslotss.map((manufacturer) => {
-    return {        
+    return {          id:manufacturer.id,  
         name:manufacturer.name,
       number: manufacturer._count?.motherboards ?? 0,
     
@@ -905,7 +905,7 @@ const buildPc = async () => {
      const motherboardchipset: Filter = {
       title: "Chipset de la carte mère",
       list: motherboardchipsett.map((manufacturer) => {
-      return {        
+      return {          id:manufacturer.id,  
         name:manufacturer.name,
         number: manufacturer._count?.motherboards ?? 0,
       
@@ -931,7 +931,7 @@ const buildPc = async () => {
        const motherboardcpusupport: Filter = {
         title: "Support du processeur",
         list: motherboardcpusupportt.map((manufacturer) => {
-        return {        
+        return {          id:manufacturer.id,  
         name:manufacturer.name,
           number: manufacturer._count?.motherboards ?? 0,
         
@@ -957,7 +957,7 @@ const buildPc = async () => {
          const motherboardformat: Filter = {
           title: "Format de carte mère",
           list: motherboardformatt.map((manufacturer) => {
-          return {        
+          return {          id:manufacturer.id,  
         name:manufacturer.name,
             number: manufacturer._count?.motherboards ?? 0,
           
