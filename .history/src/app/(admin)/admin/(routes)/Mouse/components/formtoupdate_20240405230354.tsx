@@ -24,7 +24,7 @@ const formSchema = z.object({
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
   sensorTypeId:z.string().min(1),
-  wirless: z.boolean().default(false).optional(),
+  wirless: z.boolean().default(false),
   rgb: z.boolean().default(false).optional(),
   manufacturerId:z.string().min(1),
   dicountPrice: z.coerce.number().optional(),
