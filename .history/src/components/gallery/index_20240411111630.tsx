@@ -34,11 +34,10 @@ const Gallery: React.FC<GalleryProps> = ({
               <NextImage
             
                 fill
-          
                 src={image.url}
                 alt="Image"
                 className="object-cover object-center"
-               
+                width={1000}
               />
             </div>
           </Tab.Panel>

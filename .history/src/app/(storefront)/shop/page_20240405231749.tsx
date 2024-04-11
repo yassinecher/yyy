@@ -82,7 +82,7 @@ const Home = async ({
     const typee = decodedFilterList.type as unknown as string
     if (decodedFilterList.data) {
       fList = decodedFilterList.data 
-    
+      console.log(typee)
       if (typee == 'Carte Mére') {
         whereClause.motherboard = addmotherboardFitlters(fList).data
       
@@ -92,7 +92,7 @@ const Home = async ({
       }
       if (typee === "gpu") {
         whereClause.gpus = addgpuitlters(fList).data
-    
+        console.log(whereClause)
       }
 
 
@@ -290,8 +290,6 @@ const Home = async ({
     where: whereClause,
   });
 
-
-  console.log(whereClause)
   const categorie = await prismadb.category.findMany({
     where: {
       products: { some: whereClause },
@@ -299,6 +297,7 @@ const Home = async ({
     include:{_count:{select:{products:true}}}
     ,orderBy:{products:{_count:'desc'}}
   })
+
 
   let filters: any[] = []
   let i = 0
@@ -335,7 +334,6 @@ const Home = async ({
     })
 
 
-
     if (prou.findIndex((e) => e.motherboard.length == 1) > -1) {
       filters[i] = await motherboardFilters() as unknown as HomeFilter
       i++
@@ -349,7 +347,7 @@ const Home = async ({
     if (prou.findIndex((e) => e.gpus.length == 1) > -1) {
       filters[i] = await gpusFilters() as unknown as HomeFilter
       i++
-   
+      console.log( filters)  
     }
     if (prou.findIndex((e) => e.Headset.length == 1) > -1) {
       filters[i] = await HeadsetFilters() as unknown as HomeFilter
@@ -490,6 +488,8 @@ const Home = async ({
 
   }
 
+
+  console.log(prods)
   const formattedproducts: Product[] = prods.map((item) => ({
     id: item.id,
     name: item.name,

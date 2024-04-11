@@ -290,8 +290,6 @@ const Home = async ({
     where: whereClause,
   });
 
-
-  console.log(whereClause)
   const categorie = await prismadb.category.findMany({
     where: {
       products: { some: whereClause },
@@ -299,6 +297,7 @@ const Home = async ({
     include:{_count:{select:{products:true}}}
     ,orderBy:{products:{_count:'desc'}}
   })
+
 
   let filters: any[] = []
   let i = 0

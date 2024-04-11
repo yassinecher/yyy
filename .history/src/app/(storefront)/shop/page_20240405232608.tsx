@@ -291,7 +291,7 @@ const Home = async ({
   });
 
 
-  console.log(whereClause)
+  console.log(totalprod)
   const categorie = await prismadb.category.findMany({
     where: {
       products: { some: whereClause },
