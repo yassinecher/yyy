@@ -195,13 +195,9 @@ const Home = async ({
       default:
         // Default sorting if no match is found
         orderByClause = {
-          price: 'asc', // or 'desc' depending on your preference
+          createdAt: 'desc',
         };
     }
-  }else{
-    orderByClause = {
-      price: 'asc', // or 'desc' depending on your preference
-    };
   }
 
 

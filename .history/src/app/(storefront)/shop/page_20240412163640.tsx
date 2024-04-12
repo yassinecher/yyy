@@ -198,10 +198,6 @@ const Home = async ({
           price: 'asc', // or 'desc' depending on your preference
         };
     }
-  }else{
-    orderByClause = {
-      price: 'asc', // or 'desc' depending on your preference
-    };
   }
 
 

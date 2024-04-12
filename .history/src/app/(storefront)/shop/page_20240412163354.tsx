@@ -195,13 +195,9 @@ const Home = async ({
       default:
         // Default sorting if no match is found
         orderByClause = {
-          price: 'asc', // or 'desc' depending on your preference
+          createdAt: 'desc',
         };
     }
-  }else{
-    orderByClause = {
-      price: 'asc', // or 'desc' depending on your preference
-    };
   }
 
 
@@ -308,11 +304,7 @@ const Home = async ({
   let i = 0
   if (categoryy.toString().length > 0&&prods.length===0) {
     const prou = await prismadb.product.findMany({
-      where: {
-       name:{
-        contains:categoryy.toString()
-       },
-      },
+      where: whereClause,
       include:{  motherboard: true,
         cases: true,
         cooling: true,
@@ -332,7 +324,9 @@ const Home = async ({
         images: true,
         category: true,
         additionalDetails: true,},
-      orderBy:orderByClause,
+      orderBy:{
+        
+      },
       take:1
     })
 
