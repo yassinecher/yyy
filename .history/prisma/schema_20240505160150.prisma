@@ -70,10 +70,6 @@ model Product {
   PackHeadset        AccessoryPack[]     @relation("PackHeadset")
   PackCamera        AccessoryPack[]     @relation("PackCamera")
   PackScreen        AccessoryPack[]     @relation("PackScreen")
-  PackProduct        AccessoryPack[]     @relation("PackProduct")
-  PackSpeaker        AccessoryPack[]     @relation("PackSpeaker")
-  PackManette        AccessoryPack[]     @relation("PackManette")
-  PackChair        AccessoryPack[]     @relation("PackChair")
 }
 
 model Field {
@@ -990,7 +986,6 @@ model Pack {
 
 model AccessoryPack{
   id             String        @id @default(uuid())
-
   Clavier        Product[]     @relation("PackClavier")
   Mouse        Product[]     @relation("PackMouse")
   MousePad        Product[]     @relation("PackMousePad")
@@ -998,20 +993,5 @@ model AccessoryPack{
   Headset        Product[]     @relation("PackHeadset")
   Camera        Product[]     @relation("PackCamera")
   Screen        Product[]     @relation("PackScreen")
-  Speaker        Product[]     @relation("PackSpeaker")
-  Manette        Product[]     @relation("PackManette")
-  Chair        Product[]     @relation("PackChair")
-  discountOnPack  Decimal @default(0)
 
-  Product        Product[]     @relation("PackProduct")
-  DefaultClavier  String @default("")
-  DefaultMouse  String @default("")
-  DefaultMousePad  String @default("")
-  DefaultMic  String @default("")
-  DefaultHeadset  String @default("")
-  DefaultCamera  String @default("")
-  DefaultScreen  String @default("")
-  DefaultSpeaker String @default("")
-  DefaultManette String @default("")
-  DefaultChair   String @default("")
 }

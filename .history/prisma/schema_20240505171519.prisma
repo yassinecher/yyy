@@ -1001,7 +1001,7 @@ model AccessoryPack{
   Speaker        Product[]     @relation("PackSpeaker")
   Manette        Product[]     @relation("PackManette")
   Chair        Product[]     @relation("PackChair")
-  discountOnPack  Decimal @default(0)
+
 
   Product        Product[]     @relation("PackProduct")
   DefaultClavier  String @default("")

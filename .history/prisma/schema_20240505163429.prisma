@@ -998,11 +998,10 @@ model AccessoryPack{
   Headset        Product[]     @relation("PackHeadset")
   Camera        Product[]     @relation("PackCamera")
   Screen        Product[]     @relation("PackScreen")
+
   Speaker        Product[]     @relation("PackSpeaker")
   Manette        Product[]     @relation("PackManette")
   Chair        Product[]     @relation("PackChair")
-  discountOnPack  Decimal @default(0)
-
   Product        Product[]     @relation("PackProduct")
   DefaultClavier  String @default("")
   DefaultMouse  String @default("")
@@ -1011,7 +1010,4 @@ model AccessoryPack{
   DefaultHeadset  String @default("")
   DefaultCamera  String @default("")
   DefaultScreen  String @default("")
-  DefaultSpeaker String @default("")
-  DefaultManette String @default("")
-  DefaultChair   String @default("")
 }
