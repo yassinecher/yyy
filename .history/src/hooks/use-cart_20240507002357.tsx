@@ -9,6 +9,7 @@ export type PCCustom = {
   idd:string
   Title:string
   price:number
+  reduction:number
   motherboard: Product;
   processor: Product;
   gpu: Product;
@@ -19,10 +20,21 @@ export type PCCustom = {
   case: Product;
   screen?: Product|undefined;
   cooling?: Product|undefined;
+  
 }
 
 // Define a union type that includes both Product and PCCustom
 export type CartItem = (Product | PCCustom)&{
+  defaultKeyboard?: Product|undefined,
+  defaultMouse?: Product|undefined,
+  defaultMousePad?: Product|undefined,
+  defaultMics?: Product|undefined,
+  defaultHeadset?: Product|undefined,
+  defaultCamera?: Product|undefined,
+  defaultScreen?: Product|undefined,
+  DefaultSpeaker?: Product|undefined,
+  DefaultManette?: Product|undefined,
+  DefaultChair?: Product|undefined
   number:number
 };
 

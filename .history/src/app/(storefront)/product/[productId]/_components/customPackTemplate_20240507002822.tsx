@@ -226,7 +226,6 @@ const CustomPackTemplate: React.FC<ProductFormProps> = ({ initialData }) => {
             price: total,
             packId: initialData.id,
             packTitle: initialData.name,
-            packImage:initialData.images[0].url,
             reduction: Number(initialData?.PackProduct[0].discountOnPack),
             defaultKeyboard: defaultKeyboard as unknown as Product,
             defaultMouse: defaultMouse as unknown as Product,

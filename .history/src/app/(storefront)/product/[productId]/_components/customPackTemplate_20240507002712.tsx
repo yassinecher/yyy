@@ -226,7 +226,6 @@ const CustomPackTemplate: React.FC<ProductFormProps> = ({ initialData }) => {
             price: total,
             packId: initialData.id,
             packTitle: initialData.name,
-            packImage:initialData.images[0].url,
             reduction: Number(initialData?.PackProduct[0].discountOnPack),
             defaultKeyboard: defaultKeyboard as unknown as Product,
             defaultMouse: defaultMouse as unknown as Product,
@@ -299,7 +298,7 @@ const CustomPackTemplate: React.FC<ProductFormProps> = ({ initialData }) => {
                         </> : <></>
                     }
                     <div className=" mb-7 flex items-center gap-x-3">
-                        <Button variant={"default"} onClick={onAddToCart} className="flex items-center bg-purple-500 text-white hover:bg-purple-500 focus:bg-purple-500  gap-x-2">
+                        <Button variant={"default"} className="flex items-center bg-purple-500 text-white hover:bg-purple-500 focus:bg-purple-500  gap-x-2">
                             Ajouter au panier
                             <ShoppingCart size={20} />
                         </Button>

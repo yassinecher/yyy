@@ -9,6 +9,7 @@ import Summary from './components/summary'
 import CartItem from './components/cart-item';
 import { Button } from '@/components/ui/button';
 import PcCartItem from './components/pc-cart-item';
+import PackCartItem from './components/pack-cart-item';
 
 export const revalidate = 0;
 
@@ -36,11 +37,17 @@ const CartPage = () => {
               <ul>
                 {cart.items.map((item) => (
                   <>{
-                    'id'in item?<>
-                    
+                    'packId'in item?<>
+                      <PackCartItem key={item.idd} data={item} />
+                           
+                    </>:<>
+                    {'id'in item?<>
                     <CartItem key={item.id} data={item} />
                     </>:<>
-                    <PcCartItem key={item.idd} data={item} />
+                    <PcCartItem key={item.idd} data={item} /></>
+
+                    }
+                   
                     </>
                   }
                   

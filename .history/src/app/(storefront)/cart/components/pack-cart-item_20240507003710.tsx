@@ -4,17 +4,17 @@ import { X } from "lucide-react";
 
 import IconButton from "@/components/ui/icon-button";
 import Currency from "@/components/ui/currency";
-import useCart, { PCCustom } from "@/hooks/use-cart";
+import useCart, { PCCustom, PackCustom } from "@/hooks/use-cart";
 import { Product } from "@/types";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 
 
 interface CartItemProps {
-  data: PCCustom; 
+  data: PackCustom; 
 }
 
-const PcCartItem: React.FC<CartItemProps> = ({
+const PackCartItem: React.FC<CartItemProps> = ({
   data
 }) => {
   const cart = useCart();
@@ -28,12 +28,15 @@ const PcCartItem: React.FC<CartItemProps> = ({
       <Card className="w-full bg-purple-100/80 dark:bg-purple-950/80">
         <CardTitle className="flex px-3 py-6 border-b">
         <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-        <Image
-          fill
-          src={data.case.images[0].url}
-          alt="" 
-          className="object-cover object-center"
-        />
+         {
+         data.packImage?<>   <Image
+         fill
+         src={data.packImage.toString()}
+         alt="" 
+         className="object-cover object-center"
+       /></>:<></>
+         }
+     
       </div>
 
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
@@ -43,7 +46,7 @@ const PcCartItem: React.FC<CartItemProps> = ({
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">
             <p className=" text-lg font-semibold text-black dark:text-purple-500">
-            PC personalisé
+            {data.Title}
             </p>
           </div>
 
@@ -110,6 +113,8 @@ const PcCartItem: React.FC<CartItemProps> = ({
 }
  
 const It=(props:{item:Product,className:string})=>{
+  console.log(props.item,props.item.images)
+  
 if(props.item.images){
   return(<>
     <li className={props.className}>
@@ -143,4 +148,4 @@ if(props.item.images){
 }
 
 }
-export default PcCartItem;
+export default PackCartItem;

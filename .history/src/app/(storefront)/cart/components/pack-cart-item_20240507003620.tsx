@@ -4,17 +4,17 @@ import { X } from "lucide-react";
 
 import IconButton from "@/components/ui/icon-button";
 import Currency from "@/components/ui/currency";
-import useCart, { PCCustom } from "@/hooks/use-cart";
+import useCart, { PCCustom, PackCustom } from "@/hooks/use-cart";
 import { Product } from "@/types";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 
 
 interface CartItemProps {
-  data: PCCustom; 
+  data: PackCustom; 
 }
 
-const PcCartItem: React.FC<CartItemProps> = ({
+const PackCartItem: React.FC<CartItemProps> = ({
   data
 }) => {
   const cart = useCart();
@@ -30,7 +30,7 @@ const PcCartItem: React.FC<CartItemProps> = ({
         <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
         <Image
           fill
-          src={data.case.images[0].url}
+          src={data.packImage.toString()}
           alt="" 
           className="object-cover object-center"
         />
@@ -43,7 +43,7 @@ const PcCartItem: React.FC<CartItemProps> = ({
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">
             <p className=" text-lg font-semibold text-black dark:text-purple-500">
-            PC personalisé
+            {data.Title}
             </p>
           </div>
 
@@ -110,7 +110,9 @@ const PcCartItem: React.FC<CartItemProps> = ({
 }
  
 const It=(props:{item:Product,className:string})=>{
-if(props.item){
+  console.log(props.item,props.item.images)
+  
+if(props.item.images){
   return(<>
     <li className={props.className}>
         <div className=" ml-3 relative h-8 w-8 rounded-md overflow-hidden sm:h-20 sm:w-20">
@@ -143,4 +145,4 @@ if(props.item){
 }
 
 }
-export default PcCartItem;
+export default PackCartItem;

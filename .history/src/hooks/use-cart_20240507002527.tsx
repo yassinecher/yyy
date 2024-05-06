@@ -27,9 +27,6 @@ export type PackCustom = {
   Title:string
   price:number
   reduction:number
-  packId:String;
-packTitle:String;
-packImage:String;
   defaultKeyboard?: Product|undefined,
   defaultMouse?: Product|undefined,
   defaultMousePad?: Product|undefined,

@@ -4,17 +4,17 @@ import { X } from "lucide-react";
 
 import IconButton from "@/components/ui/icon-button";
 import Currency from "@/components/ui/currency";
-import useCart, { PCCustom } from "@/hooks/use-cart";
+import useCart, { PCCustom, PackCustom } from "@/hooks/use-cart";
 import { Product } from "@/types";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 
 
 interface CartItemProps {
-  data: PCCustom; 
+  data: PackCustom; 
 }
 
-const PcCartItem: React.FC<CartItemProps> = ({
+const PackCartItem: React.FC<CartItemProps> = ({
   data
 }) => {
   const cart = useCart();
@@ -28,12 +28,15 @@ const PcCartItem: React.FC<CartItemProps> = ({
       <Card className="w-full bg-purple-100/80 dark:bg-purple-950/80">
         <CardTitle className="flex px-3 py-6 border-b">
         <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-        <Image
-          fill
-          src={data.case.images[0].url}
-          alt="" 
-          className="object-cover object-center"
-        />
+         {
+         data.packImage?<>   <Image
+         fill
+         src={data.packImage.toString()}
+         alt="" 
+         className="object-cover object-center"
+       /></>:<></>
+         }
+     
       </div>
 
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
@@ -43,7 +46,7 @@ const PcCartItem: React.FC<CartItemProps> = ({
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">
             <p className=" text-lg font-semibold text-black dark:text-purple-500">
-            PC personalisé
+            {data.Title}
             </p>
           </div>
 
@@ -67,14 +70,16 @@ const PcCartItem: React.FC<CartItemProps> = ({
         const item = da as Product;
         
         return <>
-         {filterKey=='motherboard'?(<div className="font-semibold m-2">Carte mére :</div>):<></>}
-         {filterKey=='processor'?(<div className="font-semibold m-2">Processeur :</div>):<></>}
-         {filterKey=='gpu'?(<div className="font-semibold m-2">Carte Graphique :</div>):<></>}
-         {filterKey=='disk'?(<div className="font-semibold m-2">Disque dure :</div>):<></>}
-         {filterKey=='power'?(<div className="font-semibold m-2">Bloc d&apos;alimentation :</div>):<></>}
-         {filterKey=='case'?(<div className="font-semibold m-2">Boitier :</div>):<></>}
-         {filterKey=='screen'?(<div className="font-semibold m-2">Ecran :</div>):<></>}
-         {filterKey=='cooling'?(<div className="font-semibold m-2">Refroidisseur CPU :</div>):<></>}
+         {filterKey=='defaultKeyboard'?(<div className="font-semibold m-2">Clavier :</div>):<></>}
+         {filterKey=='defaultMouse'?(<div className="font-semibold m-2">Souris :</div>):<></>}
+         {filterKey=='defaultMousePad'?(<div className="font-semibold m-2">Tapi :</div>):<></>}
+         {filterKey=='defaultMics'?(<div className="font-semibold m-2"> Microphone :</div>):<></>}
+         {filterKey=='defaultHeadset'?(<div className="font-semibold m-2">Casque :</div>):<></>}
+         {filterKey=='defaultCamera'?(<div className="font-semibold m-2">Caméra :</div>):<></>}
+         {filterKey=='defaultScreen'?(<div className="font-semibold m-2">Ecran :</div>):<></>}
+         {filterKey=='DefaultSpeaker'?(<div className="font-semibold m-2">Haut-Parleur :</div>):<></>}
+         {filterKey=='DefaultManette'?(<div className="font-semibold m-2">Manette :</div>):<></>}
+         {filterKey=='DefaultChair'?(<div className="font-semibold m-2">Chaise gaming :</div>):<></>}
         
         
         <It className={'flex py-6 border-b'} item={item} key={item.id} /></>;
@@ -110,33 +115,39 @@ const PcCartItem: React.FC<CartItemProps> = ({
 }
  
 const It=(props:{item:Product,className:string})=>{
-
-return(<>
-  <li className={props.className}>
-      <div className=" ml-3 relative h-8 w-8 rounded-md overflow-hidden sm:h-20 sm:w-20">
-        <Image
-          fill
-          src={props.item.images[0].url}
-          alt=""
-          className="object-cover object-center"
-        />
-      </div>
-      <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-        <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-          <div className="flex justify-between">
-            <p className="  font-semibold text-sm text-black dark:text-white">
-              {props.item.name}
-            </p>
-          </div>
-
-          <div className="mt-1 flex text-sm">
-           
-          </div>
-          <Currency value={props.item.price} />
+  console.log(props.item,props.item.images)
+  
+if(props.item.images){
+  return(<>
+    <li className={props.className}>
+        <div className=" ml-3 relative h-8 w-8 rounded-md overflow-hidden sm:h-20 sm:w-20">
+          <Image
+            fill
+            src={props.item.images[0].url}
+            alt=""
+            className="object-cover object-center"
+          />
         </div>
-      </div>
-    </li>
-
-</>)
+        <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+          <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+            <div className="flex justify-between">
+              <p className="  font-semibold text-sm text-black dark:text-white">
+                {props.item.name}
+              </p>
+            </div>
+  
+            <div className="mt-1 flex text-sm">
+             
+            </div>
+            <Currency value={props.item.price} />
+          </div>
+        </div>
+      </li>
+  
+  </>)
+}else{
+  return
 }
-export default PcCartItem;
+
+}
+export default PackCartItem;
