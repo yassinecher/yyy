@@ -92,7 +92,23 @@ console.log(packs)
 
 
    
-   
+      console.log({
+        data: {
+       
+          isPaid: false,
+          phone: telephone || "",
+          address: `${rue || ""}, ${ville || ""}, ${codePostal || ""}`,
+          name: nom || "",
+          lastName: prenom || "",
+          email: email || "",
+          orderItems: {
+            create: [...orderItems],
+          },
+          orderPc: {
+            create: pcOrderItems,
+          },
+        },
+      })
       const order = await prismadb.order.create({
         data: {
           isPaid: false,
@@ -106,50 +122,8 @@ console.log(packs)
           },
           orderPc: {
             create: pcOrderItems,
-          },
-          PackOrders: {  // Creating PackOrders along with the order
-            create: packs.map(pack => ({
-              Title: pack.Title.toString(),
-              price:parseInt(pack.price.toString()) ,
-              reduction:parseInt(pack.reduction.toString()) ,
-              packId: pack.packId.toString(),
-              packTitle: pack.packTitle.toString(),
-              packImage: pack.packImage.toString(),
-              Clavier: {
-                connect: pack.defaultKeyboard ? [{ id: pack.defaultKeyboard.id }] : []
-              },
-              Mouse: {
-                connect: pack.defaultMouse ? [{ id: pack.defaultMouse.id }] : []
-              },
-              MousePad: {
-                connect: pack.defaultMousePad ? [{ id: pack.defaultMousePad.id }] : []
-              },
-              Mic: {
-                connect: pack.defaultMics ? [{ id: pack.defaultMics.id }] : []
-              },
-              Headset: {
-                connect: pack.defaultHeadset ? [{ id: pack.defaultHeadset.id }] : []
-              },
-              Camera: {
-                connect: pack.defaultCamera ? [{ id: pack.defaultCamera.id }] : []
-              },
-              Screen: {
-                connect: pack.defaultScreen ? [{ id: pack.defaultScreen.id }] : []
-              },
-              Speaker: {
-                connect: pack.DefaultSpeaker ? [{ id: pack.DefaultSpeaker.id }] : []
-              },
-              Manette: {
-                connect: pack.DefaultManette ? [{ id: pack.DefaultManette.id }] : []
-              },
-              Chair: {
-                connect: pack.DefaultChair ? [{ id: pack.DefaultChair.id }] : []
-              },
-            }))
-          }
-        },
+          },}
       });
-      console.log(order)
      // Create a Nodemailer transporter using SMTP configuration from Oracle Cloud Email Delivery
      const transporter = nodemailer.createTransport({
       host: 'smtp.email.eu-marseille-1.oci.oraclecloud.com', // Example SMTP server address

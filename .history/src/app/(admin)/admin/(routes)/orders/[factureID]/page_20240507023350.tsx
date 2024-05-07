@@ -430,17 +430,17 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                 packId: p.packId.toString(),
                 packTitle: p.packTitle.toString(),
                 packImage: p.packImage.toString(),
-                defaultKeyboard: p.Clavier.length > 0 ? { ...p.Clavier[0], dicountPrice: parseInt(p.Clavier[0].dicountPrice.toString()), price: parseInt(p.Clavier[0].price.toString()), stock: parseInt(p.Clavier[0].stock.toString()) } as unknown as Product : undefined,
-defaultMouse: p.Mouse.length > 0 ? { ...p.Mouse[0], dicountPrice: parseInt(p.Mouse[0].dicountPrice.toString()), price: parseInt(p.Mouse[0].price.toString()), stock: parseInt(p.Mouse[0].stock.toString()) } as unknown as Product: undefined,
-defaultMousePad: p.MousePad.length > 0 ? { ...p.MousePad[0], dicountPrice: parseInt(p.MousePad[0].dicountPrice.toString()), price: parseInt(p.MousePad[0].price.toString()), stock: parseInt(p.MousePad[0].stock.toString()) }as unknown as Product : undefined,
-defaultMics: p.Mic.length > 0 ? { ...p.Mic[0], dicountPrice: parseInt(p.Mic[0].dicountPrice.toString()), price: parseInt(p.Mic[0].price.toString()), stock: parseInt(p.Mic[0].stock.toString()) } as unknown as Product: undefined,
-defaultHeadset: p.Headset.length > 0 ? { ...p.Headset[0], dicountPrice: parseInt(p.Headset[0].dicountPrice.toString()), price: parseInt(p.Headset[0].price.toString()), stock: parseInt(p.Headset[0].stock.toString()) } as unknown as Product: undefined,
-defaultCamera: p.Camera.length > 0 ? { ...p.Camera[0], dicountPrice: parseInt(p.Camera[0].dicountPrice.toString()), price: parseInt(p.Camera[0].price.toString()), stock: parseInt(p.Camera[0].stock.toString()) }as unknown as Product : undefined,
-defaultScreen: p.Screen.length > 0 ? { ...p.Screen[0], dicountPrice: parseInt(p.Screen[0].dicountPrice.toString()), price: parseInt(p.Screen[0].price.toString()), stock: parseInt(p.Screen[0].stock.toString()) } as unknown as Product: undefined,
-DefaultSpeaker: p.Speaker.length > 0 ? { ...p.Speaker[0], dicountPrice: parseInt(p.Speaker[0].dicountPrice.toString()), price: parseInt(p.Speaker[0].price.toString()), stock: parseInt(p.Speaker[0].stock.toString()) } as unknown as Product: undefined,
-DefaultManette: p.Manette.length > 0 ? { ...p.Manette[0], dicountPrice: parseInt(p.Manette[0].dicountPrice.toString()), price: parseInt(p.Manette[0].price.toString()), stock: parseInt(p.Manette[0].stock.toString()) }as unknown as Product : undefined,
-DefaultChair: p.Chair.length > 0 ? { ...p.Chair[0], dicountPrice: parseInt(p.Chair[0].dicountPrice.toString()), price: parseInt(p.Chair[0].price.toString()), stock: parseInt(p.Chair[0].stock.toString()) } as unknown as Product: undefined,
-  number: 1
+                defaultKeyboard: { ...p.Clavier[0], dicountPrice: parseInt(p.Clavier[0].dicountPrice.toString()), price: parseInt(p.Clavier[0].price.toString()), stock: parseInt(p.Clavier[0].stock.toString()) } as unknown as Product | undefined,
+                defaultMouse: { ...p.Mouse[0], dicountPrice: parseInt(p.Mouse[0].dicountPrice.toString()), price: parseInt(p.Mouse[0].price.toString()), stock: parseInt(p.Mouse[0].stock.toString()) } as unknown as Product | undefined,
+                defaultMousePad: { ...p.MousePad[0], dicountPrice: parseInt(p.MousePad[0].dicountPrice.toString()), price: parseInt(p.MousePad[0].price.toString()), stock: parseInt(p.MousePad[0].stock.toString()) } as unknown as Product | undefined,
+                defaultMics: { ...p.Mic[0], dicountPrice: parseInt(p.Mic[0].dicountPrice.toString()), price: parseInt(p.Mic[0].price.toString()), stock: parseInt(p.Mic[0].stock.toString()) } as unknown as Product | undefined,
+                defaultHeadset:{...p.Headset[0],dicountPrice:parseInt(p.Headset[0].dicountPrice.toString()),price:parseInt(p.Headset[0].price.toString()),stock:parseInt(p.Headset[0].stock.toString())}as unknown as Product | undefined,
+                defaultCamera: {...p.Camera[0],dicountPrice:parseInt(p.Camera[0].dicountPrice.toString()),price:parseInt(p.Camera[0].price.toString()),stock:parseInt(p.Camera[0].stock.toString())}as unknown as Product | undefined,
+                defaultScreen: {...p.Screen[0],dicountPrice:parseInt(p.Screen[0].dicountPrice.toString()),price:parseInt(p.Screen[0].price.toString()),stock:parseInt(p.Screen[0].stock.toString())}as unknown as Product | undefined,
+                DefaultSpeaker: {...p.Speaker[0],dicountPrice:parseInt(p.Speaker[0].dicountPrice.toString()),price:parseInt(p.Speaker[0].price.toString()),stock:parseInt(p.Speaker[0].stock.toString())}as unknown as Product | undefined,
+                DefaultManette: {...p.Manette[0],dicountPrice:parseInt(p.Manette[0].dicountPrice.toString()),price:parseInt(p.Manette[0].price.toString()),stock:parseInt(p.Manette[0].stock.toString())}as unknown as Product | undefined,
+                DefaultChair: {...p.Chair[0],dicountPrice:parseInt(p.Chair[0].dicountPrice.toString()),price:parseInt(p.Chair[0].price.toString()),stock:parseInt(p.Chair[0].stock.toString())}as unknown as Product | undefined,
+                number: 1
             }
         })
         console.log(packs[0])

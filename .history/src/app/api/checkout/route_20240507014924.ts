@@ -92,7 +92,23 @@ console.log(packs)
 
 
    
-   
+      console.log({
+        data: {
+       
+          isPaid: false,
+          phone: telephone || "",
+          address: `${rue || ""}, ${ville || ""}, ${codePostal || ""}`,
+          name: nom || "",
+          lastName: prenom || "",
+          email: email || "",
+          orderItems: {
+            create: [...orderItems],
+          },
+          orderPc: {
+            create: pcOrderItems,
+          },
+        },
+      })
       const order = await prismadb.order.create({
         data: {
           isPaid: false,
@@ -149,7 +165,6 @@ console.log(packs)
           }
         },
       });
-      console.log(order)
      // Create a Nodemailer transporter using SMTP configuration from Oracle Cloud Email Delivery
      const transporter = nodemailer.createTransport({
       host: 'smtp.email.eu-marseille-1.oci.oraclecloud.com', // Example SMTP server address

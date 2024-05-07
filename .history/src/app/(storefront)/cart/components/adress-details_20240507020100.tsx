@@ -57,8 +57,8 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
         telephone,
         totalPrice,
         data,
-        articlesPanier: data.filter((e)=>'id'in e),
-        pcOrder: data.filter((e)=>'idd'in e),
+        articlesPanier: data.filter((e)=>'id'in e&& !('packId' in e)),
+        pcOrder: data.filter((e)=>'idd'in e&&!('packId' in e)),
       });
         
       console.log('Validation de la commande réussie :', response.data);
@@ -76,7 +76,7 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
     <div>
       <Dialog onOpenChange={()=>{setisDone(false)}}>
         <DialogTrigger asChild >
-          <Button disabled={data.length === 0} className="w-full mt-6 dark:bg-purple-500 font-semibold text-lg dark:text-white">Passer à la caisse</Button>
+          <Button disabled={data.length === 0} className="w-full mt-6 dark:bg-purple-500 bg-purple-500  hover:bg-purple-500/80 dark:hover:bg-purple-500/80 font-semibold text-lg dark:text-white">Passer à la caisse</Button>
         </DialogTrigger>
         <DialogContent className="relative top-0 lg:min-w-[80%] h-[100vh] overflow-y-scroll sm:h-4/6 sm:overflow-y-hidden min-w-[100%]   ">
           <div className='h-[120vh] sm:h-full '>

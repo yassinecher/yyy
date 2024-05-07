@@ -43,7 +43,8 @@ export async function POST(
       prenom,
       rue,
       ville,
-      totalPrice
+      totalPrice,
+      data
     } = await req.json();
 
     const productIdss = articlesPanier as Product[];
@@ -147,7 +148,7 @@ export async function POST(
       const mailOptions = {
         from: 'support@gaminggear.tn',
         to: email,
-        subject: "CommandeVotre commande est complète!",
+        subject: "Votre commande est complète!",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email

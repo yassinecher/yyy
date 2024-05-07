@@ -57,8 +57,8 @@ const CheckoutDialog = ({ data ,totalPrice}: { data: CartItem[],totalPrice:numbe
         telephone,
         totalPrice,
         data,
-        articlesPanier: data.filter((e)=>'id'in e),
-        pcOrder: data.filter((e)=>'idd'in e),
+        articlesPanier: data.filter((e)=>'id'in e&& !('packId' in e)),
+        pcOrder: data.filter((e)=>'idd'in e&&!('packId' in e)),
       });
         
       console.log('Validation de la commande réussie :', response.data);

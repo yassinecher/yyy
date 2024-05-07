@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
-import { PCCustom } from "@/hooks/use-cart";
+import { PCCustom, PackCustom } from "@/hooks/use-cart";
 import { pcOrder } from "@prisma/client";
 import nodemailer from 'nodemailer';
 import { Product } from "@/types";
@@ -43,13 +43,16 @@ export async function POST(
       prenom,
       rue,
       ville,
-      totalPrice
+      totalPrice,
+      data 
     } = await req.json();
 
     const productIdss = articlesPanier as Product[];
     const productIds=productIdss.map((e)=>e.id)
     const pc = pcOrder as PCCustom[];
-
+    const dataa:any[]=data
+    const packs: PackCustom[] = dataa.filter((pack) => pack.hasOwnProperty('packId'));
+console.log(packs)
   
 
     const products = await prismadb.product.findMany({
@@ -147,7 +150,7 @@ export async function POST(
       const mailOptions = {
         from: 'support@gaminggear.tn',
         to: email,
-        subject: "Commande",
+        subject: "Votre commande est complète!",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email
@@ -155,7 +158,7 @@ export async function POST(
  const mailOptions2 = {
         from: 'support@gaminggear.tn',
         to: 'GamingGear.tn@gmail.com',
-        subject: "Vous avez une nouvelle Commande",
+        subject: "Vous avez une nouvelle Commande!",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email

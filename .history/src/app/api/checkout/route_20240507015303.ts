@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
-import { PCCustom } from "@/hooks/use-cart";
+import { PCCustom, PackCustom } from "@/hooks/use-cart";
 import { pcOrder } from "@prisma/client";
 import nodemailer from 'nodemailer';
 import { Product } from "@/types";
@@ -43,12 +43,16 @@ export async function POST(
       prenom,
       rue,
       ville,
-      totalPrice
-    } = await req.json();
+      totalPrice,
+      data 
+    } = await req.json(); 
+
 
     const productIdss = articlesPanier as Product[];
     const productIds=productIdss.map((e)=>e.id)
     const pc = pcOrder as PCCustom[];
+    const dataa:any[]=data
+    const packs: PackCustom[] = dataa.filter((pack) => pack.hasOwnProperty('packId'));
 
   
 
@@ -119,8 +123,50 @@ export async function POST(
           orderPc: {
             create: pcOrderItems,
           },
+          PackOrders: {  // Creating PackOrders along with the order
+            create: packs.map(pack => ({
+              Title: pack.Title.toString(),
+              price:parseInt(pack.price.toString()) ,
+              reduction:parseInt(pack.reduction.toString()) ,
+              packId: pack.packId.toString(),
+              packTitle: pack.packTitle.toString(),
+              packImage: pack.packImage.toString(),
+              Clavier: {
+                connect: pack.defaultKeyboard ? [{ id: pack.defaultKeyboard.id }] : []
+              },
+              Mouse: {
+                connect: pack.defaultMouse ? [{ id: pack.defaultMouse.id }] : []
+              },
+              MousePad: {
+                connect: pack.defaultMousePad ? [{ id: pack.defaultMousePad.id }] : []
+              },
+              Mic: {
+                connect: pack.defaultMics ? [{ id: pack.defaultMics.id }] : []
+              },
+              Headset: {
+                connect: pack.defaultHeadset ? [{ id: pack.defaultHeadset.id }] : []
+              },
+              Camera: {
+                connect: pack.defaultCamera ? [{ id: pack.defaultCamera.id }] : []
+              },
+              Screen: {
+                connect: pack.defaultScreen ? [{ id: pack.defaultScreen.id }] : []
+              },
+              Speaker: {
+                connect: pack.DefaultSpeaker ? [{ id: pack.DefaultSpeaker.id }] : []
+              },
+              Manette: {
+                connect: pack.DefaultManette ? [{ id: pack.DefaultManette.id }] : []
+              },
+              Chair: {
+                connect: pack.DefaultChair ? [{ id: pack.DefaultChair.id }] : []
+              },
+            }))
+          }
         },
       });
+
+      console.log(order)
      // Create a Nodemailer transporter using SMTP configuration from Oracle Cloud Email Delivery
      const transporter = nodemailer.createTransport({
       host: 'smtp.email.eu-marseille-1.oci.oraclecloud.com', // Example SMTP server address
@@ -147,12 +193,19 @@ export async function POST(
       const mailOptions = {
         from: 'support@gaminggear.tn',
         to: email,
-        subject: "Commande",
+        subject: "Votre commande est complète!",
         html: emailBody, // Use HTML for a more structured email body
       };
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-
+ const mailOptions2 = {
+        from: 'support@gaminggear.tn',
+        to: 'GamingGear.tn@gmail.com',
+        subject: "Vous avez une nouvelle Commande!",
+        html: emailBody, // Use HTML for a more structured email body
+      };
+    // Send the email
+    const info3 = await transporter.sendMail(mailOptions2);
     console.log('Email sent:', info.response);
     return NextResponse.json({ order }, { headers: corsHeaders });
   } catch (error) {

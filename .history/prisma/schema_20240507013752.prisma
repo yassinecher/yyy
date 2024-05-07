@@ -21,70 +21,70 @@ model User {
 }
 
 model Product {
-  id                String           @id @default(uuid())
+  id                String        @id @default(uuid())
   categoryId        String
   name              String
-  dicountPrice      Decimal          @default(0)
+  dicountPrice      Decimal       @default(0)
   description       String
   price             Decimal
   stock             Decimal
-  isFeatured        Boolean          @default(false)
-  isArchived        Boolean          @default(false)
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-  template          String           @default("")
-  soldnumber        Decimal          @default(0)
-  useTemplate       Boolean          @default(false)
-  category          Category         @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  isFeatured        Boolean       @default(false)
+  isArchived        Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  template          String        @default("")
+  soldnumber        Decimal       @default(0)
+  useTemplate       Boolean       @default(false)
+  category          Category      @relation("CategoryToProduct", fields: [categoryId], references: [id])
   images            Image[]
   orderItems        OrderItem[]
-  motherboard       Motherboard[]    @relation("ProductToMotherboard")
-  cpus              Processor[]      @relation("ProductToCPU")
-  gpus              Gpu[]            @relation("ProductToGPU")
-  memories          Memory[]         @relation("ProductToMemory")
-  powersupplies     Powersupply[]    @relation("ProductToPowersupply")
-  storages          Harddisk[]       @relation("ProductToStorage")
-  cases             PCcase[]         @relation("ProductToPCCase")
-  screens           Screen[]         @relation("ProductToScreen")
+  motherboard       Motherboard[] @relation("ProductToMotherboard")
+  cpus              Processor[]   @relation("ProductToCPU")
+  gpus              Gpu[]         @relation("ProductToGPU")
+  memories          Memory[]      @relation("ProductToMemory")
+  powersupplies     Powersupply[] @relation("ProductToPowersupply")
+  storages          Harddisk[]    @relation("ProductToStorage")
+  cases             PCcase[]      @relation("ProductToPCCase")
+  screens           Screen[]      @relation("ProductToScreen")
   additionalDetails Field[]
-  cooling           Cooling[]        @relation("ProductToCooling")
-  Manette           Manette[]        @relation("ProductToManette")
-  Laptop            Laptop[]         @relation("ProductToLaptop")
-  keyboard          keyboard[]       @relation("ProductTokeyboard")
-  Headset           Headset[]        @relation("ProductToHeadset")
-  Mic               Mic[]            @relation("ProductToMic")
-  Mousepad          Mousepad[]       @relation("ProductToMousepad")
-  Mouse             Mouse[]          @relation("ProductToMouse")
-  PreBuiltPcmodel   PreBuiltPcmodel?
-  mouseId           String?
-  Camera            Camera[]         @relation("ProductToCamera")
-  Pack              Pack[]           @relation("ProductsToPack")
+  cooling           Cooling[]     @relation("ProductToCooling")
+  Manette            Manette[] @relation("ProductToManette")
+  Laptop          Laptop[]         @relation("ProductToLaptop")
+  keyboard        keyboard[]       @relation("ProductTokeyboard")
+  Headset         Headset[]        @relation("ProductToHeadset")
+  Mic             Mic[]            @relation("ProductToMic")
+  Mousepad        Mousepad[]       @relation("ProductToMousepad")
+  Mouse           Mouse[]          @relation("ProductToMouse")
+  PreBuiltPcmodel PreBuiltPcmodel?
+  mouseId         String?
+  Camera          Camera[]         @relation("ProductToCamera")
+  Pack            Pack[]           @relation("ProductsToPack")
 
   Hautparleur Hautparleur[] @relation("ProductToHautparleur")
 
-  Chaisegaming Chaisegaming[]  @relation("ProductToChaisegaming")
-  PackClavier  AccessoryPack[] @relation("PackClavier")
-  PackMouse    AccessoryPack[] @relation("PackMouse")
-  PackMousePad AccessoryPack[] @relation("PackMousePad")
-  PackMic      AccessoryPack[] @relation("PackMic")
-  PackHeadset  AccessoryPack[] @relation("PackHeadset")
-  PackCamera   AccessoryPack[] @relation("PackCamera")
-  PackScreen   AccessoryPack[] @relation("PackScreen")
-  PackProduct  AccessoryPack[] @relation("PackProduct")
-  PackSpeaker  AccessoryPack[] @relation("PackSpeaker")
-  PackManette  AccessoryPack[] @relation("PackManette")
-  PackChair    AccessoryPack[] @relation("PackChair")
+  Chaisegaming Chaisegaming[] @relation("ProductToChaisegaming")
+  PackClavier        AccessoryPack[]     @relation("PackClavier")
+  PackMouse        AccessoryPack[]     @relation("PackMouse")
+  PackMousePad        AccessoryPack[]     @relation("PackMousePad")
+  PackMic        AccessoryPack[]     @relation("PackMic")
+  PackHeadset        AccessoryPack[]     @relation("PackHeadset")
+  PackCamera        AccessoryPack[]     @relation("PackCamera")
+  PackScreen        AccessoryPack[]     @relation("PackScreen")
+  PackProduct        AccessoryPack[]     @relation("PackProduct")
+  PackSpeaker        AccessoryPack[]     @relation("PackSpeaker")
+  PackManette        AccessoryPack[]     @relation("PackManette")
+  PackChair        AccessoryPack[]     @relation("PackChair")
 
-  OrderPackClavier  PackOrder[] @relation("OrderPackClavier")
-  OrderPackMouse    PackOrder[] @relation("OrderPackMouse")
-  OrderPackMousePad PackOrder[] @relation("OrderPackMousePad")
-  OrderPackMic      PackOrder[] @relation("OrderPackMic")
-  OrderPackHeadset  PackOrder[] @relation("OrderPackHeadset")
-  OrderPackCamera   PackOrder[] @relation("OrderPackCamera")
-  OrderPackScreen   PackOrder[] @relation("OrderPackScreen")
-  OrderPackSpeaker  PackOrder[] @relation("OrderPackSpeaker")
-  OrderPackManette  PackOrder[] @relation("OrderPackManette")
-  OrderPackChair    PackOrder[] @relation("OrderPackChair")
+  OrderPackClavier        PackOrder[]     @relation("OrderPackClavier")
+  OrderPackMouse        PackOrder[]     @relation("OrderPackMouse")
+  OrderPackMousePad        PackOrder[]     @relation("OrderPackMousePad")
+  OrderPackMic        PackOrder[]     @relation("OrderPackMic")
+  OrderPackHeadset        PackOrder[]     @relation("OrderPackHeadset")
+  OrderPackCamera        PackOrder[]     @relation("OrderPackCamera")
+  OrderPackScreen        PackOrder[]     @relation("OrderPackScreen")
+  OrderPackSpeaker        PackOrder[]     @relation("OrderPackSpeaker")
+  OrderPackManette        PackOrder[]     @relation("OrderPackManette")
+  OrderPackChair        PackOrder[]     @relation("OrderPackChair")
 }
 
 model Field {
@@ -107,6 +107,7 @@ model Category {
 }
 
 model Order {
+  
   id          String      @id @default(uuid())
   isPaid      Boolean     @default(false)
   phone       String      @default("")
@@ -114,20 +115,19 @@ model Order {
   name        String      @default("")
   lastName    String      @default("")
   email       String      @default("")
-  archivee    Boolean     @default(false)
+  archivee       Boolean     @default(false)
   phoneNumber String      @default("")
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   orderItems  OrderItem[]
   orderPc     pcOrder[]
-  PackOrders  PackOrder[]
   pcOrderId   String      @default("")
 }
 
 model pcOrder {
   id              String      @id @default(uuid())
-  Title           String      @default("")
-  reduction       Decimal     @default(0)
+  Title       String    @default("")
+  reduction       Decimal @default(0)
   price           String      @default("")
   motherboard     OrderItem[] @relation(name: "motherboard_pcOrder")
   processor       OrderItem[] @relation(name: "processor_pcOrder")
@@ -508,14 +508,14 @@ model FansNumber {
 }
 
 model Slide {
-  id                String @id @default(uuid())
-  title             String
-  titleColor        String @default("")
-  description       String
-  descriptionColor  String @default("")
-  Price             String @default("")
-  PriceColor        String @default("")
-  DeletedPrice      String @default("")
+  id          String   @id @default(uuid())
+  title       String
+  titleColor       String @default("")
+  description String
+  descriptionColor String @default("")
+  Price String @default("")
+  PriceColor String @default("")
+  DeletedPrice String @default("")
   DeletedPriceColor String @default("")
 
   imageUrl    String
@@ -585,7 +585,7 @@ model ComponentOnPcGroupe {
 
 model navitem {
   id                  String                @id @default(uuid())
-  interface           String                @default("Desktop")
+  interface String @default("Desktop")
   label               String
   link                String
   createdAt           DateTime              @default(now())
@@ -595,7 +595,7 @@ model navitem {
 
 model CathegoryCollection {
   id        String         @id @default(uuid())
-  interface String         @default("Desktop")
+   interface String @default("Desktop")
   Label     String
   index     Decimal
   navitemId String
@@ -605,7 +605,7 @@ model CathegoryCollection {
 
 model Cathegorilab {
   id                    String              @id @default(uuid())
-  interface             String              @default("Desktop")
+  interface String @default("Desktop")
   index                 Decimal
   catId                 String
   Label                 String
@@ -879,45 +879,43 @@ model SensorType {
 }
 
 model pcTemplate {
-  id                   String                             @id @default(uuid())
-  motherBoardId        EntityProfile[]                    @relation("MotherboardsZ")
-  processorId          EntityProfile[]                    @relation("CPUsZ")
-  graphicCardId        EntityProfile[]                    @relation("GPUsZ")
-  ramIdArray           ComponentOnPcGroupeEntityProfile[] @relation("RamsZ")
-  hardDiskArray        ComponentOnPcGroupeEntityProfile[] @relation("DisksZ")
-  caseId               EntityProfile[]                    @relation("CasesZ")
-  powerSupplyId        EntityProfile[]                    @relation("PowerSuppliesZ")
-  cooling              EntityProfile[]                    @relation("coolingsZ")
+  id            String @id @default(uuid())
+  motherBoardId   EntityProfile[]       @relation("MotherboardsZ")
+  processorId   EntityProfile[]       @relation("CPUsZ")
+  graphicCardId EntityProfile[]       @relation("GPUsZ")
+  ramIdArray ComponentOnPcGroupeEntityProfile[] @relation("RamsZ")
+  hardDiskArray      ComponentOnPcGroupeEntityProfile [] @relation("DisksZ")
+  caseId  EntityProfile   []       @relation("CasesZ")
+  powerSupplyId EntityProfile[]       @relation("PowerSuppliesZ") 
+  cooling        EntityProfile[]       @relation("coolingsZ")
   defaultmotherBoardId String
   defaultprocessorId   String
   defaultgraphicCardId String
   defaultpowerSupplyId String
   defaultcaseId        String
-  defaultcooling       String                             @default("")
+  defaultcooling        String  @default("")
   defaultramIdArray    String[]
   defaulthardDiskArray String[]
-  discountOnPc         Decimal                            @default(0)
-  PreBuiltPcmodel      PreBuiltPcmodel[]
+  discountOnPc  Decimal @default(0)
+  PreBuiltPcmodel PreBuiltPcmodel[]
 }
-
 model ComponentOnPcGroupeEntityProfile {
-  id         String          @id @default(uuid())
+  id         String                @id @default(uuid())
   Components EntityProfile[]
-  defaultId  String          @default("")
-  rams       pcTemplate[]    @relation("RamsZ")
-  disks      pcTemplate[]    @relation("DisksZ")
+  defaultId  String @default("")
+  rams       pcTemplate[] @relation("RamsZ")
+  disks      pcTemplate[] @relation("DisksZ")
 }
-
 model EntityProfile {
-  id                               String                            @id @default(uuid())
-  productId                        String
-  coolings                         pcTemplate[]                      @relation("coolingsZ")
-  CPmotherboards                   pcTemplate[]                      @relation("MotherboardsZ")
-  CPCPUs                           pcTemplate[]                      @relation("CPUsZ")
-  CPGPUs                           pcTemplate[]                      @relation("GPUsZ")
-  CPcases                          pcTemplate[]                      @relation("CasesZ")
-  CPpowersupplys                   pcTemplate[]                      @relation("PowerSuppliesZ")
-  ComponentOnPcGroupe              ComponentOnPcGroupeEntityProfile? @relation(fields: [ComponentOnPcGroupeEntityProfile], references: [id])
+  id                    String                @id @default(uuid())
+  productId             String
+  coolings              pcTemplate[] @relation("coolingsZ")
+  CPmotherboards        pcTemplate[] @relation("MotherboardsZ")
+  CPCPUs                pcTemplate[] @relation("CPUsZ")
+  CPGPUs                pcTemplate[] @relation("GPUsZ")
+  CPcases               pcTemplate[] @relation("CasesZ")
+  CPpowersupplys        pcTemplate[] @relation("PowerSuppliesZ")
+  ComponentOnPcGroupe   ComponentOnPcGroupeEntityProfile?  @relation(fields: [ComponentOnPcGroupeEntityProfile], references: [id])
   ComponentOnPcGroupeEntityProfile String?
 }
 
@@ -928,7 +926,7 @@ model PreBuiltPcmodel {
   productId    String     @unique
   pcTemplateId String
 }
-
+ 
 model Camera {
   id              String        @id @default(uuid())
   product         Product[]     @relation("ProductToCamera")
@@ -984,17 +982,16 @@ model Manette {
   manufacturerId String?
   RgbType        RgbType?      @relation(fields: [RgbTypeId], references: [id])
   RgbTypeId      String?
-  Connectivite   Connectivite? @relation(fields: [Connectiviteid], references: [id])
-  Connectiviteid String?
+  Connectivite        Connectivite?      @relation(fields: [Connectiviteid], references: [id])
+  Connectiviteid      String?
   product        Product[]     @relation("ProductToManette")
+ 
 }
-
 model Connectivite {
-  id          String    @id @default(uuid())
+  id          String        @id @default(uuid())
   name        String
   Hautparleur Manette[]
 }
-
 model Pack {
   id             String        @id @default(uuid())
   product        Product[]     @relation("ProductsToPack")
@@ -1002,50 +999,41 @@ model Pack {
   manufacturerId String?
 }
 
-model AccessoryPack {
-  id              String    @id @default(uuid())
-  Clavier         Product[] @relation("PackClavier")
-  Mouse           Product[] @relation("PackMouse")
-  MousePad        Product[] @relation("PackMousePad")
-  Mic             Product[] @relation("PackMic")
-  Headset         Product[] @relation("PackHeadset")
-  Camera          Product[] @relation("PackCamera")
-  Screen          Product[] @relation("PackScreen")
-  Speaker         Product[] @relation("PackSpeaker")
-  Manette         Product[] @relation("PackManette")
-  Chair           Product[] @relation("PackChair")
-  discountOnPack  Decimal   @default(0)
-  Product         Product[] @relation("PackProduct")
-  DefaultClavier  String    @default("")
-  DefaultMouse    String    @default("")
-  DefaultMousePad String    @default("")
-  DefaultMic      String    @default("")
-  DefaultHeadset  String    @default("")
-  DefaultCamera   String    @default("")
-  DefaultScreen   String    @default("")
-  DefaultSpeaker  String    @default("")
-  DefaultManette  String    @default("")
-  DefaultChair    String    @default("")
+model AccessoryPack{
+  id             String        @id @default(uuid())
+  Clavier        Product[]     @relation("PackClavier")
+  Mouse        Product[]     @relation("PackMouse")
+  MousePad        Product[]     @relation("PackMousePad")
+  Mic        Product[]     @relation("PackMic")
+  Headset        Product[]     @relation("PackHeadset")
+  Camera        Product[]     @relation("PackCamera")
+  Screen        Product[]     @relation("PackScreen")
+  Speaker        Product[]     @relation("PackSpeaker")
+  Manette        Product[]     @relation("PackManette")
+  Chair        Product[]     @relation("PackChair")
+  discountOnPack  Decimal @default(0)
+  Product        Product[]     @relation("PackProduct")
+  DefaultClavier  String @default("")
+  DefaultMouse  String @default("")
+  DefaultMousePad  String @default("")
+  DefaultMic  String @default("")
+  DefaultHeadset  String @default("")
+  DefaultCamera  String @default("")
+  DefaultScreen  String @default("")
+  DefaultSpeaker String @default("")
+  DefaultManette String @default("")
+  DefaultChair   String @default("")
 }
-
-model PackOrder {
-  id        String    @id @default(uuid())
-  Title     String
-  price     Decimal   @default(0)
-  reduction Decimal   @default(0)
-  packId    String
-  packTitle String
-  packImage String
-  Clavier   Product[] @relation("OrderPackClavier")
-  Mouse     Product[] @relation("OrderPackMouse")
-  MousePad  Product[] @relation("OrderPackMousePad")
-  Mic       Product[] @relation("OrderPackMic")
-  Headset   Product[] @relation("OrderPackHeadset")
-  Camera    Product[] @relation("OrderPackCamera")
-  Screen    Product[] @relation("OrderPackScreen")
-  Speaker   Product[] @relation("OrderPackSpeaker")
-  Manette   Product[] @relation("OrderPackManette")
-  Chair     Product[] @relation("OrderPackChair")
-  Order     Order?    @relation(fields: [orderId], references: [id])
-  orderId   String?
+model PackOrder{
+  id             String        @id @default(uuid())
+  Clavier        Product[]     @relation("OrderPackClavier")
+  Mouse        Product[]     @relation("OrderPackMouse")
+  MousePad        Product[]     @relation("OrderPackMousePad")
+  Mic        Product[]     @relation("OrderPackMic")
+  Headset        Product[]     @relation("OrderPackHeadset")
+  Camera        Product[]     @relation("OrderPackCamera")
+  Screen        Product[]     @relation("OrderPackScreen")
+  Speaker        Product[]     @relation("OrderPackSpeaker")
+  Manette        Product[]     @relation("OrderPackManette")
+  Chair        Product[]     @relation("OrderPackChair")
 }

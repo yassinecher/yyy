@@ -120,7 +120,6 @@ model Order {
   updatedAt   DateTime    @updatedAt
   orderItems  OrderItem[]
   orderPc     pcOrder[]
-  PackOrders  PackOrder[]
   pcOrderId   String      @default("")
 }
 
@@ -1046,6 +1045,4 @@ model PackOrder {
   Speaker   Product[] @relation("OrderPackSpeaker")
   Manette   Product[] @relation("OrderPackManette")
   Chair     Product[] @relation("OrderPackChair")
-  Order     Order?    @relation(fields: [orderId], references: [id])
-  orderId   String?
 }

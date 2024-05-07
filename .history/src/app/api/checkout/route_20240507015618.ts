@@ -53,7 +53,7 @@ export async function POST(
     const pc = pcOrder as PCCustom[];
     const dataa:any[]=data
     const packs: PackCustom[] = dataa.filter((pack) => pack.hasOwnProperty('packId'));
-console.log(packs)
+
   
 
     const products = await prismadb.product.findMany({
@@ -92,7 +92,23 @@ console.log(packs)
 
 
    
-   
+      console.log({
+        data: {
+       
+          isPaid: false,
+          phone: telephone || "",
+          address: `${rue || ""}, ${ville || ""}, ${codePostal || ""}`,
+          name: nom || "",
+          lastName: prenom || "",
+          email: email || "",
+          orderItems: {
+            create: [...orderItems],
+          },
+          orderPc: {
+            create: pcOrderItems,
+          },
+        },
+      })
       const order = await prismadb.order.create({
         data: {
           isPaid: false,
@@ -101,12 +117,7 @@ console.log(packs)
           name: nom || "",
           lastName: prenom || "",
           email: email || "",
-          orderItems: {
-            create: orderItems,
-          },
-          orderPc: {
-            create: pcOrderItems,
-          },
+        
           PackOrders: {  // Creating PackOrders along with the order
             create: packs.map(pack => ({
               Title: pack.Title.toString(),
@@ -149,6 +160,7 @@ console.log(packs)
           }
         },
       });
+
       console.log(order)
      // Create a Nodemailer transporter using SMTP configuration from Oracle Cloud Email Delivery
      const transporter = nodemailer.createTransport({
