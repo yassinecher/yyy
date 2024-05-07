@@ -85,8 +85,48 @@ const Invoice = (props: { invoiceData: CartItem[] ,order:Order|null}) => {
           <tbody>
             {props.invoiceData.map((item: CartItem, index) => (
               <React.Fragment key={index}>
+{
+  "packId"in item ? <>
+  {
+                  "idd" in item ? <>
+                    <tr className='bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
+                     <td className='px-6 py-4 font-extrabold'>{item.Title}</td>
+                      <td className='px-6 py-4'>X1</td>
+                     <td className='px-6 py-4'>{item.price}</td>
+                     <td className='px-6 py-4'>{item.price}</td></tr>
+{item.defaultKeyboard?<>
 
-                <> {
+  <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
+                    
+                     <td className='px-6 py-4'><b>Clavier:</b> {item.defaultKeyboard.name} </td>
+                     <td className='px-6 py-4'>X1</td>
+                     <td className='px-6 py-4'>{item.defaultKeyboard.price} </td>
+                     <td className='px-6 py-4'></td>
+                    </tr>
+</>:<></>
+
+}
+                
+                 
+                <tr className='bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
+                     <td className='px-6 py-4 font-extrabold'></td>
+                      <td className='px-6 py-4'></td>
+                     <td className='px-6 py-4'>-{item.reduction}</td>
+                     <td className='px-6 py-4'></td></tr>
+                  </> : <>
+                  <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
+                    
+                     <td className='px-6 py-4'>{item.name}</td>
+                     <td className='px-6 py-4'>X{item.number}</td>
+                     <td className='px-6 py-4'>{item.price}</td>
+                     <td className='px-6 py-4'>{item.price * item.number}</td></tr>
+                  </>
+
+                }
+  
+  
+  </>:<>
+  {
                   "idd" in item ? <>
                     <tr className='bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
                      <td className='px-6 py-4 font-extrabold'>{item.Title}</td>
@@ -181,7 +221,11 @@ const Invoice = (props: { invoiceData: CartItem[] ,order:Order|null}) => {
                         </tr>
                       </> : <></>
                     }
-                
+                <tr className='bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
+                     <td className='px-6 py-4 font-extrabold'></td>
+                      <td className='px-6 py-4'></td>
+                     <td className='px-6 py-4'>-{item.reduction}</td>
+                     <td className='px-6 py-4'></td></tr>
                   </> : <>
                   <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' >
                     
@@ -192,6 +236,9 @@ const Invoice = (props: { invoiceData: CartItem[] ,order:Order|null}) => {
                   </>
 
                 }
+  </>
+}
+                <> 
                 </> </React.Fragment>
             ))}
           </tbody>
