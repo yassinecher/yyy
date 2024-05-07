@@ -15,6 +15,7 @@ const OrdersPage = async ({
   const orders = await prismadb.order.findMany({
   
     include: {
+
       orderItems: {
         include: {
           product: true
@@ -29,13 +30,15 @@ const OrdersPage = async ({
   const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
     phone: item.phone,
+    name:item.name,
+    lastname:item.lastName,
     address: item.address,
-    archivee:item.archivee,
+    archivee:item.archivee.toString(),
     products: item.orderItems.map((orderItem) => orderItem.product.name).join(', '),
     totalPrice: formatter.format(item.orderItems.reduce((total, item) => {
       return total + Number(item.product.price)
     }, 0)),
-    isPaid: item.isPaid,
+    isPaid: item.isPaid.toString(),
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }));
 
