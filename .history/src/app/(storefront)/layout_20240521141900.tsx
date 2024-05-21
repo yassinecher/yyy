@@ -245,7 +245,7 @@ const linkMobile=await prismadb.navitem.findMany(   {
             <Provider>
           <ThemeProvider 
             attribute="class" 
-            defaultTheme="system" 
+            defaultTheme="dark" 
             enableSystem
 
           >   
