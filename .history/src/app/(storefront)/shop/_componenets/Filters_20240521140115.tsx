@@ -65,7 +65,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapProcesseur: Filter = {
-        title: "Processeur",
+        title: "Mark",
         list: LapProcesseurr.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -220,7 +220,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapHardisk: Filter = {
-        title: "Disque Dur",
+        title: "Mark",
         list: LapHardiskk.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -253,7 +253,7 @@ export const LaptopFilters = async () => {
     })
 
     const Lapmemory: Filter = {
-        title: "Mémoire",
+        title: "Mark",
         list: Lapmemoryy.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -263,7 +263,105 @@ export const LaptopFilters = async () => {
 
         }),
     };
-  
+    const Lapnetworkk = await prismadb.lapnetwork.findMany({
+        where: {
+            laptops: {
+                some: {
+                    product: { some: {} }
+                }
+            }
+        }
+        , include: {
+            _count: {
+
+                select: {
+                    laptops: {
+                        where: {
+                            product: { some: {} }
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    const Lapnetwork: Filter = {
+        title: "Mark",
+        list: Lapnetworkk.map((manufacturer) => {
+            return {
+                name: manufacturer.name,
+                number: manufacturer._count?.laptops ?? 0,
+
+            }
+
+        }),
+    };
+    const LapSoundd = await prismadb.lapSound.findMany({
+        where: {
+            laptops: {
+                some: {
+                    product: { some: {} }
+                }
+            }
+        }
+        , include: {
+            _count: {
+
+                select: {
+                    laptops: {
+                        where: {
+                            product: { some: {} }
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    const LapSound: Filter = {
+        title: "Mark",
+        list: LapSoundd.map((manufacturer) => {
+            return {
+                name: manufacturer.name,
+                number: manufacturer._count?.laptops ?? 0,
+
+            }
+
+        }),
+    };
+    const LapCameraa = await prismadb.lapCamera.findMany({
+        where: {
+            laptops: {
+                some: {
+                    product: { some: {} }
+                }
+            }
+        }
+        , include: {
+            _count: {
+
+                select: {
+                    laptops: {
+                        where: {
+                            product: { some: {} }
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    const LapCamera: Filter = {
+        title: "Mark",
+        list: LapCameraa.map((manufacturer) => {
+            return {
+                name: manufacturer.name,
+                number: manufacturer._count?.laptops ?? 0,
+
+            }
+
+        }),
+    };
     const LapRefreshRatee = await prismadb.lapRefreshRate.findMany({
         where: {
             laptops: {
@@ -287,7 +385,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapRefreshRate: Filter = {
-        title: "Taux de Rafraîchissement",
+        title: "Mark",
         list: LapRefreshRatee.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -321,7 +419,7 @@ export const LaptopFilters = async () => {
     })
 
     const manufacturer: Filter = {
-        title: "Fabricants",
+        title: "Mark",
         list: markk.map((manufacturer) => {
             return {
                 name: manufacturer.name,

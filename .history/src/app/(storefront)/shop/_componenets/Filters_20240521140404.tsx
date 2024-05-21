@@ -321,7 +321,7 @@ export const LaptopFilters = async () => {
     })
 
     const manufacturer: Filter = {
-        title: "Fabricants",
+        title: "Mark",
         list: markk.map((manufacturer) => {
             return {
                 name: manufacturer.name,

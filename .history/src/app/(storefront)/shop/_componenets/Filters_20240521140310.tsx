@@ -32,7 +32,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapSystem: Filter = {
-        title: "Mark",
+        title: "Système",
         list: LapSystemm.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -65,7 +65,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapProcesseur: Filter = {
-        title: "Mark",
+        title: "Processeur",
         list: LapProcesseurr.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -98,7 +98,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapGraphiccard: Filter = {
-        title: "Mark",
+        title: "Graphique card",
         list: LapGraphiccardd.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -164,7 +164,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapScreenSize: Filter = {
-        title: "Mark",
+        title: "Taille d'écran",
         list: LapScreenSizee.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -196,17 +196,7 @@ export const LaptopFilters = async () => {
         }
     })
 
-    const LapScreenType: Filter = {
-        title: "Mark",
-        list: LapScreenTypee.map((manufacturer) => {
-            return {
-                name: manufacturer.name,
-                number: manufacturer._count?.laptops ?? 0,
-
-            }
-
-        }),
-    };
+ 
     const LapHardiskk = await prismadb.lapHardisk.findMany({
         where: {
             laptops: {
@@ -395,7 +385,7 @@ export const LaptopFilters = async () => {
     })
 
     const LapRefreshRate: Filter = {
-        title: "Mark",
+        title: "Taux de Rafraîchissement",
         list: LapRefreshRatee.map((manufacturer) => {
             return {
                 name: manufacturer.name,
@@ -443,8 +433,8 @@ export const LaptopFilters = async () => {
     return {
         title: "laptop",
         data: {
-            manufacturer, LapSystem, LapProcesseur, LapGraphiccard, LapScreenSize, LapScreenType, LapHardisk, Lapmemory,
-            Lapnetwork, LapSound, LapCamera, LapRefreshRate
+            manufacturer, LapSystem, LapProcesseur, LapGraphiccard, LapScreenSize, LapHardisk, Lapmemory,
+             LapRefreshRate
 
         }
     }
