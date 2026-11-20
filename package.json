@@ -74,7 +74,7 @@
     "https-proxy-agent": "^6.2.0",
     "lodash.template": "^4.5.0",
     "lucide-react": "^0.263.1",
-    "next": "13.4.12",
+    "next": "13.5.11",
     "next-auth": "^4.23.2",
     "next-cloudinary": "^4.27.0",
     "next-themes": "^0.2.1",
@@ -112,7 +112,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "5.1.6",
     "vaul": "^0.9.0",
-    "zod": "^3.21.4",
+    "zod": "^4.6.7",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
